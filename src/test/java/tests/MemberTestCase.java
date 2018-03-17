@@ -1,6 +1,6 @@
 package tests;
 
-import modelo.Member;
+import model.Member;
 
 import static org.junit.Assert.*;
 

@@ -1,4 +1,4 @@
-package modelo;
+package model;
 
 public class Member {
 	private double credit;
