@@ -18,7 +18,7 @@ public class MemberTestCase {
 	}
 	
 	@Test
-	public void CreditTest(){
+	public void creditTest(){
 		member.addCredit(40.0);
 		assertEquals(80.0, member.getCredit(), 0);
 	}
