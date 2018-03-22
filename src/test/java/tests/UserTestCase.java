@@ -12,8 +12,7 @@ public class UserTestCase {
 	
 	/*
 	 * Credit Tests
-	 */
-		
+	 */		
 	@Test
 	public void shouldCreditThrows80WhenAdd80ToNewUser(){
 		User user= UserBuilder.anUser().build();

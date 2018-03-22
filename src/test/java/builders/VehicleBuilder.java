@@ -2,7 +2,7 @@ package builders;
 
 import model.User;
 import model.Vehicle;
-import model.VehicleType;
+import model.enums.VehicleType;
 
 public class VehicleBuilder {
 

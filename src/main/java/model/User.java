@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import model.interfaces.IUserState;
 
 	/***
-	 **This class set an User in the sistem. At the moment this can:
+	 **This class sets an User in the system. At the moment this can:
 	 *  - Build an user. This requires: CUIL, name, surname, address and email
 	 *  - Getters y setters.
 	 *  - Add/Debit Credit.
@@ -14,9 +14,11 @@ import model.interfaces.IUserState;
 	 *  - Calculate his own reputation.
 	 */
 
+
+	//TODO: Ver en que caso se vuelve a habilitar el usuario.
+
 public class User {
 	
-	//TODO: Ver en que caso se vuelve a habilitar el usuario.
 	private String CUIL;
 	private String name;
 	private String surname;
@@ -27,7 +29,7 @@ public class User {
 	private ArrayList<Integer> scores;
 	
 	
-	/*
+	/**
 	 * Constructors
 	 */
 	
@@ -44,7 +46,7 @@ public class User {
 		this.scores= new ArrayList<Integer>();
 	}
 	
-	/*
+	/**
 	 * Getters y setters
 	 */
 
@@ -104,15 +106,14 @@ public class User {
 	}	
 	
 	//Try to make a post
-	public void post(){
-		status.post();
+	public void post(Vehicle vehicle, Coord pickUpCoord,ArrayList<Coord> returnCoords){
+		status.post(vehicle,this, pickUpCoord,returnCoords);
 	}
 	
 	//Try to rent a vehicle
 	public void rent(){
 		status.rent();
 	}
-
 	
 	//Save the score obtained in one transaction and check the current status.
 	public void processScore(Integer score){
@@ -145,11 +146,16 @@ public class User {
 		return 0<=score && score<=maxScore();
 	}
 	
-	//Disable the user if the score is lower than the minimum.
+	//Disable the user if the reputation is lower than the minimum.
 	private void checkUserStatus(){
 		if (reputation()<minScoreEnabling()){
 			disableUser();
 		}
+	}
+	
+	//Disable the user to make some transactions.
+	private void disableUser(){
+		this.status= new UserDisabled();
 	}
 	
 	//Return the minimum score allowed
@@ -157,6 +163,10 @@ public class User {
 		return 3.0;
 	}
 	
+	//Sets the maximum score that an user can receive
+	private double maxScore(){
+		return 5.0;
+	}	
 	
 	private boolean isNewUser() {
 		return scores.isEmpty();
@@ -168,16 +178,6 @@ public class User {
 			sum+=i;
 		}
 		return (sum/scores.size());
-	}
-
-	//Sets the maximum score that an user can receive
-	private double maxScore(){
-		return 5.0;
-	}
-	
-	//Disable the user to make some transactions.
-	private void disableUser(){
-		this.status= new UserDisabled();
 	}
 	
 	//Save the score obtained in one transaction if it is within the correct range

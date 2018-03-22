@@ -3,13 +3,15 @@ package model;
 import java.io.File;
 import java.util.ArrayList;
 
+import model.enums.VehicleType;
+
 public class Vehicle {
 	
 	private User owner;
 	private VehicleType type;
 	private int capacity;
 	private String description;
-//	private ArrayList<File> photos; TODO: Ver si es el tipo correcto!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//	private ArrayList<File> photos; TODO: Ver si es el tipo correcto, y OJO que es OPCIONAL!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	
 	/*
 	 * Constructors
@@ -57,7 +59,7 @@ public class Vehicle {
 	
 	
 	/*
-	 * Functions
+	 * Public Methods
 	 */
 //	public ArrayList<File> addPhoto(File newPhoto){
 //		photos.add(newPhoto);
