@@ -112,14 +112,11 @@ public class User {
 	public void rent(){
 		status.rent();
 	}
+
 	
 	//Save the score obtained in one transaction and check the current status.
-	public void saveScore(Integer score){
-		if(score>maxScore()){
-			throw new RuntimeException("El puntaje es incorrecto"); 
-			}else{
-			scores.add(score);
-			}
+	public void processScore(Integer score){
+		saveScore(score);
 		checkUserStatus();
 	}
 	
@@ -138,19 +135,25 @@ public class User {
 	}
 	
 	
+
 	/**
 	 * Private Methods
 	 */
 	
+	//Return true if the score is between the established limits.
+	private boolean isCorrectScore(Integer score){
+		return 0<=score && score<=maxScore();
+	}
+	
 	//Disable the user if the score is lower than the minimum.
 	private void checkUserStatus(){
-		if (reputation()<minScoreAllowed()){
+		if (reputation()<minScoreEnabling()){
 			disableUser();
 		}
 	}
 	
 	//Return the minimum score allowed
-	private double minScoreAllowed(){
+	private double minScoreEnabling(){
 		return 3.0;
 	}
 	
@@ -175,5 +178,14 @@ public class User {
 	//Disable the user to make some transactions.
 	private void disableUser(){
 		this.status= new UserDisabled();
+	}
+	
+	//Save the score obtained in one transaction if it is within the correct range
+	private void saveScore(Integer score){
+		if(!isCorrectScore(score)){
+			throw new RuntimeException("El puntaje es incorrecto"); 
+		 }else{
+			scores.add(score);
+		  }
 	}
 }

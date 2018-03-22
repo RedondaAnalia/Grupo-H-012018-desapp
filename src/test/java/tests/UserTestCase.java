@@ -38,28 +38,28 @@ public class UserTestCase {
 	@Test
 	public void shouldReputationThrows4WhenAVGIs4(){
 		User user= UserBuilder.anUser().build();
-		user.saveScore(5);
-		user.saveScore(3);
+		user.processScore(5);
+		user.processScore(3);
 		assertEquals(user.reputation(),4.0,0);
 	}
 	
 	@Test(expected=RuntimeException.class)
 	public void shouldThrowAnExceptionWhenIPutAnOutOfRangeScore(){
 		User user= UserBuilder.anUser().build();
-		user.saveScore(6);
+		user.processScore(6);
 	}
 	
 	@Test
 	public void shouldBeDisableUserWhenTheReputationIsLowerThan3(){
 		User user= UserBuilder.anUser().build();
-		user.saveScore(1);
+		user.processScore(1);
 		assertFalse(user.isEnabled());
 	}
 	
 	@Test
 	public void shouldBeEnabledUserWhenTheReputationIsHigherOrEqualThan3(){
 		User user=UserBuilder.anUser().build();
-		user.saveScore(5);
+		user.processScore(5);
 		assertTrue(user.isEnabled());
 	}
 
