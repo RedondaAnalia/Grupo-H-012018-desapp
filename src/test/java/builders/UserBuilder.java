@@ -14,8 +14,6 @@ public class UserBuilder {
 		return new UserBuilder();
 	}
 	
-	private double reputation= 5.0;
-	
 	public User build(){
 		User user= new User(CUIL,name,surname,adress,email);
 		user.addCredit(credit);

@@ -1,5 +1,9 @@
 package model;
 
+import java.util.ArrayList;
+
+import model.interfaces.IUserState;
+
 public class User {
 	private String CUIL;
 	private String name;
@@ -7,6 +11,9 @@ public class User {
 	private String address;
 	private String email;
 	private double credit;
+	private IUserState state;
+	private ArrayList<Integer> scores;
+	
 	
 	/*
 	 * Constructors
@@ -21,6 +28,8 @@ public class User {
 		this.address=address;
 		this.email=email;
 		this.credit= 0;
+		this.state= new UserEnabled();
+		this.scores= new ArrayList<Integer>();
 	}
 	
 	/*
@@ -67,16 +76,61 @@ public class User {
 		return credit;
 	}
 	
+
 	/*
 	 * Functions
 	 */
 	
+	//Add credit parameter to the User.
 	public double addCredit(double creditToAdd){
 		return credit+=creditToAdd;
 	}
 	
+	//Debit credit parameter to the User.
 	public double debitCredit(double creditToDebit){
 		return credit-=creditToDebit;
 	}	
+	
+	//Disable the user to make some transactions.
+	private User disableUser(){
+		this.state= new UserDisabled();
+		return this;
+	}
+	
+	//Try to make a post
+	public void post(){
+		state.post();
+	}
+	
+	//Try to rent a vehicle
+	public void rent(){
+		state.rent();
+	}
+	
+	//Save the score obtained in one transaction
+	public void saveScore(Integer score){
+		scores.add(score);
+	}
+	
+	//AVG of the scores or new User default
+	public double reputation(){
+		if(isNewUser()){
+			return 3.0;
+		}else{
+			return this.avgOfScores();
+		}
+	}
+	
+	private boolean isNewUser() {
+		return scores.isEmpty();
+	}
+
+	private double avgOfScores(){
+		int sum=0;
+		for(Integer i:scores){
+			sum+=i;
+		}
+		return (sum/scores.size());
+	}
 
 }
