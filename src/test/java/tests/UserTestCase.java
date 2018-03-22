@@ -10,6 +10,9 @@ import model.User;
 
 public class UserTestCase {
 	
+	/*
+	 * Credit Tests
+	 */
 		
 	@Test
 	public void shouldCreditThrows80WhenAdd80ToNewUser(){
@@ -20,10 +23,12 @@ public class UserTestCase {
 	@Test
 	public void shouldCreditThrows40WhenDebit20To60(){
 		User user= UserBuilder.anUser().withCredit(60).build();
-		assertEquals(user.debitCredit(20),40,0);
-		
+		assertEquals(user.debitCredit(20),40,0);		
 	}
 	
+	/*
+	 * Reputation Tests.
+	 */
 	@Test
 	public void shouldReputationThrows3WhenNewUser(){
 		User user= UserBuilder.anUser().build();
@@ -33,9 +38,15 @@ public class UserTestCase {
 	@Test
 	public void shouldReputationThrows4WhenAVGIs4(){
 		User user= UserBuilder.anUser().build();
-		user.saveScore(6);
-		user.saveScore(2);
+		user.saveScore(5);
+		user.saveScore(3);
 		assertEquals(user.reputation(),4.0,0);
+	}
+	
+	@Test(expected=RuntimeException.class)
+	public void shouldThrowAnExceptionWhenIPutAnOutOfRangeScore(){
+		User user= UserBuilder.anUser().build();
+		user.saveScore(6);
 	}
 
 }

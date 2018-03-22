@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
+
 import model.interfaces.IUserState;
 
 public class User {
@@ -109,7 +110,11 @@ public class User {
 	
 	//Save the score obtained in one transaction
 	public void saveScore(Integer score){
-		scores.add(score);
+		if(score>maxScore()){
+			throw new RuntimeException("El puntaje es incorrecto"); 
+			}else{
+			scores.add(score);
+			}
 	}
 	
 	//AVG of the scores or new User default
@@ -121,6 +126,10 @@ public class User {
 		}
 	}
 	
+	
+	/*
+	 * Private Methods
+	 */
 	private boolean isNewUser() {
 		return scores.isEmpty();
 	}
@@ -133,4 +142,8 @@ public class User {
 		return (sum/scores.size());
 	}
 
+	//Sets the maximum score that an user can receive
+	private double maxScore(){
+		return 5.0;
+	}
 }
