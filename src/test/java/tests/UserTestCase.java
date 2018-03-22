@@ -48,5 +48,19 @@ public class UserTestCase {
 		User user= UserBuilder.anUser().build();
 		user.saveScore(6);
 	}
+	
+	@Test
+	public void shouldBeDisableUserWhenTheReputationIsLowerThan3(){
+		User user= UserBuilder.anUser().build();
+		user.saveScore(1);
+		assertFalse(user.isEnabled());
+	}
+	
+	@Test
+	public void shouldBeEnabledUserWhenTheReputationIsHigherOrEqualThan3(){
+		User user=UserBuilder.anUser().build();
+		user.saveScore(5);
+		assertTrue(user.isEnabled());
+	}
 
 }

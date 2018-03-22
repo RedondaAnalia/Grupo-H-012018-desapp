@@ -2,17 +2,28 @@ package model;
 
 import java.util.ArrayList;
 
-
 import model.interfaces.IUserState;
 
+	/***
+	 **This class set an User in the sistem. At the moment this can:
+	 *  - Build an user. This requires: CUIL, name, surname, address and email
+	 *  - Getters y setters.
+	 *  - Add/Debit Credit.
+	 *  - Delegate the ability to post or rent to the state .
+	 *  - Save scores, check the current status. 
+	 *  - Calculate his own reputation.
+	 */
+
 public class User {
+	
+	//TODO: Ver en que caso se vuelve a habilitar el usuario.
 	private String CUIL;
 	private String name;
 	private String surname;
 	private String address;
 	private String email;
 	private double credit;
-	private IUserState state;
+	private IUserState status;
 	private ArrayList<Integer> scores;
 	
 	
@@ -29,7 +40,7 @@ public class User {
 		this.address=address;
 		this.email=email;
 		this.credit= 0;
-		this.state= new UserEnabled();
+		this.status= new UserEnabled();
 		this.scores= new ArrayList<Integer>();
 	}
 	
@@ -78,8 +89,8 @@ public class User {
 	}
 	
 
-	/*
-	 * Functions
+	/**
+	 * Public Methods.
 	 */
 	
 	//Add credit parameter to the User.
@@ -92,32 +103,27 @@ public class User {
 		return credit-=creditToDebit;
 	}	
 	
-	//Disable the user to make some transactions.
-	private User disableUser(){
-		this.state= new UserDisabled();
-		return this;
-	}
-	
 	//Try to make a post
 	public void post(){
-		state.post();
+		status.post();
 	}
 	
 	//Try to rent a vehicle
 	public void rent(){
-		state.rent();
+		status.rent();
 	}
 	
-	//Save the score obtained in one transaction
+	//Save the score obtained in one transaction and check the current status.
 	public void saveScore(Integer score){
 		if(score>maxScore()){
 			throw new RuntimeException("El puntaje es incorrecto"); 
 			}else{
 			scores.add(score);
 			}
+		checkUserStatus();
 	}
 	
-	//AVG of the scores or new User default
+	//Return the AVG of the scores or new User default
 	public double reputation(){
 		if(isNewUser()){
 			return 3.0;
@@ -126,10 +132,29 @@ public class User {
 		}
 	}
 	
+	//Return true if the user is enabled.
+	public boolean isEnabled(){
+		return status.getClass()==UserEnabled.class;
+	}
 	
-	/*
+	
+	/**
 	 * Private Methods
 	 */
+	
+	//Disable the user if the score is lower than the minimum.
+	private void checkUserStatus(){
+		if (reputation()<minScoreAllowed()){
+			disableUser();
+		}
+	}
+	
+	//Return the minimum score allowed
+	private double minScoreAllowed(){
+		return 3.0;
+	}
+	
+	
 	private boolean isNewUser() {
 		return scores.isEmpty();
 	}
@@ -145,5 +170,10 @@ public class User {
 	//Sets the maximum score that an user can receive
 	private double maxScore(){
 		return 5.0;
+	}
+	
+	//Disable the user to make some transactions.
+	private void disableUser(){
+		this.status= new UserDisabled();
 	}
 }
