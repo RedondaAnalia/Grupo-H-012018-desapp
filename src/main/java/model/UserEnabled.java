@@ -14,4 +14,8 @@ public class UserEnabled implements IUserState{
 		return new Post(vehicle,user,pickUpCoord,returnCoords);
 	}
 
+	public boolean isEnabled(){
+		return true;
+	}
+
 }

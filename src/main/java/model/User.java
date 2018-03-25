@@ -97,22 +97,22 @@ public class User {
 	
 	//Add credit parameter to the User.
 	public double addCredit(double creditToAdd){
-		return credit+=creditToAdd;
+		return this.credit+=creditToAdd;
 	}
 	
 	//Debit credit parameter to the User.
 	public double debitCredit(double creditToDebit){
-		return credit-=creditToDebit;
+		return this.credit-=creditToDebit;
 	}	
 	
 	//Try to make a post
 	public void post(Vehicle vehicle, Coord pickUpCoord,ArrayList<Coord> returnCoords){
-		status.post(vehicle,this, pickUpCoord,returnCoords);
+		this.status.post(vehicle,this, pickUpCoord,returnCoords);
 	}
 	
 	//Try to rent a vehicle
 	public void rent(){
-		status.rent();
+		this.status.rent();
 	}
 	
 	//Save the score obtained in one transaction and check the current status.
@@ -132,10 +132,9 @@ public class User {
 	
 	//Return true if the user is enabled.
 	public boolean isEnabled(){
-		return status.getClass()==UserEnabled.class;
+		return this.status.isEnabled();
 	}
-	
-	
+
 
 	/**
 	 * Private Methods
@@ -169,7 +168,7 @@ public class User {
 	}	
 	
 	private boolean isNewUser() {
-		return scores.isEmpty();
+		return this.scores.isEmpty();
 	}
 
 	private double avgOfScores(){
@@ -185,7 +184,7 @@ public class User {
 		if(!isCorrectScore(score)){
 			throw new RuntimeException("El puntaje es incorrecto"); 
 		 }else{
-			scores.add(score);
+			this.scores.add(score);
 		  }
 	}
 }

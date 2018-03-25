@@ -6,10 +6,10 @@ import model.enums.VehicleType;
 
 public class VehicleBuilder {
 
-	VehicleType type= VehicleType.AUTO;
-	int capacity=0;
-	String description= "A default description";
-	User owner= UserBuilder.anUser().build();
+	private VehicleType type= VehicleType.AUTO;
+	private int capacity=0;
+	private String description= "A default description";
+	private User owner= UserBuilder.anUser().build();
 	
 	public static VehicleBuilder aVehicle(){
 		return new VehicleBuilder();

@@ -7,8 +7,8 @@ package model;
  */
 public class Coord {
 
-	double lat;
-	double lng;
+	private double lat;
+	private double lng;
 
 	/*
 	 * Constructors.

@@ -14,4 +14,8 @@ public class UserDisabled implements IUserState{
 		return null;
 	}
 
+	public boolean isEnabled(){
+		return false;
+	}
+
 }

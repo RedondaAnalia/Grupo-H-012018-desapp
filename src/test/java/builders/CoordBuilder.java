@@ -12,8 +12,7 @@ public class CoordBuilder {
 	}
 	
 	public Coord build(){
-		Coord coord= new Coord(lat,lng);
-		return coord;
+		return new Coord(lat,lng);
 	}
 	
 	public CoordBuilder withLat(double lat){
