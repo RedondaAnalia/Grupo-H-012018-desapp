@@ -114,8 +114,9 @@ public class User {
 	}
 	
 	//Try to rent a vehicle
-	public void rent(){
-		this.status.rent();
+	public Reservation rent(Post post, LocalDateTime reservationSinceDate,
+							LocalDateTime reservationUntilDate){
+		return this.status.rent(post, reservationSinceDate, reservationUntilDate, this);
 	}
 	
 	//Save the score obtained in one transaction and check the current status.

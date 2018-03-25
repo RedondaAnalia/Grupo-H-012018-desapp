@@ -11,7 +11,6 @@ public class Post {
 
 	private Vehicle vehicle;
 	private User ownerUser;
-	//private User tenantUser;
 	private Coord pickUpCoord;
 	private ArrayList<Coord> returnCoords;
 	private LocalDateTime sinceDate;
@@ -40,7 +39,6 @@ public class Post {
 		this.ownerUser=user;
 		this.pickUpCoord=pickUpCoord;
 		this.returnCoords=returnCoords;
-		//this.tenantUser= null;
         this.sinceDate = sinceDate;
 		this.UntilDate = UntilDate;
 		//this.phone = phone;

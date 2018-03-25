@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class PostBuilder {
 
     private Vehicle vehicle = VehicleBuilder.aVehicle().build();
-    private User ownerUser; // = UserBuilder.anUser().build();
+    private User ownerUser = UserBuilder.anUser().build();
     private Coord pickUpCoord = null;
     private ArrayList<Coord> returnCoords = new ArrayList<Coord>();
     private LocalDateTime sinceDate;

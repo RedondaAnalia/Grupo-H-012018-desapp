@@ -7,8 +7,9 @@ import model.interfaces.IUserState;
 
 public class UserEnabled implements IUserState{
 
-	public void rent() {
-			
+	public Reservation rent(Post post, LocalDateTime reservationSinceDate,
+					 LocalDateTime reservationUntilDate, User tenantUser) {
+		return new Reservation(post, reservationSinceDate, reservationUntilDate, tenantUser);
 	}
 
 	public Post post(Vehicle vehicle, User user, Coord pickUpCoord, ArrayList<Coord> returnCoords,
