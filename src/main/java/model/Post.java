@@ -45,5 +45,23 @@ public class Post {
         this.costPerHour = costPerHour;
 	}
 	
-	
+	public double getCostPerHour(){
+		return this.costPerHour;
+	}
+
+	public User getUser() {
+		return this.ownerUser;
+	}
+
+	public Coord getPickUpCoord() {
+		return this.pickUpCoord;
+	}
+
+	public ArrayList<Coord> getReturnCoords() {
+		return this.returnCoords;
+	}
+
+	public Vehicle getVehicle() {
+		return this.vehicle;
+	}
 }

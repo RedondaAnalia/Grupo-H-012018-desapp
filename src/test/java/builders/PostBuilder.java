@@ -41,4 +41,9 @@ public class PostBuilder {
         this.ownerUser = UserBuilder.anUser().buildUserDisabled();
         return this;
     }
+
+    public PostBuilder whitCostPerHour(double cost){
+        this.costPerHour = cost;
+        return this;
+    }
 }

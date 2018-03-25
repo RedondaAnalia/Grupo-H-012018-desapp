@@ -19,4 +19,11 @@ public class Reservation {
         this.reservationSinceDate=reservationSinceDate;
         this.reservationUntilDate=reservationUntilDate;
     }
+
+
+    public Rental confirming(){
+
+        return new Rental(tenantUser, post, reservationSinceDate, reservationUntilDate);
+    }
+
 }
