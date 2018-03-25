@@ -25,7 +25,7 @@ public class User {
 	private String surname;
 	private String address;
 	private String email;
-	private double credit;
+	private Account account;
 	private IUserState status;
 	private ArrayList<Integer> scores;
 	
@@ -42,7 +42,7 @@ public class User {
 		this.surname=surname;
 		this.address=address;
 		this.email=email;
-		this.credit= 0;
+		this.account= new Account();
 		this.status= new UserEnabled();
 		this.scores= new ArrayList<Integer>();
 	}
@@ -87,25 +87,19 @@ public class User {
 		return email;
 	}
 	
-	public double getCredit(double credit) {
-		return credit;
+	public double getCredit() {
+		return this.account.getCredit();
+	}
+
+	public Account getAccount(){
+		return this.account;
 	}
 	
 
 	/**
 	 * Public Methods.
 	 */
-	
-	//Add credit parameter to the User.
-	public double addCredit(double creditToAdd){
-		return this.credit+=creditToAdd;
-	}
-	
-	//Debit credit parameter to the User.
-	public double debitCredit(double creditToDebit){
-		return this.credit-=creditToDebit;
-	}	
-	
+
 	//Try to make a post
 	public void post(Vehicle vehicle, Coord pickUpCoord, ArrayList<Coord> returnCoords,
 					 LocalDateTime sinceDate, LocalDateTime UntilDate, double costPerHour){

@@ -16,13 +16,13 @@ public class UserBuilder {
 	
 	public User build(){
 		User user= new User(CUIL,name,surname,adress,email);
-		user.addCredit(credit);
+		user.getAccount().addCredit(credit);
 		return user;
 	}
 
 	public User buildUserDisabled(){
 		User user= new User(CUIL,name,surname,adress,email);
-		user.addCredit(credit);
+		user.getAccount().addCredit(credit);
 		user.processScore(1);
 		return user;
 	}

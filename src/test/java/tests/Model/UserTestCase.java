@@ -16,13 +16,13 @@ public class UserTestCase {
 	@Test
 	public void shouldCreditThrows80WhenAdd80ToNewUser(){
 		User user= UserBuilder.anUser().build();
-		assertEquals(user.addCredit(80),80,0);
+		assertEquals(user.getAccount().addCredit(80),80,0);
 	}
 	
 	@Test
 	public void shouldCreditThrows40WhenDebit20To60(){
 		User user= UserBuilder.anUser().withCredit(60).build();
-		assertEquals(user.debitCredit(20),40,0);		
+		assertEquals(user.getAccount().debitCredit(20),40,0);
 	}
 	
 	/*
