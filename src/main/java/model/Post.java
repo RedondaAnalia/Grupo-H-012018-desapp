@@ -11,25 +11,24 @@ public class Post {
 
 	private Vehicle vehicle;
 	private User ownerUser;
-	private User tenantUser;
+	//private User tenantUser;
 	private Coord pickUpCoord;
 	private ArrayList<Coord> returnCoords;
-	private LocalDateTime available;
-	private LocalDateTime maximumReturnTime;
-	//double costoPorDia;
-	//double costoPorHora;
-	//int phone
-	//hora y dias disponibles para alquilar
-	
-	
-	public Post(){};
+	private LocalDateTime sinceDate;
+	private LocalDateTime UntilDate;
+	private double costPerHour;
+	private int phone;
 
-	public Post(Vehicle vehicle, User user, Coord pickUpCoord, ArrayList<Coord> returnCoords){
+	
+	public Post(){}
+
+	public Post(Vehicle vehicle, User user, Coord pickUpCoord, ArrayList<Coord> returnCoords,
+                LocalDateTime sinceDate, LocalDateTime UntilDate, double costPerHour){
+
+		long hours= sinceDate.until(UntilDate,ChronoUnit.HOURS);
+		long days= sinceDate.until(UntilDate, ChronoUnit.DAYS);
 		
-		long hours= available.until(maximumReturnTime,ChronoUnit.HOURS);
-		long days= available.until(maximumReturnTime, ChronoUnit.DAYS);
-		
-		if( hours<1 || days>=5 ){
+		if( hours<1 || days>5 ){
 			throw new TimeOutOfRangeException();
 		}
 
@@ -41,7 +40,11 @@ public class Post {
 		this.ownerUser=user;
 		this.pickUpCoord=pickUpCoord;
 		this.returnCoords=returnCoords;
-		this.tenantUser= null;  
+		//this.tenantUser= null;
+        this.sinceDate = sinceDate;
+		this.UntilDate = UntilDate;
+		//this.phone = phone;
+        this.costPerHour = costPerHour;
 	}
 	
 	

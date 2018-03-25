@@ -1,5 +1,6 @@
 package model;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import model.interfaces.IUserState;
@@ -106,8 +107,10 @@ public class User {
 	}	
 	
 	//Try to make a post
-	public void post(Vehicle vehicle, Coord pickUpCoord,ArrayList<Coord> returnCoords){
-		this.status.post(vehicle,this, pickUpCoord,returnCoords);
+	public void post(Vehicle vehicle, Coord pickUpCoord, ArrayList<Coord> returnCoords,
+					 LocalDateTime sinceDate, LocalDateTime UntilDate, double costPerHour){
+		this.status.post(vehicle,this, pickUpCoord,returnCoords,
+				sinceDate, UntilDate, costPerHour);
 	}
 	
 	//Try to rent a vehicle

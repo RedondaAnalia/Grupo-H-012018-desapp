@@ -19,6 +19,13 @@ public class UserBuilder {
 		user.addCredit(credit);
 		return user;
 	}
+
+	public User buildUserDisabled(){
+		User user= new User(CUIL,name,surname,adress,email);
+		user.addCredit(credit);
+		user.processScore(1);
+		return user;
+	}
 	
 	public UserBuilder withNameAndSurname(String name, String surname){
 		this.name=name;
