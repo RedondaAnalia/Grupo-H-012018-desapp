@@ -11,12 +11,12 @@ public class UserEnabled implements IUserState{
 
 	public Reservation rent(Post post, LocalDateTime reservationSinceDate,
 					 LocalDateTime reservationUntilDate, User tenantUser) {
-
+/*
 		if (tenantUser.getCredit() <
 				calculationCostOfRent
 						(post.getCostPerHour(), reservationSinceDate, reservationUntilDate))
 			throw new NoCreditException();
-
+*/
 		return new Reservation(post, reservationSinceDate, reservationUntilDate, tenantUser);
 	}
 

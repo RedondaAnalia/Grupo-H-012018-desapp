@@ -1,6 +1,8 @@
 package model;
 
 
+import model.interfaces.IReservationStatus;
+
 import java.time.LocalDateTime;
 
 public class Reservation {
@@ -9,6 +11,7 @@ public class Reservation {
     private Post post;
     private LocalDateTime reservationSinceDate;
     private LocalDateTime reservationUntilDate;
+    private IReservationStatus statusReservation;
 
     public Reservation(){};
 
@@ -18,12 +21,21 @@ public class Reservation {
         this.post=post;
         this.reservationSinceDate=reservationSinceDate;
         this.reservationUntilDate=reservationUntilDate;
+
+        this.statusReservation = new PendingReservationST();
+
     }
 
+    public void setStatus(IReservationStatus status){
+        this.statusReservation=status;
+    }
 
-    public Rental confirming(){
+    public void beReject(){
+        this.statusReservation.beReject(this);
+    }
 
-        return new Rental(tenantUser, post, reservationSinceDate, reservationUntilDate);
+    public void beConfirm(){
+        this.statusReservation.beConfirm(this);
     }
 
 }

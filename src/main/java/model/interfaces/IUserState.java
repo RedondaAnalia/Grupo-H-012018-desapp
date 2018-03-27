@@ -7,6 +7,7 @@ import model.*;
 
 public interface IUserState {
 	
+	
 	Post post(Vehicle vehicle, User user, Coord pickUpCoord,ArrayList<Coord>returnCoords,
 			  LocalDateTime sinceDate, LocalDateTime untilDate, double costPerHour);
 

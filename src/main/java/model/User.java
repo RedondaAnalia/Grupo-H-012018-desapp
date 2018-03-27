@@ -185,4 +185,8 @@ public class User {
 			this.scores.add(score);
 		  }
 	}
-}
+
+		public void enabledUser() {
+		this.status=new UserEnabled();
+		}
+	}

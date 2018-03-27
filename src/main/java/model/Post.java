@@ -24,9 +24,10 @@ public class Post {
 	public Post(Vehicle vehicle, User user, Coord pickUpCoord, ArrayList<Coord> returnCoords,
                 LocalDateTime sinceDate, LocalDateTime UntilDate, double costPerHour){
 
+		// cambiar lo de las horas
 		long hours= sinceDate.until(UntilDate,ChronoUnit.HOURS);
 		long days= sinceDate.until(UntilDate, ChronoUnit.DAYS);
-		
+
 		if( hours<1 || days>5 ){
 			throw new TimeOutOfRangeException();
 		}
