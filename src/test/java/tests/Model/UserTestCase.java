@@ -62,4 +62,10 @@ public class UserTestCase {
 		assertTrue(user.isEnabled());
 	}
 
+	@Test
+	public void shouldBeEnabledUserWhenTheReputationIsLowerThan3(){
+		User user= UserBuilder.anUser().build();
+		user.processScore(1);
+		assertFalse(user.isEnabled());
+	}
 }
