@@ -1,5 +1,6 @@
 package model;
 
+import model.exceptions.NoCreditException;
 
 public class Account {
 
@@ -14,8 +15,11 @@ public class Account {
         return this.credit+=creditToAdd;
     }
 
-    //Debit credit parameter to the User.
+    //Try debit credit
     public double debitCredit(double creditToDebit){
+    	if (credit<creditToDebit){
+    		throw new NoCreditException();
+    	} 
         return this.credit-=creditToDebit;
     }
 
