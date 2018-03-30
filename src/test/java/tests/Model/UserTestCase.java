@@ -11,21 +11,6 @@ import model.User;
 public class UserTestCase {
 	
 	/*
-	 * Credit Tests
-	 */		
-	@Test
-	public void shouldCreditThrows80WhenAdd80ToNewUser(){
-		User user= UserBuilder.anUser().build();
-		assertEquals(user.getAccount().addCredit(80),80,0);
-	}
-	
-	@Test
-	public void shouldCreditThrows40WhenDebit20To60(){
-		User user= UserBuilder.anUser().withCredit(60).build();
-		assertEquals(user.getAccount().debitCredit(20),40,0);
-	}
-	
-	/*
 	 * Reputation Tests.
 	 */
 	@Test
@@ -48,22 +33,26 @@ public class UserTestCase {
 		user.processScore(6);
 	}
 	
+	
+	/**
+	 * Status test.
+	 */
 	@Test
-	public void shouldBeDisableUserWhenTheReputationIsLowerThan3(){
+	public void shouldBeDisabledUserWhenTheReputationIsLowerThanEnablingScore(){
 		User user= UserBuilder.anUser().build();
 		user.processScore(1);
 		assertFalse(user.isEnabled());
 	}
 	
 	@Test
-	public void shouldBeEnabledUserWhenTheReputationIsHigherOrEqualThan3(){
+	public void shouldBeEnabledUserWhenTheReputationIsHigherOrEqualThanEnablingScore(){
 		User user=UserBuilder.anUser().build();
 		user.processScore(5);
 		assertTrue(user.isEnabled());
 	}
 
 	@Test
-	public void shouldBeEnabledUserWhenTheReputationIsLowerThan3(){
+	public void shouldBeEnabledUserWhenTheReputationIsLowerThanEnablingScore(){
 		User user= UserBuilder.anUser().build();
 		user.processScore(1);
 		assertFalse(user.isEnabled());

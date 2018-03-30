@@ -15,7 +15,7 @@ public class Account {
         return this.credit+=creditToAdd;
     }
 
-    //Try debit credit
+    //Try to debit credit
     public double debitCredit(double creditToDebit){
     	if (credit<creditToDebit){
     		throw new NoCreditException();

@@ -15,9 +15,6 @@ import model.interfaces.IUserState;
 	 *  - Calculate his own reputation.
 	 */
 
-
-	//TODO: Ver en que caso se vuelve a habilitar el usuario.
-
 public class User {
 	
 	private String CUIL;
@@ -133,6 +130,15 @@ public class User {
 		return this.status.isEnabled();
 	}
 
+	//Add credit to his own account.
+	public double addCredit(double creditToAdd){
+		return account.addCredit(creditToAdd);
+	}
+	
+	//Try to debit credit, if it have it.
+	public double debitCredit(double creditToDebit){
+		return account.debitCredit(creditToDebit);
+	}
 
 	/**
 	 * Private Methods
