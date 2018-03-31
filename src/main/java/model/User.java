@@ -2,7 +2,10 @@ package model;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-
+import model.exceptions.InvalidEmailException;
+import model.exceptions.NameTooLongException;
+import model.exceptions.NameTooShortException;
+import model.exceptions.NoAddressException;
 import model.interfaces.IUserState;
 
 	/***
@@ -33,7 +36,28 @@ public class User {
 	
 	public User(){};
 	
+	//TODO: validarCUIL.
 	public User(String CUIL, String name, String surname, String address, String email){
+		int completeName=(name+surname).length();
+		if(completeName<=4){
+			throw new NameTooShortException();
+		}
+		if(completeName>=50){
+			throw new NameTooLongException();
+		}
+		if(address==null|| address.isEmpty()){
+			throw new NoAddressException();
+		}
+		
+		if(email==null || !email.contains("@")){
+			throw new InvalidEmailException();
+		}
+		
+		String mailLastPart=email.split("@")[1];
+		if (!mailLastPart.contains(".")){
+			throw new InvalidEmailException();
+		}
+		
 		this.CUIL=CUIL;
 		this.name=name;
 		this.surname=surname;
@@ -135,7 +159,7 @@ public class User {
 		return account.addCredit(creditToAdd);
 	}
 	
-	//Try to debit credit, if it have it.
+	//Try to debit credit.
 	public double debitCredit(double creditToDebit){
 		return account.debitCredit(creditToDebit);
 	}

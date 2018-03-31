@@ -6,9 +6,61 @@ import org.junit.Test;
 
 import builders.UserBuilder;
 import model.User;
+import model.exceptions.NameTooShortException;
+import model.exceptions.NameTooLongException;
+import model.exceptions.*;
 
 
 public class UserTestCase {
+	
+	/*
+	 * Name Validation Tests.
+	 */
+	@Test
+	public void shouldMakeACorrectNameUserWithoutProblems(){
+		User user= UserBuilder.anUser().build();
+	}
+	
+	@Test(expected= NameTooShortException.class)
+	public void shouldThrowAnExceptionWhenTheNameIsTooShort(){
+		User user= UserBuilder.anUser().withNameAndSurname("ab", "c").build();
+	}
+	
+	@Test(expected= NameTooLongException.class)
+	public void shouldThrowAnExceptionWhenTheNameIsTooLong(){
+		User user= UserBuilder.anUser()
+					.withNameAndSurname("Soy una persona con un nombre muy largo", "y de apellido recontralargo tambien")
+					.build();
+	}
+	
+	@Test(expected=InvalidEmailException.class)
+	public void shouldThrowAnExceptionWhenTheEmailHaveNotGotArroba(){
+		User user= UserBuilder.anUser()
+					.withEmail("abc")
+					.build();
+	}
+
+	@Test(expected=InvalidEmailException.class)
+	public void shouldThrowAnExceptionWhenTheEmailHaveNotGotPointAfterArroba(){
+		User user= UserBuilder.anUser()
+					.withEmail("abc@lala")
+					.build();
+	}
+	
+	@Test(expected=NoAddressException.class)
+	public void shouldThrowAnExceptionWhenHaveNotGotAddress(){
+		User user= UserBuilder.anUser()
+				.withAddress("")
+				.build();
+	}
+	
+	@Test(expected=NoAddressException.class)
+	public void shouldThrowAnExceptionWhenHaveNotAddress(){
+		User user= UserBuilder.anUser()
+				.withAddress(null)
+				.build();
+	}
+	
 	
 	/*
 	 * Reputation Tests.

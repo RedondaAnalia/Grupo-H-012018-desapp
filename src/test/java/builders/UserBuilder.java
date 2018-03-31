@@ -6,8 +6,8 @@ public class UserBuilder {
 	private String CUIL= "aCUIL";
 	private String name= "aName";
 	private String surname= "aSurname";
-	private String adress= "anAdress";
-	private String email= "aEmail";
+	private String address= "anAdress";
+	private String email= "aEmail@carpnd.com";
 	private double credit=0;
 	
 	public static UserBuilder anUser(){
@@ -15,13 +15,13 @@ public class UserBuilder {
 	}
 	
 	public User build(){
-		User user= new User(CUIL,name,surname,adress,email);
+		User user= new User(CUIL,name,surname,address,email);
 		user.getAccount().addCredit(credit);
 		return user;
 	}
 
 	public User buildUserDisabled(){
-		User user= new User(CUIL,name,surname,adress,email);
+		User user= new User(CUIL,name,surname,address,email);
 		user.getAccount().addCredit(credit);
 		user.processScore(1);
 		return user;
@@ -43,4 +43,8 @@ public class UserBuilder {
 		return this;
 	}
 
+	public UserBuilder withAddress(String address){
+		this.address=address;
+		return this;
+	}
 }
