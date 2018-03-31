@@ -7,8 +7,8 @@ import model.enums.VehicleType;
 public class VehicleBuilder {
 
 	private VehicleType type= VehicleType.AUTO;
-	private int capacity=0;
-	private String description= "A default description";
+	private int capacity=1;
+	private String description= "A default description, a little bit longer because is not allowed a shorter description";
 	private User owner= UserBuilder.anUser().build();
 	
 	public static VehicleBuilder aVehicle(){

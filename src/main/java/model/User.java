@@ -12,7 +12,7 @@ import model.interfaces.IUserState;
 	 **This class sets an User in the system. At the moment this can:
 	 *  - Build an user. This requires: CUIL, name, surname, address and email
 	 *  - Getters y setters.
-	 *  - Add/Debit Credit.
+	 *  - Delagate the ability to Add/Debit Credit to his own account.
 	 *  - Delegate the ability to post or rent to the state .
 	 *  - Save scores, check the current status. 
 	 *  - Calculate his own reputation.
@@ -39,9 +39,10 @@ public class User {
 	//TODO: validarCUIL.
 	public User(String CUIL, String name, String surname, String address, String email){
 		int completeName=(name+surname).length();
-		if(completeName<=4){
+		if(completeName<=4 && name!=null && name!="" && surname!=null && surname!=""){
 			throw new NameTooShortException();
 		}
+		
 		if(completeName>=50){
 			throw new NameTooLongException();
 		}

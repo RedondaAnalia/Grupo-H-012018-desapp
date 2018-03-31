@@ -3,7 +3,13 @@ package model;
 import java.io.File;
 import java.util.ArrayList;
 
+import org.hibernate.hql.internal.ast.tree.NullNode;
+
 import model.enums.VehicleType;
+import model.exceptions.DescriptionTooLongException;
+import model.exceptions.DescriptionTooShortException;
+import model.exceptions.InvalidCapacityException;
+import model.exceptions.NoVehicleTypeException;
 
 public class Vehicle {
 	
@@ -19,6 +25,18 @@ public class Vehicle {
 	
 	public Vehicle(User owner, VehicleType type, int capacity, String description){
 //		this.photos=new ArrayList<File>();
+		if(type==null){
+			throw new NoVehicleTypeException();
+		}
+		if(capacity==0){
+			throw new InvalidCapacityException();
+		}
+		if(description.length()<=30){
+			throw new DescriptionTooShortException();
+		}
+		if(description.length()>=200){
+			throw new DescriptionTooLongException();
+		}
 		this.type= type;
 		this.owner=owner;
 		this.capacity=capacity;

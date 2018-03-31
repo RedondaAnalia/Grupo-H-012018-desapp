@@ -15,26 +15,26 @@ public class Post {
 	private ArrayList<Coord> returnCoords;
 	private LocalDateTime sinceDate;
 	private LocalDateTime UntilDate;
-	private double costPerHour;
+	private double costPerDay;
 	private int phone;
 
 	
 	public Post(){}
 
 	public Post(Vehicle vehicle, User user, Coord pickUpCoord, ArrayList<Coord> returnCoords,
-                LocalDateTime sinceDate, LocalDateTime UntilDate, double costPerHour){
+                LocalDateTime sinceDate, LocalDateTime UntilDate, double costPerDay){
 
-		// cambiar lo de las horas
-		long hours= sinceDate.until(UntilDate,ChronoUnit.HOURS);
 		long days= sinceDate.until(UntilDate, ChronoUnit.DAYS);
 
-		if( hours<1 || days>5 ){
+		if( days<1 || days>5 ){
 			throw new TimeOutOfRangeException();
 		}
-
 		if(!user.isEnabled()){
 		    throw new UserBlockedException();
         }
+//		if(pickUpCoord==null || returnCoords.isEmpty()){
+//			throw new NoCoordsEnoughException();
+//		}
 		
 		this.vehicle=vehicle;
 		this.ownerUser=user;
@@ -43,11 +43,11 @@ public class Post {
         this.sinceDate = sinceDate;
 		this.UntilDate = UntilDate;
 		//this.phone = phone;
-        this.costPerHour = costPerHour;
+        this.costPerDay = costPerDay;
 	}
 	
 	public double getCostPerHour(){
-		return this.costPerHour;
+		return this.costPerDay;
 	}
 
 	public User getUser() {
