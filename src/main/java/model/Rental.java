@@ -12,15 +12,27 @@ public class Rental {
 
     private Reservation reservation;
     private IRentalState state;
-    private LocalDateTime startRentalTime;
-    private LocalDateTime timeAfterTheOwnerConfirmation;
-    private LocalDateTime timeAfterTheTenantConfirmation;
+    private LocalDateTime rentalTime = null;
+    private LocalDateTime timeAfterTheOwnerConfirmation = null;
+    private LocalDateTime timeAfterTheTenantConfirmation = null;
 
     public Rental(Reservation reservation){
 
         this.reservation = reservation;
         this.state = new PendingRentalST();
 
+    }
+
+    public IRentalState getState(){
+        return this.state;
+    }
+
+    public void ownerConfirmation(){
+        this.state.confirmationTheOwnerUser(this);
+    }
+
+    public void tenantConfirmation(){
+        this.state.confirmationTheTenantUser(this);
     }
 
     public void setState(IRentalState newState){
@@ -36,7 +48,11 @@ public class Rental {
     }
 
     public void startRentalTime(){
-        this.startRentalTime= LocalDateTime.now();
+        this.rentalTime = LocalDateTime.now();
+    }
+
+    public long getRentalTime(){
+        return this.rentalTime.until(LocalDateTime.now(), ChronoUnit.DAYS);
     }
 
     //pensar esto de nuevo estos checks.... no me cierra
