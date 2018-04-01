@@ -12,9 +12,9 @@ public class PendingReservationST implements IReservationStatus {
     }
 
     @Override
-    public void beConfirm(Reservation reservation) {
+    public Rental beConfirm(Reservation reservation) {
         reservation.setStatus(new ConfirmReservationST());
-        new Rental(reservation);
+        return new Rental(reservation);
     }
 
 }

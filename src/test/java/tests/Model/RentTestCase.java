@@ -6,7 +6,6 @@ import builders.UserBuilder;
 import model.Post;
 import model.Reservation;
 import model.User;
-import model.exceptions.NoCreditException;
 import model.exceptions.UserBlockedException;
 import org.junit.Assert;
 import org.junit.Test;
@@ -42,6 +41,6 @@ public class RentTestCase {
         Reservation reservation = tenantUser.
                 rent(post, LocalDateTime.now(), LocalDateTime.now().plusDays(1L));
 
-        reservation.beConfirm();
+        Assert.assertNotNull(reservation.beConfirm());
     }
 }

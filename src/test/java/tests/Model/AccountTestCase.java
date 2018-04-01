@@ -1,13 +1,8 @@
 package tests.Model;
 
 import static org.junit.Assert.*;
-
-import org.junit.Before;
 import org.junit.Test;
-
-import builders.UserBuilder;
 import model.Account;
-import model.User;
 import model.exceptions.NoCreditException;
 
 public class AccountTestCase {

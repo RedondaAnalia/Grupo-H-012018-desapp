@@ -39,8 +39,8 @@ public class Reservation {
         this.statusReservation.beReject(this);
     }
 
-    public void beConfirm(){
-        this.statusReservation.beConfirm(this);
+    public Rental beConfirm(){
+        return this.statusReservation.beConfirm(this);
     }
 
 }
