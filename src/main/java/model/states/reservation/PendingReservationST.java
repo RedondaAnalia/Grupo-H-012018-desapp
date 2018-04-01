@@ -3,9 +3,9 @@ package model.states.reservation;
 
 import model.Rental;
 import model.Reservation;
-import model.interfaces.IReservationStatus;
+import model.interfaces.IReservationState;
 
-public class PendingReservationST implements IReservationStatus {
+public class PendingReservationST implements IReservationState {
 
     public void beReject(Reservation reservation) {
         reservation.setStatus(new RejectedReservationST());

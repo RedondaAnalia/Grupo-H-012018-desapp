@@ -6,7 +6,7 @@ import builders.UserBuilder;
 import model.Post;
 import model.Reservation;
 import model.User;
-import model.exceptions.InvalidStatusChange;
+import model.exceptions.InvalidStatusChangeException;
 import model.states.reservation.ConfirmReservationST;
 import model.states.reservation.PendingReservationST;
 import model.states.reservation.RejectedReservationST;
@@ -84,7 +84,7 @@ public class ReservationTestCase {
 
     }
 
-    @Test(expected = InvalidStatusChange.class)
+    @Test(expected = InvalidStatusChangeException.class)
     public void itShouldNotBePossibleToModifyTheStateOfReserveOfTheConfirmedToRejected(){
         Post post = PostBuilder.
                 aPost().
@@ -101,7 +101,7 @@ public class ReservationTestCase {
         reservation.beReject();
     }
 
-    @Test(expected = InvalidStatusChange.class)
+    @Test(expected = InvalidStatusChangeException.class)
     public void itShouldNotBePossibleToModifyTheStateOfReserveOfTheConfirmedToConfirmed(){
 
         Post post = PostBuilder.
@@ -120,7 +120,7 @@ public class ReservationTestCase {
 
     }
 
-    @Test(expected = InvalidStatusChange.class)
+    @Test(expected = InvalidStatusChangeException.class)
     public void itShouldNotBePossibleToModifyTheStateOfReserveOfTheRejectedToRejected(){
         Post post = PostBuilder.
                 aPost().
@@ -137,7 +137,7 @@ public class ReservationTestCase {
         reservation.beReject();
     }
 
-    @Test(expected = InvalidStatusChange.class)
+    @Test(expected = InvalidStatusChangeException.class)
     public void itShouldNotBePossibleToModifyTheStateOfReserveOfTheRejectedToConfirmed(){
 
         Post post = PostBuilder.

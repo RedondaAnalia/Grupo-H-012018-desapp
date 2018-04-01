@@ -1,7 +1,7 @@
 package model;
 
 
-import model.interfaces.IReservationStatus;
+import model.interfaces.IReservationState;
 import model.states.reservation.PendingReservationST;
 
 import java.time.LocalDateTime;
@@ -12,7 +12,7 @@ public class Reservation {
     private Post post;
     private LocalDateTime reservationSinceDate;
     private LocalDateTime reservationUntilDate;
-    private IReservationStatus statusReservation;
+    private IReservationState statusReservation;
 
     public Reservation(){};
 
@@ -27,11 +27,11 @@ public class Reservation {
 
     }
 
-    public void setStatus(IReservationStatus status){
+    public void setStatus(IReservationState status){
         this.statusReservation=status;
     }
 
-    public IReservationStatus getStatus(){
+    public IReservationState getStatus(){
         return this.statusReservation;
     }
 

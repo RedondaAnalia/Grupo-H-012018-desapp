@@ -2,20 +2,20 @@ package model.states.reservation;
 
 import model.Rental;
 import model.Reservation;
-import model.exceptions.InvalidStatusChange;
-import model.interfaces.IReservationStatus;
+import model.exceptions.InvalidStatusChangeException;
+import model.interfaces.IReservationState;
 
 
-public class ConfirmReservationST implements IReservationStatus {
+public class ConfirmReservationST implements IReservationState {
     @Override
     public void beReject(Reservation reservation) {
-        throw new InvalidStatusChange
+        throw new InvalidStatusChangeException
                 ("No podes cambiar el estado de la reserva, de Confirmada a Rechazada");
     }
 
     @Override
     public Rental beConfirm(Reservation reservation) {
-        throw new InvalidStatusChange
+        throw new InvalidStatusChangeException
                 ("No podes cambiar el estado de la reserva, de Confirmada a Confirmada");
     }
 }
