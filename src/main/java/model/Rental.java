@@ -2,9 +2,7 @@ package model;
 
 
 import model.interfaces.IRentalState;
-
-import java.time.LocalDateTime;
-import java.util.ArrayList;
+import model.state.rental.PendingRentalST;
 
 public class Rental {
 

@@ -1,8 +1,5 @@
 package tests.Model;
 
-import static org.junit.Assert.*;
-
-import builders.CoordBuilder;
 import builders.PostBuilder;
 import model.Coord;
 import model.Post;
@@ -10,7 +7,6 @@ import model.exceptions.NoCoordsEnoughException;
 import model.exceptions.TimeOutOfRangeException;
 import model.exceptions.UserBlockedException;
 import org.junit.Test;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;

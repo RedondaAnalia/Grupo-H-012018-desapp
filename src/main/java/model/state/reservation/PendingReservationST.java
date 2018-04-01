@@ -1,6 +1,8 @@
-package model;
+package model.state.reservation;
 
 
+import model.Rental;
+import model.Reservation;
 import model.interfaces.IReservationStatus;
 
 public class PendingReservationST implements IReservationStatus {

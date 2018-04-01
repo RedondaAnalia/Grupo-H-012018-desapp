@@ -1,10 +1,5 @@
 package model;
 
-import java.io.File;
-import java.util.ArrayList;
-
-import org.hibernate.hql.internal.ast.tree.NullNode;
-
 import model.enums.VehicleType;
 import model.exceptions.DescriptionTooLongException;
 import model.exceptions.DescriptionTooShortException;

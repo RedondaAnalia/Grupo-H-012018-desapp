@@ -1,10 +1,7 @@
 package tests.Model;
 
-import static org.junit.Assert.*;
-
-import org.junit.Before;
+import org.junit.Assert;
 import org.junit.Test;
-
 import builders.VehicleBuilder;
 import model.Vehicle;
 import model.exceptions.DescriptionTooLongException;
@@ -17,6 +14,7 @@ public class VehicleTestCase {
 	@Test
 	public void shouldBuildAStandardVehicle() {
 		Vehicle vehicle= VehicleBuilder.aVehicle().build();
+		Assert.assertNotNull(vehicle);
 	}
 	
 	@Test(expected=DescriptionTooShortException.class)

@@ -1,8 +1,6 @@
 package tests.Model;
 
-import static org.junit.Assert.*;
-
-import org.junit.Before;
+import org.junit.Assert;
 import org.junit.Test;
 
 import builders.CoordBuilder;
@@ -26,13 +24,27 @@ public class CoordTestCase {
 	}
 	
 	@Test
-	public void shouldBuildAnCoodWhenLatAndLngAreTheMaximumValues(){
+	public void shouldBuildAnCoodWhenLatIsTheMaximumValue(){
 		Coord coord= CoordBuilder.anCoord().withLat(90).withLng(180).build();
+		Assert.assertTrue(90.0==coord.getLat());
 	}
-	
+
 	@Test
-	public void shouldBuildAnCoordWhenLatAndLngAreTheMinimumValues(){
+	public void shouldBuildAnCoodWhenLngIsTheMaximumValue(){
+		Coord coord= CoordBuilder.anCoord().withLat(90).withLng(180).build();
+		Assert.assertTrue(180.0==coord.getLng());
+	}
+
+	@Test
+	public void shouldBuildAnCoordWhenLatIsTheMinimumValue(){
 		Coord coord= CoordBuilder.anCoord().withLat(-90).withLng(-180).build();
+		Assert.assertTrue(-90.0==coord.getLat());
+	}
+
+	@Test
+	public void shouldBuildAnCoordWhenLngAreTheMinimumValue(){
+		Coord coord= CoordBuilder.anCoord().withLat(-90).withLng(-180).build();
+		Assert.assertTrue(-180.0==coord.getLng());
 	}
 
 }

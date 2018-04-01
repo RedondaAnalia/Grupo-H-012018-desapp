@@ -2,6 +2,7 @@ package tests.Model;
 
 import static org.junit.Assert.*;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import builders.UserBuilder;
@@ -19,6 +20,7 @@ public class UserTestCase {
 	@Test
 	public void shouldMakeACorrectNameUserWithoutProblems(){
 		User user= UserBuilder.anUser().build();
+		Assert.assertNotNull(user);
 	}
 	
 	@Test(expected= NameTooShortException.class)

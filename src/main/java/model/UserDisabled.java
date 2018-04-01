@@ -8,7 +8,7 @@ import model.interfaces.IUserState;
 
 public class UserDisabled implements IUserState{
 
-	LocalDateTime untilDate=null;
+	private LocalDateTime untilDate=null;
 
 	public UserDisabled(){
 		this.untilDate = LocalDateTime.now().plusDays(3L);

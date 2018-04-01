@@ -3,20 +3,13 @@ package model;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-
-import model.exceptions.NoCreditException;
 import model.interfaces.IUserState;
 
 public class UserEnabled implements IUserState{
 
 	public Reservation rent(Post post, LocalDateTime reservationSinceDate,
 					 LocalDateTime reservationUntilDate, User tenantUser) {
-/*
-		if (tenantUser.getCredit() <
-				calculationCostOfRent
-						(post.getCostPerHour(), reservationSinceDate, reservationUntilDate))
-			throw new NoCreditException();
-*/
+
 		return new Reservation(post, reservationSinceDate, reservationUntilDate, tenantUser);
 	}
 

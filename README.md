@@ -14,21 +14,35 @@ Como es habitual en este tipo de aplicaciones, tanto quienes publiquen su auto p
 Los vehículos estarán publicados con una descripción para conocer sus prestaciones, fotografías del mismo, zona geográfica en la cual debe ser retirado y devuelto, tiempo por el cual está disponible para su alquiler y el costo del mismo.
 
 Los usuarios del sistema deberán dejar registrado:
+
 CUIL   [Obligatorio,CUIL Valido]
+
 Nombre y Apellido [Obligatorio,4<=X<=50]
+
 Dirección  [Obligatorio]
+
 Email [Obligatorio, Email valido]
 
 Los dueños de un vehículo podrán publicar el mismo ingresando los siguientes datos:
+
 Tipo de vehículo (Motocicleta, Auto, Camioneta) [Obligatorio]
+
 Capacidad de pasajeros [Obligatorio]
+
 Localidad   [Obligatorio]
+
 Dirección de retiro y Ubicación en un mapa (Google Maps preferentemente) [Obligatorio]
+
 Dirección de regreso y Ubicación en un mapa (En este caso puede ser más de una alternativa) [Obligatorio]
+
 Descripción del vehículo [Obligatorio,30<=X<=200]]
+
 Teléfono de contacto [Obligatorio, Teléfono válido, +Característica]
+
 Horario y días disponible para alquilar [Obligatorio]
+
 Costo del alquiler por hora/día [Obligatorio]
+
 Fotografías del vehículo
 
 Con el objetivo de simplificar la gestión de cobros y pagos, cada usuario contará con una cuenta corriente de créditos. Cada alquiler implica descontar créditos a quien utilizará el vehículo y acreditar dichos créditos a quien presta el vehículo.
