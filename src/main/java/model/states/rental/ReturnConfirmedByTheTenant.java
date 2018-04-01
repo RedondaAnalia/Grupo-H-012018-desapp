@@ -1,14 +1,16 @@
 package model.states.rental;
 
+
 import model.Rental;
 import model.exceptions.InvalidStatusChangeException;
 import model.interfaces.IRentalState;
 
-public class ConfirmedByTheTenantST implements IRentalState {
+public class ReturnConfirmedByTheTenant implements IRentalState {
 
     public void confirmationTheOwnerUser(Rental rental) {
-        rental.startRentalTime();
-        rental.setState(new PendingReturnRentalST());
+        //fijar tiempo de alquier
+        //calcular costo
+        //ingresar comentarios al momento de puntuar a su contraparte
     }
 
     public void confirmationTheTenantUser(Rental rental) {
