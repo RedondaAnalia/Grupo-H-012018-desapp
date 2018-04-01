@@ -1,4 +1,4 @@
-package model.state.rental;
+package model.states.rental;
 
 
 import model.interfaces.IRentalState;

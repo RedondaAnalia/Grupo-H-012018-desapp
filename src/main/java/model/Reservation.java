@@ -2,7 +2,7 @@ package model;
 
 
 import model.interfaces.IReservationStatus;
-import model.state.reservation.PendingReservationST;
+import model.states.reservation.PendingReservationST;
 
 import java.time.LocalDateTime;
 

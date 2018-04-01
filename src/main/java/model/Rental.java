@@ -2,7 +2,7 @@ package model;
 
 
 import model.interfaces.IRentalState;
-import model.state.rental.PendingRentalST;
+import model.states.rental.PendingRentalST;
 
 public class Rental {
 

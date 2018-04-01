@@ -1,4 +1,4 @@
-package model.state.reservation;
+package model.states.reservation;
 
 
 import model.Rental;

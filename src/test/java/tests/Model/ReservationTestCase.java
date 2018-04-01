@@ -7,9 +7,9 @@ import model.Post;
 import model.Reservation;
 import model.User;
 import model.exceptions.InvalidStatusChange;
-import model.state.reservation.ConfirmReservationST;
-import model.state.reservation.PendingReservationST;
-import model.state.reservation.RejectedReservationST;
+import model.states.reservation.ConfirmReservationST;
+import model.states.reservation.PendingReservationST;
+import model.states.reservation.RejectedReservationST;
 import org.junit.Assert;
 import org.junit.Test;
 

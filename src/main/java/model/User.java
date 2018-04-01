@@ -13,7 +13,7 @@ import model.interfaces.IUserState;
 	 *  - Build an user. This requires: CUIL, name, surname, address and email
 	 *  - Getters y setters.
 	 *  - Delagate the ability to Add/Debit Credit to his own account.
-	 *  - Delegate the ability to post or rent to the state .
+	 *  - Delegate the ability to post or rent to the states .
 	 *  - Save scores, check the current status. 
 	 *  - Calculate his own reputation.
 	 */
