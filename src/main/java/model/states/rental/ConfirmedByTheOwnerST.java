@@ -7,13 +7,19 @@ import model.interfaces.IRentalState;
 
 public class ConfirmedByTheOwnerST implements IRentalState {
 
-    public void confirmationTheOwnerUser(Rental rental) {
+    public void ownerUserConfirmated(Rental rental) {
         throw new InvalidStatusChangeException("Ya contamos con la confirmación del dueño");
     }
 
 
-    public void confirmationTheTenantUser(Rental rental) {
+    public void tenantUserConfirmated(Rental rental) {
         rental.startRentalTime();
         rental.setState(new PendingReturnRentalST());
+    }
+
+    public void ownerUserConfirmated(Rental rental, Integer score, String comment) {
+    }
+
+    public void tenantUserConfirmated(Rental rental, Integer score, String comment) {
     }
 }

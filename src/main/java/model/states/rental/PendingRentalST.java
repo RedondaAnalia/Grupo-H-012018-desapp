@@ -6,13 +6,21 @@ import model.interfaces.IRentalState;
 
 public class PendingRentalST implements IRentalState {
 
-    public void confirmationTheOwnerUser(Rental rental) {
+    public void ownerUserConfirmated(Rental rental) {
         rental.setState(new ConfirmedByTheOwnerST());
         rental.startTimeAfterTheOwnerConfirmation();
     }
 
-    public void confirmationTheTenantUser(Rental rental) {
+    public void tenantUserConfirmated(Rental rental) {
         rental.setState(new ConfirmedByTheTenantST());
         rental.startTimeAfterTheTenantConfirmation();
+    }
+
+    public void ownerUserConfirmated(Rental rental, Integer score, String comment) {
+
+    }
+
+    public void tenantUserConfirmated(Rental rental, Integer score, String comment) {
+
     }
 }

@@ -5,7 +5,10 @@ import model.Rental;
 
 public interface IRentalState {
 
-    void confirmationTheOwnerUser(Rental rental);
-    void confirmationTheTenantUser(Rental rental);
+    void ownerUserConfirmated(Rental rental);
+    void tenantUserConfirmated(Rental rental);
+
+    void ownerUserConfirmated(Rental rental, Integer score, String comment);
+    void tenantUserConfirmated(Rental rental, Integer score, String comment);
 
 }

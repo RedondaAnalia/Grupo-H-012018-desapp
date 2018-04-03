@@ -12,9 +12,10 @@ public class Rental {
 
     private Reservation reservation;
     private IRentalState state;
-    private LocalDateTime rentalTime = null;
+    private LocalDateTime beginRentalTime = null;
     private LocalDateTime timeAfterTheOwnerConfirmation = null;
     private LocalDateTime timeAfterTheTenantConfirmation = null;
+    private LocalDateTime endRentalTime = null;
 
     public Rental(Reservation reservation){
 
@@ -28,11 +29,11 @@ public class Rental {
     }
 
     public void ownerConfirmation(){
-        this.state.confirmationTheOwnerUser(this);
+        this.state.ownerUserConfirmated(this);
     }
 
     public void tenantConfirmation(){
-        this.state.confirmationTheTenantUser(this);
+        this.state.tenantUserConfirmated(this);
     }
 
     public void setState(IRentalState newState){
@@ -48,11 +49,19 @@ public class Rental {
     }
 
     public void startRentalTime(){
-        this.rentalTime = LocalDateTime.now();
+        this.beginRentalTime = LocalDateTime.now();
     }
 
     public long getRentalTime(){
-        return this.rentalTime.until(LocalDateTime.now(), ChronoUnit.DAYS);
+        return this.beginRentalTime.until(LocalDateTime.now(), ChronoUnit.DAYS);
+    }
+
+    public User getTenantUser(){
+        return this.reservation.getTenantUser();
+    }
+
+    public User getOwnerUser(){
+        return this.reservation.getOwnerUser();
     }
 
     //pensar esto de nuevo estos checks.... no me cierra
@@ -64,6 +73,7 @@ public class Rental {
         //da por rechazado el alquiler, por ahora lanzó excepción
         // dsp hay que definir que acciones tomar
         if(tenantConfirmation>30) {
+            //FIXME: crear un nuevo estado cancelado
             throw new CanceledRentalException();
         }
     }
@@ -76,5 +86,11 @@ public class Rental {
         if(ownerConfirmation>30){
             this.startRentalTime();
         }
+    }
+
+    public double rentCost(LocalDateTime endRentalTime) {
+        this.endRentalTime = endRentalTime;
+        long days= this.beginRentalTime.until(endRentalTime, ChronoUnit.DAYS);
+        return this.reservation.getPost().getCostPerHour()*days;
     }
 }

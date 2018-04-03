@@ -43,4 +43,15 @@ public class Reservation {
         return this.statusReservation.beConfirm(this);
     }
 
+    public User getTenantUser(){
+        return this.tenantUser;
+    }
+
+    public User getOwnerUser(){
+        return this.post.getUser();
+    }
+
+    public Post getPost() {
+        return post;
+    }
 }
