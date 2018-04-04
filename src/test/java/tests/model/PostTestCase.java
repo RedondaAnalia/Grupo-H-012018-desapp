@@ -1,4 +1,4 @@
-package tests.Model;
+package tests.model;
 
 import builders.PostBuilder;
 import model.Coord;

@@ -8,7 +8,7 @@ import model.exceptions.NameTooShortException;
 import model.exceptions.NoAddressException;
 import model.interfaces.IUserState;
 
-	/***
+/***
 	 **This class sets an User in the system. At the moment this can:
 	 *  - Build an user. This requires: CUIL, name, surname, address and email
 	 *  - Getters y setters.
@@ -41,7 +41,7 @@ public class User {
 	//TODO: validarCUIL.
 	public User(String CUIL, String name, String surname, String address, String email){
 		int completeName=(name+surname).length();
-		if(completeName<=4 && name!=null && name!="" && surname!=null && surname!=""){
+		if(completeName<=4 && name!=null && !name.equals("") && surname!=null && !surname.equals("")){
 			throw new NameTooShortException();
 		}
 		
@@ -213,7 +213,7 @@ public class User {
 	//Save the score obtained in one transaction if it is within the correct range
 	private void saveScore(Integer score){
 		if(!isCorrectScore(score)){
-			throw new RuntimeException("El puntaje es incorrecto"); 
+			throw new NoSuchFieldError("El puntaje es incorrecto");
 		 }else{
 			this.scores.add(score);
 		  }

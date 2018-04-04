@@ -1,5 +1,7 @@
 package model;
 
+import java.util.NoSuchElementException;
+
 /**
  * This class builds valid coordinates in the geographic system.
  * @author usuario
@@ -23,7 +25,7 @@ public class Coord {
 			this.lat=lat;
 			this.lng=lng;
 		} else {
-			throw new RuntimeException("Inexistent coord");
+			throw new NoSuchElementException("Coordenada inexistente");
 		}
 	}
 	

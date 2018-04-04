@@ -1,4 +1,4 @@
-package tests.Model;
+package tests.model;
 
 
 import builders.PostBuilder;
@@ -10,7 +10,7 @@ import model.exceptions.InvalidStatusChangeException;
 import model.states.reservation.ConfirmReservationST;
 import model.states.reservation.PendingReservationST;
 import model.states.reservation.RejectedReservationST;
-import org.junit.Assert;
+import static org.junit.Assert.*;
 import org.junit.Test;
 
 import java.time.LocalDateTime;
@@ -26,7 +26,7 @@ public class ReservationTestCase {
 
         User tenantUser = UserBuilder.anUser().build();
 
-        Assert.assertNotNull(tenantUser.
+        assertNotNull(tenantUser.
                 rent(post, LocalDateTime.now(), LocalDateTime.now().plusDays(1L)));
     }
 
@@ -43,7 +43,7 @@ public class ReservationTestCase {
         Reservation reservation = tenantUser.rent(post, LocalDateTime.now(),
                 LocalDateTime.now().plusDays(1L));
 
-        Assert.assertEquals(reservation.getStatus().getClass(), PendingReservationST.class);
+        assertEquals(reservation.getStatus().getClass(), PendingReservationST.class);
     }
 
     @Test
@@ -61,7 +61,7 @@ public class ReservationTestCase {
 
         reservation.beConfirm();
 
-        Assert.assertEquals(reservation.getStatus().getClass(), ConfirmReservationST.class);
+        assertEquals(reservation.getStatus().getClass(), ConfirmReservationST.class);
 
     }
 
@@ -80,7 +80,7 @@ public class ReservationTestCase {
 
         reservation.beReject();
 
-        Assert.assertEquals(reservation.getStatus().getClass(), RejectedReservationST.class);
+        assertEquals(reservation.getStatus().getClass(), RejectedReservationST.class);
 
     }
 

@@ -1,8 +1,7 @@
-package tests.Model;
+package tests.model;
 
 import static org.junit.Assert.*;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import builders.UserBuilder;
@@ -20,7 +19,7 @@ public class UserTestCase {
 	@Test
 	public void shouldMakeACorrectNameUserWithoutProblems(){
 		User user= UserBuilder.anUser().build();
-		Assert.assertNotNull(user);
+		assertNotNull(user);
 	}
 	
 	@Test(expected= NameTooShortException.class)
@@ -81,7 +80,7 @@ public class UserTestCase {
 		assertEquals(user.reputation(),4.0,0);
 	}
 	
-	@Test(expected=RuntimeException.class)
+	@Test(expected=NoSuchFieldError.class)
 	public void shouldThrowAnExceptionWhenIPutAnOutOfRangeScore(){
 		User user= UserBuilder.anUser().build();
 		user.processScore(6);

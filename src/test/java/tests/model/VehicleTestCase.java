@@ -1,6 +1,6 @@
-package tests.Model;
+package tests.model;
 
-import org.junit.Assert;
+import static org.junit.Assert.*;
 import org.junit.Test;
 import builders.VehicleBuilder;
 import model.Vehicle;
@@ -14,7 +14,7 @@ public class VehicleTestCase {
 	@Test
 	public void shouldBuildAStandardVehicle() {
 		Vehicle vehicle= VehicleBuilder.aVehicle().build();
-		Assert.assertNotNull(vehicle);
+		assertNotNull(vehicle);
 	}
 	
 	@Test(expected=DescriptionTooShortException.class)

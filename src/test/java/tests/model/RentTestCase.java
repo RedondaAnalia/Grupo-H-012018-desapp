@@ -1,4 +1,4 @@
-package tests.Model;
+package tests.model;
 
 
 import builders.PostBuilder;
@@ -7,15 +7,14 @@ import model.Post;
 import model.Rental;
 import model.Reservation;
 import model.User;
-import model.exceptions.CanceledRentalException;
 import model.exceptions.InvalidStatusChangeException;
 import model.exceptions.UserBlockedException;
 import model.states.rental.PendingRentalST;
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
+
+import static org.junit.Assert.*;
 
 public class RentTestCase {
 
@@ -46,7 +45,7 @@ public class RentTestCase {
         Reservation reservation = tenantUser.
                 rent(post, LocalDateTime.now(), LocalDateTime.now().plusDays(1L));
 
-        Assert.assertNotNull(reservation.beConfirm());
+        assertNotNull(reservation.beConfirm());
     }
 
     @Test
@@ -65,7 +64,7 @@ public class RentTestCase {
 
         Rental rental = reservation.beConfirm();
 
-        Assert.assertEquals(rental.getState().getClass(), PendingRentalST.class);
+        assertEquals(rental.getState().getClass(), PendingRentalST.class);
 
     }
 
