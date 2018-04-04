@@ -6,13 +6,15 @@ import model.exceptions.DescriptionTooShortException;
 import model.exceptions.InvalidCapacityException;
 import model.exceptions.NoVehicleTypeException;
 
+import java.util.ArrayList;
+
 public class Vehicle {
 	
 	private User owner;
 	private VehicleType type;
 	private int capacity;
 	private String description;
-//	private ArrayList<File> photos; TODO: Ver si es el tipo correcto, y OJO que es OPCIONAL!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	private ArrayList<String> photos;
 	
 	/*
 	 * Constructors
@@ -66,16 +68,5 @@ public class Vehicle {
 		this.description = description;
 	}
 
-//	public ArrayList<File> getPhotos() {
-//		return photos;
-//	}
-	
-	
-	/*
-	 * Public Methods
-	 */
-//	public ArrayList<File> addPhoto(File newPhoto){
-//		photos.add(newPhoto);
-//		return photos;
-//	}
+
 }

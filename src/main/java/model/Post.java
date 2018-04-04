@@ -48,7 +48,7 @@ public class Post {
         this.costPerDay = costPerDay;
 	}
 	
-	public double getCostPerHour(){
+	public double getCostPerDay(){
 		return this.costPerDay;
 	}
 

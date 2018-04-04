@@ -147,5 +147,26 @@ public class RentTestCase {
 
     }
 
+    //TESTs PENDIENTES
+
+    //luego de ambas confirmaciones comienza el tiempo del alquiler, el rental queda
+    //en estado PendingReturnRentalST
+
+    //pasaje de estado PendingReturnRentalST a ReturnCOnfirmedByTheOwner
+
+    //pasaje de estado PendingReturnRentalST a ReturnCOnfirmedByTheTenant
+
+    //pasaje de estado ReturnCOnfirmedByTheOwner a ReturnCOnfirmedByTheTenant
+
+    //pasaje de estado ReturnCOnfirmedByTheTenant a ReturnCOnfirmedByTheOwner
+
+    //pasaje de estado ReturnCOnfirmedByTheOwner a FinalizedRentalST
+
+    //pasaje de estado ReturnCOnfirmedByTheTenant a FinalizedRentalST
+
+    //test del review
+
+    //test del accountManager
+
 
 }

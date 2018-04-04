@@ -91,6 +91,6 @@ public class Rental {
     public double rentCost(LocalDateTime endRentalTime) {
         this.endRentalTime = endRentalTime;
         long days= this.beginRentalTime.until(endRentalTime, ChronoUnit.DAYS);
-        return this.reservation.getPost().getCostPerHour()*days;
+        return this.reservation.getPost().getCostPerDay()*days;
     }
 }

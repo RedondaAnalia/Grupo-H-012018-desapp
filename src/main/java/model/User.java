@@ -28,6 +28,8 @@ public class User {
 	private Account account;
 	private IUserState status;
 	private ArrayList<Integer> scores;
+	private String userName;
+	private String password;
 	
 	
 	/**
