@@ -16,10 +16,10 @@ public class ConfirmedByTheTenantST implements IRentalState {
     }
 
     public void ownerUserConfirmated(Rental rental, Integer score, String comment) {
-
+        throw new InvalidStatusChangeException("Estado inválido");
     }
 
     public void tenantUserConfirmated(Rental rental, Integer score, String comment) {
-
+        throw new InvalidStatusChangeException("Estado inválido");
     }
 }

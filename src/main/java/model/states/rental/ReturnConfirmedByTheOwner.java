@@ -12,11 +12,11 @@ import java.time.LocalDateTime;
 public class ReturnConfirmedByTheOwner implements IRentalState {
 
     public void ownerUserConfirmated(Rental rental) {
-
+        throw new InvalidStatusChangeException("Estado inválido");
     }
 
     public void tenantUserConfirmated(Rental rental) {
-
+        throw new InvalidStatusChangeException("Estado inválido");
     }
 
     public void ownerUserConfirmated(Rental rental, Integer score, String comment) {
