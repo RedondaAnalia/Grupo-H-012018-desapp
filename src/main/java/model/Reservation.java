@@ -14,8 +14,6 @@ public class Reservation {
     private LocalDateTime reservationUntilDate;
     private IReservationState statusReservation;
 
-    public Reservation(){};
-
     public Reservation(Post post, LocalDateTime reservationSinceDate,
                        LocalDateTime reservationUntilDate, User tenantUser){
         this.tenantUser=tenantUser;

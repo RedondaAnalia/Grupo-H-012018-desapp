@@ -22,10 +22,12 @@ public class UserEnabled implements IUserState{
 		return true;
 	}
 
+	/*
 	private double calculationCostOfRent(double costPerHour, LocalDateTime reservationSinceDate,
 										 LocalDateTime reservationUntilDate){
 		long hours= reservationSinceDate.until(reservationUntilDate, ChronoUnit.HOURS);
 		return hours*costPerHour;
 	}
+	*/
 
 }

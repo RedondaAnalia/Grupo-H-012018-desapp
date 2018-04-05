@@ -1,8 +1,12 @@
 package tests.model;
 
 import builders.PostBuilder;
+import builders.UserBuilder;
+import builders.VehicleBuilder;
 import model.Coord;
 import model.Post;
+import model.User;
+import model.Vehicle;
 import model.exceptions.NoCoordsEnoughException;
 import model.exceptions.TimeOutOfRangeException;
 import model.exceptions.UserBlockedException;
@@ -10,6 +14,7 @@ import org.junit.Test;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import static org.junit.Assert.*;
 
 public class PostTestCase {
 
@@ -53,5 +58,19 @@ public class PostTestCase {
     				.aPost()
     				.withReturnCoords(returnCoords)
     				.build();
+    }
+
+    @Test
+    public void shouldBeCreateAPost(){
+        Vehicle vehicle= VehicleBuilder.aVehicle().build();
+        User ownerUser = UserBuilder.anUser().withCredit(100).build();
+
+        Coord coord = new Coord(1,177);
+        ArrayList<Coord> listCoord = new ArrayList<Coord>();
+        listCoord.add(coord);
+        assertNotNull(ownerUser.post(vehicle, coord,
+                listCoord, LocalDateTime.now(),
+                LocalDateTime.now().plusDays(3L), 100));
+
     }
 }

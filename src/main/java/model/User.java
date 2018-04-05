@@ -70,64 +70,24 @@ public class User {
 		this.status= new UserEnabled();
 		this.scores= new ArrayList<Integer>();
 	}
-	
+
 	/**
 	 * Getters y setters
 	 */
 
-	public String getCUIL() {
-		return CUIL;
-	}
-
-	public void setCUIL(String cUIL) {
-		CUIL = cUIL;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getSurname() {
-		return surname;
-	}
-
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String adress) {
-		this.address = adress;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-	
-	public double getCredit() {
-		return this.account.getCredit();
-	}
-
 	public Account getAccount(){
 		return this.account;
 	}
-	
+
 
 	/**
 	 * Public Methods.
 	 */
 
 	//Try to make a post
-	public void post(Vehicle vehicle, Coord pickUpCoord, ArrayList<Coord> returnCoords,
+	public Post post(Vehicle vehicle, Coord pickUpCoord, ArrayList<Coord> returnCoords,
 					 LocalDateTime sinceDate, LocalDateTime UntilDate, double costPerHour){
-		this.status.post(vehicle,this, pickUpCoord,returnCoords,
+		return this.status.post(vehicle,this, pickUpCoord,returnCoords,
 				sinceDate, UntilDate, costPerHour);
 	}
 	

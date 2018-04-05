@@ -56,15 +56,4 @@ public class Post {
 		return this.ownerUser;
 	}
 
-	public Coord getPickUpCoord() {
-		return this.pickUpCoord;
-	}
-
-	public List<Coord> getReturnCoords() {
-		return this.returnCoords;
-	}
-
-	public Vehicle getVehicle() {
-		return this.vehicle;
-	}
 }

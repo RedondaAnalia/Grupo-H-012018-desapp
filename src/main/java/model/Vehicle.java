@@ -40,33 +40,4 @@ public class Vehicle {
 		this.description=description;
 	}
 
-	/*
-	 * Getters y Setters
-	 */
-	
-	public VehicleType getType() {
-		return type;
-	}
-
-	public void setType(VehicleType type) {
-		this.type = type;
-	}
-
-	public int getCapacity() {
-		return capacity;
-	}
-
-	public void setCapacity(int capacity) {
-		this.capacity = capacity;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-
 }
