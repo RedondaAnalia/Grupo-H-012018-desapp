@@ -93,4 +93,12 @@ public class Rental {
         long days= this.beginRentalTime.until(endRentalTime, ChronoUnit.DAYS);
         return this.reservation.getPost().getCostPerDay()*days;
     }
+
+    public void tenantUserConfirmatedReturn(int score, String comment) {
+        this.getState().tenantUserConfirmated(this, score, comment);
+    }
+
+    public void ownerUserConfirmatedReturn(int score, String comment) {
+        this.getState().ownerUserConfirmated(this, score, comment);
+    }
 }
