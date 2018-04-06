@@ -1,7 +1,7 @@
 package model;
 
 
-import model.Jobs.VerifyTenantConfirmationJob;
+import model.jobs.VerifyTenantConfirmationJob;
 import model.exceptions.CanceledRentalException;
 import model.interfaces.IRentalState;
 import model.states.rental.PendingRentalST;
@@ -39,11 +39,12 @@ public class Rental {
         try {
             SchedulerFactory sf = new StdSchedulerFactory();
             Scheduler scheduler = sf.getScheduler();
-            scheduler.start();
 
-            JobDetail job = newJob(VerifyTenantConfirmationJob.class)
+            JobDetail jobDetail = newJob(VerifyTenantConfirmationJob.class)
                     .withIdentity("job", Scheduler.DEFAULT_GROUP)
                     .build();
+
+            jobDetail.getJobDataMap().put(VerifyTenantConfirmationJob.RENTAL, this);
 
             Trigger trigger = newTrigger()
                     .withIdentity("trigger", Scheduler.DEFAULT_GROUP)
@@ -51,13 +52,9 @@ public class Rental {
                     .withSchedule(simpleSchedule())
                     .build();
 
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-            scheduler.scheduleJob(job, trigger);
+            scheduler.scheduleJob(jobDetail, trigger);
+            scheduler.start();
+            scheduler.shutdown(true);
 
         }catch (SchedulerException exception){
             exception.printStackTrace();
