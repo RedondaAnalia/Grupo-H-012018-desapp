@@ -92,16 +92,6 @@ public class RentTestCase {
         Assert.assertTrue(rental.getRentalTime()> 0);
     }
 
-
-    @Test
-    public void shouldStartTheRentalAfter30MinutesAfterTheConfirmationOfTheOwner(){
-
-    }
-
-    @Test(expected = CanceledRentalException.class)
-    public void shouldCancelTheRentalAfter30MinutesAfterTheConfirmationOfTheTenant(){
-
-    }
     */
 
     @Test(expected = InvalidStatusChangeException.class)
@@ -147,7 +137,6 @@ public class RentTestCase {
     }
 
 
-    //TESTs PENDIENTES
 
     //luego de ambas confirmaciones comienza el tiempo del alquiler, el rental queda
     //en estado PendingReturnRentalST
@@ -325,13 +314,11 @@ public class RentTestCase {
         Rental rental = reservation.beConfirm();
         //PendingRental
 
-        // da el ok el dueño
         rental.ownerConfirmation();
-        // queda en estado ConfirmedByTheOwnerST
+        //ConfirmedByTheOwnerST
 
-        // da el ok el tenant
         rental.tenantConfirmation();
-        //queda en estado PendingReturnRentalST
+        //PendingReturnRentalST
 
         rental.tenantConfirmation();
         //ReturnConfirmedByTheOwner
@@ -341,6 +328,38 @@ public class RentTestCase {
         assertEquals(rental.getState().getClass(), FinalizedRentalST.class);
 
     }
+
+    @Test
+    public void shouldStartTheRentalAfter30MinutesAfterTheConfirmationOfTheOwner() throws InterruptedException {
+
+        Post post = PostBuilder.
+                aPost().
+                whitCostPerHour(2).
+                withSinceDate(LocalDateTime.now()).
+                withUntilDate(LocalDateTime.now().plusDays(3L)).build();
+
+        User tenantUser = UserBuilder.anUser().withCredit(100).build();
+
+        Reservation reservation = tenantUser.
+                rent(post, LocalDateTime.now(), LocalDateTime.now().plusDays(1L));
+
+        Rental rental = reservation.beConfirm();
+        //PendingRental
+
+        rental.ownerConfirmation();
+        //ConfirmedByTheOwnerST
+
+        assertEquals(rental.getState().getClass(), PendingReturnRentalST.class);
+
+
+    }
+
+    /*
+    @Test(expected = CanceledRentalException.class)
+    public void shouldCancelTheRentalAfter30MinutesAfterTheConfirmationOfTheTenant(){
+
+    }
+*/
 
 
 }

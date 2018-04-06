@@ -1,12 +1,17 @@
 package model;
 
 
+import model.Jobs.VerifyTenantConfirmationJob;
 import model.exceptions.CanceledRentalException;
 import model.interfaces.IRentalState;
 import model.states.rental.PendingRentalST;
-
+import org.quartz.*;
+import org.quartz.impl.StdSchedulerFactory;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
+import static org.quartz.TriggerBuilder.newTrigger;
 
 public class Rental {
 
@@ -30,6 +35,34 @@ public class Rental {
 
     public void ownerConfirmation(){
         this.state.ownerUserConfirmated(this);
+
+        try {
+            SchedulerFactory sf = new StdSchedulerFactory();
+            Scheduler scheduler = sf.getScheduler();
+            scheduler.start();
+
+            JobDetail job = newJob(VerifyTenantConfirmationJob.class)
+                    .withIdentity("job", Scheduler.DEFAULT_GROUP)
+                    .build();
+
+            Trigger trigger = newTrigger()
+                    .withIdentity("trigger", Scheduler.DEFAULT_GROUP)
+                    .startNow()
+                    .withSchedule(simpleSchedule())
+                    .build();
+
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            scheduler.scheduleJob(job, trigger);
+
+        }catch (SchedulerException exception){
+            exception.printStackTrace();
+        }
+
     }
 
     public void tenantConfirmation(){
@@ -70,21 +103,8 @@ public class Rental {
         long tenantConfirmation = this.timeAfterTheTenantConfirmation.
                 until(LocalDateTime.now(), ChronoUnit.MINUTES);
 
-        //da por rechazado el alquiler, por ahora lanzó excepción
-        // dsp hay que definir que acciones tomar
         if(tenantConfirmation>30) {
-            //FIXME: crear un nuevo estado cancelado
             throw new CanceledRentalException();
-        }
-    }
-
-    public void checkTheTimeAfterTheOwnerConfirmation(){
-
-        long ownerConfirmation = this.timeAfterTheOwnerConfirmation.
-                until(LocalDateTime.now(), ChronoUnit.MINUTES);
-
-        if(ownerConfirmation>30){
-            this.startRentalTime();
         }
     }
 
