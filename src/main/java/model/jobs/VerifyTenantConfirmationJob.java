@@ -2,7 +2,6 @@ package model.jobs;
 
 import model.Rental;
 import model.states.rental.ConfirmedByTheOwnerST;
-import model.states.rental.PendingReturnRentalST;
 import org.quartz.*;
 
 public class VerifyTenantConfirmationJob implements Job{
@@ -20,11 +19,12 @@ public class VerifyTenantConfirmationJob implements Job{
             e.printStackTrace();
         }
 
-        if(rental.getState().getClass().equals(ConfirmedByTheOwnerST.class)) {
-            rental.startRentalTime();
-            rental.setState(new PendingReturnRentalST());
+        if(rental.getBeginRentalTime()==null &&
+                rental.getState().getClass().equals(ConfirmedByTheOwnerST.class)) {
+            rental.getState().tenantUserConfirmated(rental);
         }
 
-        context.put(VerifyTenantConfirmationJob.RENTAL, rental);
+        dataMap.put(VerifyTenantConfirmationJob.RENTAL, rental);
+
     }
 }

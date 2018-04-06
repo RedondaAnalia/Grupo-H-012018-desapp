@@ -9,12 +9,10 @@ public class PendingRentalST implements IRentalState {
 
     public void ownerUserConfirmated(Rental rental) {
         rental.setState(new ConfirmedByTheOwnerST());
-        rental.startTimeAfterTheOwnerConfirmation();
     }
 
     public void tenantUserConfirmated(Rental rental) {
         rental.setState(new ConfirmedByTheTenantST());
-        rental.startTimeAfterTheTenantConfirmation();
     }
 
     public void ownerUserConfirmated(Rental rental, Integer score, String comment) {

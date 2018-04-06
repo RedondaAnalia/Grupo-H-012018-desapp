@@ -18,9 +18,9 @@ public class Rental {
     private Reservation reservation;
     private IRentalState state;
     private LocalDateTime beginRentalTime = null;
-    private LocalDateTime timeAfterTheOwnerConfirmation = null;
     private LocalDateTime timeAfterTheTenantConfirmation = null;
     private LocalDateTime endRentalTime = null;
+
 
     public Rental(Reservation reservation){
 
@@ -34,8 +34,14 @@ public class Rental {
     }
 
     public void ownerConfirmation(){
+
         this.state.ownerUserConfirmated(this);
 
+        this.throwJob();
+
+    }
+
+    private void throwJob(){
         try {
             SchedulerFactory sf = new StdSchedulerFactory();
             Scheduler scheduler = sf.getScheduler();
@@ -68,14 +74,6 @@ public class Rental {
 
     public void setState(IRentalState newState){
         this.state=newState;
-    }
-
-    public void startTimeAfterTheOwnerConfirmation(){
-        this.timeAfterTheOwnerConfirmation= LocalDateTime.now();
-    }
-
-    public void startTimeAfterTheTenantConfirmation(){
-        this.timeAfterTheTenantConfirmation= LocalDateTime.now();
     }
 
     public void startRentalTime(){
@@ -117,5 +115,9 @@ public class Rental {
 
     public void ownerUserConfirmatedReturn(int score, String comment) {
         this.getState().ownerUserConfirmated(this, score, comment);
+    }
+
+    public LocalDateTime getBeginRentalTime(){
+        return this.beginRentalTime;
     }
 }

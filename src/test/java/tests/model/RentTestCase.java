@@ -108,10 +108,10 @@ public class RentTestCase {
         Reservation reservation = tenantUser.
                 rent(post, LocalDateTime.now(), LocalDateTime.now().plusDays(1L));
 
-        Rental rental = reservation.beConfirm();
+        Rental rental1 = reservation.beConfirm();
 
-        rental.ownerConfirmation();
-        rental.ownerConfirmation();
+        rental1.ownerConfirmation();
+        rental1.ownerConfirmation();
 
     }
 
@@ -129,10 +129,10 @@ public class RentTestCase {
         Reservation reservation = tenantUser.
                 rent(post, LocalDateTime.now(), LocalDateTime.now().plusDays(1L));
 
-        Rental rental = reservation.beConfirm();
+        Rental rental2 = reservation.beConfirm();
 
-        rental.tenantConfirmation();
-        rental.tenantConfirmation();
+        rental2.tenantConfirmation();
+        rental2.tenantConfirmation();
 
     }
 
@@ -154,17 +154,17 @@ public class RentTestCase {
         Reservation reservation = tenantUser.
                 rent(post, LocalDateTime.now(), LocalDateTime.now().plusDays(1L));
 
-        Rental rental = reservation.beConfirm();
+        Rental rental3 = reservation.beConfirm();
 
         //PendingRental
-        rental.tenantConfirmation();
+        rental3.tenantConfirmation();
         //ConfirmedByTheOwnerST
 
-        rental.ownerConfirmation();
+        rental3.ownerConfirmation();
 
         //PendingReturnRentalST
 
-        assertEquals(rental.getState().getClass(), PendingReturnRentalST.class);
+        assertEquals(rental3.getState().getClass(), PendingReturnRentalST.class);
     }
 
     //luego de ambas confirmaciones comienza el tiempo del alquiler, el rental queda
@@ -183,17 +183,17 @@ public class RentTestCase {
         Reservation reservation = tenantUser.
                 rent(post, LocalDateTime.now(), LocalDateTime.now().plusDays(1L));
 
-        Rental rental = reservation.beConfirm();
+        Rental rental4 = reservation.beConfirm();
 
         //PendingRental
-        rental.ownerConfirmation();
+        rental4.ownerConfirmation();
         //ConfirmedByTheOwnerST
 
-        rental.tenantConfirmation();
+        rental4.tenantConfirmation();
 
         //PendingReturnRentalST
 
-        assertEquals(rental.getState().getClass(), PendingReturnRentalST.class);
+        assertEquals(rental4.getState().getClass(), PendingReturnRentalST.class);
     }
 
     //pasaje de estado PendingReturnRentalST a ReturnCOnfirmedByTheOwner
@@ -211,20 +211,20 @@ public class RentTestCase {
         Reservation reservation = tenantUser.
                 rent(post, LocalDateTime.now(), LocalDateTime.now().plusDays(1L));
 
-        Rental rental = reservation.beConfirm();
+        Rental rental5 = reservation.beConfirm();
 
         //PendingRental
-        rental.ownerConfirmation();
+        rental5.ownerConfirmation();
         //ConfirmedByTheOwnerST
 
-        rental.tenantConfirmation();
+        rental5.tenantConfirmation();
 
         //PendingReturnRentalST
 
-        rental.ownerConfirmation();
+        rental5.ownerConfirmation();
         //ReturnConfirmedByTheOwner
 
-        assertEquals(rental.getState().getClass(), ReturnConfirmedByTheOwner.class);
+        assertEquals(rental5.getState().getClass(), ReturnConfirmedByTheOwner.class);
 
     }
 
@@ -243,20 +243,19 @@ public class RentTestCase {
         Reservation reservation = tenantUser.
                 rent(post, LocalDateTime.now(), LocalDateTime.now().plusDays(1L));
 
-        Rental rental = reservation.beConfirm();
+        Rental rental6 = reservation.beConfirm();
 
         //PendingRental
-        rental.ownerConfirmation();
+        rental6.ownerConfirmation();
         //ConfirmedByTheOwnerST
 
-        rental.tenantConfirmation();
-
+        rental6.tenantConfirmation();
         //PendingReturnRentalST
 
-        rental.tenantConfirmation();
+        rental6.tenantConfirmation();
         //ReturnCOnfirmedByTheTenant
 
-        assertEquals(rental.getState().getClass(), ReturnConfirmedByTheTenant.class);
+        assertEquals(rental6.getState().getClass(), ReturnConfirmedByTheTenant.class);
 
     }
 
@@ -275,23 +274,23 @@ public class RentTestCase {
         Reservation reservation = tenantUser.
                 rent(post, LocalDateTime.now(), LocalDateTime.now().plusDays(1L));
 
-        Rental rental = reservation.beConfirm();
+        Rental rental7 = reservation.beConfirm();
 
         //PendingRental
-        rental.ownerConfirmation();
+        rental7.ownerConfirmation();
         //ConfirmedByTheOwnerST
 
-        rental.tenantConfirmation();
+        rental7.tenantConfirmation();
 
         //PendingReturnRentalST
 
-        rental.ownerConfirmation();
+        rental7.ownerConfirmation();
         //ReturnConfirmedByTheOwner
 
-       rental.tenantUserConfirmatedReturn( 5,
+       rental7.tenantUserConfirmatedReturn( 5,
                "El vehiculo estaba en perfectas condiciones");
 
-        assertEquals(rental.getState().getClass(), FinalizedRentalST.class);
+        assertEquals(rental7.getState().getClass(), FinalizedRentalST.class);
 
     }
 
@@ -311,26 +310,26 @@ public class RentTestCase {
         Reservation reservation = tenantUser.
                 rent(post, LocalDateTime.now(), LocalDateTime.now().plusDays(1L));
 
-        Rental rental = reservation.beConfirm();
+        Rental rental8 = reservation.beConfirm();
         //PendingRental
 
-        rental.ownerConfirmation();
+        rental8.ownerConfirmation();
         //ConfirmedByTheOwnerST
 
-        rental.tenantConfirmation();
+        rental8.tenantConfirmation();
         //PendingReturnRentalST
 
-        rental.tenantConfirmation();
+        rental8.tenantConfirmation();
         //ReturnConfirmedByTheOwner
 
-        rental.ownerUserConfirmatedReturn(3, "Salió todo ok, 100% recomendable");
+        rental8.ownerUserConfirmatedReturn(3, "Salió todo ok, 100% recomendable");
 
-        assertEquals(rental.getState().getClass(), FinalizedRentalST.class);
+        assertEquals(rental8.getState().getClass(), FinalizedRentalST.class);
 
     }
 
     @Test
-    public void shouldStartTheRentalAfter30MinutesAfterTheConfirmationOfTheOwner() throws InterruptedException {
+    public void shouldStartTheRentalAfter30MinutesAfterTheConfirmationOfTheOwner(){
 
         Post post = PostBuilder.
                 aPost().
@@ -343,13 +342,13 @@ public class RentTestCase {
         Reservation reservation = tenantUser.
                 rent(post, LocalDateTime.now(), LocalDateTime.now().plusDays(1L));
 
-        Rental rental = reservation.beConfirm();
+        Rental rental9 = reservation.beConfirm();
         //PendingRental
 
-        rental.ownerConfirmation();
+        rental9.ownerConfirmation();
         //ConfirmedByTheOwnerST
 
-        assertEquals(rental.getState().getClass(), PendingReturnRentalST.class);
+        assertEquals(rental9.getState().getClass(), PendingReturnRentalST.class);
 
 
     }
