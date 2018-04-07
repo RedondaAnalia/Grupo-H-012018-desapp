@@ -4,6 +4,8 @@ import model.Rental;
 import model.states.rental.ConfirmedByTheOwnerST;
 import org.quartz.*;
 
+@PersistJobDataAfterExecution
+@DisallowConcurrentExecution
 public class VerifyTenantConfirmationJob implements Job{
 
     public static final String RENTAL = "rental";
@@ -24,7 +26,7 @@ public class VerifyTenantConfirmationJob implements Job{
             rental.getState().tenantUserConfirmated(rental);
         }
 
-        dataMap.put(VerifyTenantConfirmationJob.RENTAL, rental);
-
+        dataMap.put(RENTAL, rental);
+        //context.setResult(rental.getState());
     }
 }

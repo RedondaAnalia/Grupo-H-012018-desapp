@@ -60,6 +60,9 @@ public class Rental {
 
             scheduler.scheduleJob(jobDetail, trigger);
             scheduler.start();
+
+            // passing true into the shutdown message tells the Quartz Scheduler to wait until all jobs
+            // have completed running before returning from the method call.
             scheduler.shutdown(true);
 
         }catch (SchedulerException exception){

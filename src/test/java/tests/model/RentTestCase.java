@@ -348,6 +348,12 @@ public class RentTestCase {
         rental9.ownerConfirmation();
         //ConfirmedByTheOwnerST
 
+        try {
+            Thread.sleep(6000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         assertEquals(rental9.getState().getClass(), PendingReturnRentalST.class);
 
 
