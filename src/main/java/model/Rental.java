@@ -2,7 +2,6 @@ package model;
 
 
 import model.jobs.VerifyTenantConfirmationJob;
-import model.exceptions.CanceledRentalException;
 import model.interfaces.IRentalState;
 import model.states.rental.PendingRentalST;
 import org.quartz.*;
@@ -18,9 +17,7 @@ public class Rental {
     private Reservation reservation;
     private IRentalState state;
     private LocalDateTime beginRentalTime = null;
-    private LocalDateTime timeAfterTheTenantConfirmation = null;
-    private LocalDateTime endRentalTime = null;
-
+    private int jobCount = 0;
 
     public Rental(Reservation reservation){
 
@@ -37,17 +34,19 @@ public class Rental {
 
         this.state.ownerUserConfirmated(this);
 
-        this.throwJob();
+        this.throwJob(VerifyTenantConfirmationJob.class);
 
     }
 
-    private void throwJob(){
+    private void throwJob(Class<? extends Job> verify){
+        this.jobCount++;
         try {
+
             SchedulerFactory sf = new StdSchedulerFactory();
             Scheduler scheduler = sf.getScheduler();
 
-            JobDetail jobDetail = newJob(VerifyTenantConfirmationJob.class)
-                    .withIdentity("job", Scheduler.DEFAULT_GROUP)
+            JobDetail jobDetail = newJob(verify)
+                    .withIdentity("job"+this.jobCount, Scheduler.DEFAULT_GROUP)
                     .build();
 
             jobDetail.getJobDataMap().put(VerifyTenantConfirmationJob.RENTAL, this);
@@ -63,16 +62,18 @@ public class Rental {
 
             // passing true into the shutdown message tells the Quartz Scheduler to wait until all jobs
             // have completed running before returning from the method call.
-            scheduler.shutdown(true);
+            //scheduler.shutdown(true);
+
+            //scheduler.deleteJob(JobKey.jobKey("job"+this.jobCount));
 
         }catch (SchedulerException exception){
             exception.printStackTrace();
         }
-
     }
 
     public void tenantConfirmation(){
         this.state.tenantUserConfirmated(this);
+        //this.throwJob();
     }
 
     public void setState(IRentalState newState){
@@ -95,19 +96,7 @@ public class Rental {
         return this.reservation.getOwnerUser();
     }
 
-    //pensar esto de nuevo estos checks.... no me cierra
-    public void checkTheTimeAfterTheTenantConfirmation(){
-
-        long tenantConfirmation = this.timeAfterTheTenantConfirmation.
-                until(LocalDateTime.now(), ChronoUnit.MINUTES);
-
-        if(tenantConfirmation>30) {
-            throw new CanceledRentalException();
-        }
-    }
-
     public double rentCost(LocalDateTime endRentalTime) {
-        this.endRentalTime = endRentalTime;
         long days= this.beginRentalTime.until(endRentalTime, ChronoUnit.DAYS);
         return this.reservation.getPost().getCostPerDay()*days;
     }
