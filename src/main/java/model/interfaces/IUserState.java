@@ -1,9 +1,9 @@
 package model.interfaces;
 
+import model.*;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-
-import model.*;
 
 public interface IUserState {
 	

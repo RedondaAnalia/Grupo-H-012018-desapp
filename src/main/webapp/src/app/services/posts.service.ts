@@ -51,11 +51,11 @@ export class PostsService {
         console.log("Servicio listo para usar!!");
      }
 
-     getPosts():Post[]{
+     getPosts(): Post[] {
          return this.posts;
      }
 
-     getPost(idx:string):Post{
+     getPost(idx:string): Post {
          return this.posts[idx];
      }
 
