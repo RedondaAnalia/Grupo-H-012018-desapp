@@ -5,28 +5,28 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-find-car',
-  templateUrl: './posts.component.html'
+  templateUrl: "./posts.component.html"
 })
 export class PostsComponent implements OnInit {
 
-  posts:Post[]=[];
+  posts: Post[]=[];
 
 
   constructor( private _postsService:PostsService,
-               private _router:Router
+               private _router: Router
               ) {
 
 
   }
 
-  //Esto se ejecuta una vez que la pagina ya esta renderizada.
+  // Esto se ejecuta una vez que la pagina ya esta renderizada.
   ngOnInit() {
     this.posts=this._postsService.getPosts();
-    //console.log(this.heroes);
+    // console.log(this.heroes);
   }
 
-  verPost( idx:number ){
-    this._router.navigate(['/post',idx]);
+  verPost( idx: number ){
+    this._router.navigate(['/post', idx]);
   }
 
 }
