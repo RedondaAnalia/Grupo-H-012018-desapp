@@ -29,35 +29,35 @@ public class UserTestCase {
 	
 	@Test(expected= NameTooLongException.class)
 	public void shouldThrowAnExceptionWhenTheNameIsTooLong(){
-		User user= UserBuilder.anUser()
+		UserBuilder.anUser()
 					.withNameAndSurname("Soy una persona con un nombre muy largo", "y de apellido recontralargo tambien")
 					.build();
 	}
 	
 	@Test(expected=InvalidEmailException.class)
 	public void shouldThrowAnExceptionWhenTheEmailHaveNotGotArroba(){
-		User user= UserBuilder.anUser()
+		UserBuilder.anUser()
 					.withEmail("abc")
 					.build();
 	}
 
 	@Test(expected=InvalidEmailException.class)
 	public void shouldThrowAnExceptionWhenTheEmailHaveNotGotPointAfterArroba(){
-		User user= UserBuilder.anUser()
+		UserBuilder.anUser()
 					.withEmail("abc@lala")
 					.build();
 	}
 	
 	@Test(expected=NoAddressException.class)
 	public void shouldThrowAnExceptionWhenHaveNotGotAddress(){
-		User user= UserBuilder.anUser()
+		UserBuilder.anUser()
 				.withAddress("")
 				.build();
 	}
 	
 	@Test(expected=NoAddressException.class)
 	public void shouldThrowAnExceptionWhenHaveNotAddress(){
-		User user= UserBuilder.anUser()
+		UserBuilder.anUser()
 				.withAddress(null)
 				.build();
 	}

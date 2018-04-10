@@ -69,32 +69,6 @@ public class RentTestCase {
 
     }
 
-/*
-    @Test
-    public void shouldStartTheRentTimeAfterBothConfirmations() throws InterruptedException {
-        Post post = PostBuilder.
-                aPost().
-                whitCostPerHour(2).
-                withSinceDate(LocalDateTime.now()).
-                withUntilDate(LocalDateTime.now().plusDays(3L)).build();
-
-        User tenantUser = UserBuilder.anUser().withCredit(100).build();
-
-        Reservation reservation = tenantUser.
-                rent(post, LocalDateTime.now(), LocalDateTime.now().plusDays(1L));
-
-        Rental rental = reservation.beConfirm();
-
-        rental.ownerConfirmation();
-        rental.tenantConfirmation();
-
-        //Thread.sleep(1000);
-
-        Assert.assertTrue(rental.getRentalTime()> 0);
-    }
-
-    */
-
     @Test(expected = InvalidStatusChangeException.class)
     public void theRentalShouldNotGoFromConfirmedStateByTheOwnerToConfirmedByTheOwner(){
 
@@ -317,13 +291,5 @@ public class RentTestCase {
         assertEquals(rental8.getState().getClass(), FinalizedRentalST.class);
 
     }
-
-    /*
-    @Test(expected = CanceledRentalException.class)
-    public void shouldCancelTheRentalAfter30MinutesAfterTheConfirmationOfTheTenant(){
-
-    }
-*/
-
 
 }

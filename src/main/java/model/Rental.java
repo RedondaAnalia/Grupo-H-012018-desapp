@@ -19,7 +19,7 @@ public class Rental {
     private Reservation reservation;
     private IRentalState state;
     private LocalDateTime beginRentalTime = null;
-    private int jobCount = 0;
+    public static int JOBCOUNT = 0;
 
     public Rental(Reservation reservation){
 
@@ -41,14 +41,14 @@ public class Rental {
     }
 
     private void throwJob(Class<? extends Job> verify){
-        this.jobCount++;
+        JOBCOUNT++;
         try {
 
             SchedulerFactory sf = new StdSchedulerFactory();
             Scheduler scheduler = sf.getScheduler();
 
             JobDetail jobDetail = newJob(verify)
-                    .withIdentity("job"+this.jobCount, Scheduler.DEFAULT_GROUP)
+                    .withIdentity("job"+JOBCOUNT, Scheduler.DEFAULT_GROUP)
                     .build();
 
             jobDetail.getJobDataMap().put(VerifyTenantConfirmationJob.RENTAL, this);
