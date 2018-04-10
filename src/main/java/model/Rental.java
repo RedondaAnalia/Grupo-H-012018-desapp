@@ -1,13 +1,15 @@
 package model;
 
 
-import model.jobs.VerifyTenantConfirmationJob;
 import model.interfaces.IRentalState;
+import model.jobs.VerifyTenantConfirmationJob;
 import model.states.rental.PendingRentalST;
 import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
+
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+
 import static org.quartz.JobBuilder.newJob;
 import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
 import static org.quartz.TriggerBuilder.newTrigger;

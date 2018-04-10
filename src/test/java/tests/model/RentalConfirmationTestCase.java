@@ -7,12 +7,9 @@ import model.Post;
 import model.Rental;
 import model.Reservation;
 import model.User;
-import model.states.rental.PendingReturnRentalST;
 import org.junit.Test;
 
 import java.time.LocalDateTime;
-
-import static org.junit.Assert.assertEquals;
 
 public class RentalConfirmationTestCase {
 

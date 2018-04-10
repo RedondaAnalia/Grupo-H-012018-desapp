@@ -14,7 +14,8 @@ import org.junit.Test;
 
 import java.time.LocalDateTime;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class RentTestCase {
 
@@ -136,12 +137,8 @@ public class RentTestCase {
 
     }
 
-
-
-    //luego de ambas confirmaciones comienza el tiempo del alquiler, el rental queda
-    //en estado PendingReturnRentalST
     @Test
-    public void elrentaldebePasarDeConfirmedByTheTenantSTAPendingReturnRentalST() {
+    public void theRentalShouldGoFromConfirmedByTheTenantSTToPendingReturnRentalST() {
 
         Post post = PostBuilder.
                 aPost().
@@ -167,10 +164,8 @@ public class RentTestCase {
         assertEquals(rental3.getState().getClass(), PendingReturnRentalST.class);
     }
 
-    //luego de ambas confirmaciones comienza el tiempo del alquiler, el rental queda
-    //en estado PendingReturnRentalST
     @Test
-    public void elrentaldebePasarDeConfirmedByTheOwnerSTAPendingReturnRentalST() {
+    public void theRentalShouldGoFromConfirmedByTheOwnerSTToPendingReturnRentalST() {
 
         Post post = PostBuilder.
                 aPost().
@@ -196,9 +191,8 @@ public class RentTestCase {
         assertEquals(rental4.getState().getClass(), PendingReturnRentalST.class);
     }
 
-    //pasaje de estado PendingReturnRentalST a ReturnCOnfirmedByTheOwner
     @Test
-    public void elrentaldebePasarDePendingReturnRentalSTAReturnCOnfirmedByTheOwner(){
+    public void theRentalShouldGoFromPendingReturnRentalSTToReturnCOnfirmedByTheOwner(){
 
         Post post = PostBuilder.
                 aPost().
@@ -228,9 +222,8 @@ public class RentTestCase {
 
     }
 
-    //pasaje de estado PendingReturnRentalST a ReturnCOnfirmedByTheTenant
     @Test
-    public void elRentaldebePasarDePendingReturnRentalSTAReturnCOnfirmedByTheTenant(){
+    public void theRentalShouldGoFromPendingReturnRentalSTToReturnCOnfirmedByTheTenant(){
 
         Post post = PostBuilder.
                 aPost().
@@ -259,9 +252,8 @@ public class RentTestCase {
 
     }
 
-    //pasaje de estado ReturnConfirmedByTheOwner a ReturnCOnfirmedByTheTenant
     @Test
-    public void elRentalDebePasarDeReturnConfirmedByTheTenantAFinalizedRentalST(){
+    public void theRentalShouldGoFromReturnConfirmedByTheTenantToFinalizedRentalST(){
 
         Post post = PostBuilder.
                 aPost().
@@ -294,10 +286,8 @@ public class RentTestCase {
 
     }
 
-
-    //pasaje de estado ReturnCOnfirmedByTheOwner a FinalizedRentalST
     @Test
-    public void elrentaldebePasarDeReturnCOnfirmedByTheOwnerAFinalizedRentalST(){
+    public void theRentalShouldGoFromReturnCOnfirmedByTheOwnerToFinalizedRentalST(){
 
         Post post = PostBuilder.
                 aPost().
