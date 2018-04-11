@@ -19,34 +19,34 @@ public class VehicleTestCase {
 	
 	@Test(expected=DescriptionTooShortException.class)
 	public void shouldThrowAExceptionWhenTheDescriptionIsShort(){
-		Vehicle vehicle= VehicleBuilder
-									.aVehicle()
-									.withDescription("Es un auto lindo")
-									.build();
+		VehicleBuilder
+				.aVehicle()
+				.withDescription("Es un auto lindo")
+				.build();
 	}
 
 	@Test(expected=DescriptionTooLongException.class)
 	public void shouldThrowAExceptionWhenTheDescriptionIsLong(){
-		Vehicle vehicle= VehicleBuilder
-									.aVehicle()
-									.withDescription("0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789"
-											       + "01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890")
-									.build();
+		VehicleBuilder
+				.aVehicle()
+				.withDescription("0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789"
+					+ "01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890")
+				.build();
 	}
 	
 	@Test(expected=InvalidCapacityException.class)
 	public void shouldThrowAExceptionWhenTheCapacityIsZero(){
-		Vehicle vehicle= VehicleBuilder
-									.aVehicle()
-									.withCapacity(0)
-									.build();
+		VehicleBuilder
+				.aVehicle()
+				.withCapacity(0)
+				.build();
 	}
 
 	@Test(expected=NoVehicleTypeException.class)
 	public void shouldThrowAExceptionWhenNoType(){
-		Vehicle vehicle= VehicleBuilder
-				.aVehicle()
-				.withType(null)
-				.build();
+		VehicleBuilder
+			.aVehicle()
+			.withType(null)
+			.build();
 	}
 }

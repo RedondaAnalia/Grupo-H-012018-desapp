@@ -20,7 +20,7 @@ public class CoordTestCase {
 	
 	@Test(expected=RuntimeException.class)
 	public void shouldThrowAnExceptionWhenLatAndLngIsWrong() {
-		Coord coord= CoordBuilder.anCoord().withLat(-190).withLng(-190).build(); 
+		CoordBuilder.anCoord().withLat(-190).withLng(-190).build();
 	}
 	
 	@Test

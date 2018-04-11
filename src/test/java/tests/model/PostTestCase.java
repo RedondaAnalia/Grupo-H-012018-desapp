@@ -20,7 +20,7 @@ public class PostTestCase {
 
     @Test(expected=TimeOutOfRangeException.class)
     public void shouldThrowAnExceptionWhenAPostHasMoreThan5Days(){
-        Post post = PostBuilder.
+        PostBuilder.
                 aPost().
                 withSinceDate(LocalDateTime.now()).
                 withUntilDate(LocalDateTime.MAX).build();
@@ -29,7 +29,7 @@ public class PostTestCase {
     //TODO: cambiar por un localdate que tenga media hora de diferencia.
     @Test(expected=TimeOutOfRangeException.class)
     public void shouldThrowAnExceptionWhenAPostHasLessThan1Hour(){
-        Post post = PostBuilder.
+        PostBuilder.
                 aPost().
                 withSinceDate(LocalDateTime.now()).
                 withUntilDate(LocalDateTime.MIN).build();
@@ -37,7 +37,7 @@ public class PostTestCase {
 
     @Test(expected=UserBlockedException.class)
     public void shouldThrowAnExceptionWhenTheUserIsDisabled(){
-        Post post = PostBuilder.
+        PostBuilder.
                 aPost().
                 withUserDisabled()
                 .build();
@@ -45,7 +45,7 @@ public class PostTestCase {
     
     @Test(expected=NoCoordsEnoughException.class)
     public void shouldThrowAnExceptionWhenNoSetPickUpCoord(){
-    	Post post = PostBuilder
+    	PostBuilder
     				.aPost()
     				.withPickUpCoord(null)
     				.build();
@@ -54,7 +54,7 @@ public class PostTestCase {
     @Test(expected=NoCoordsEnoughException.class)
     public void shouldThrowAnExceptionWhenNoSetReturnCoords(){
     	List<Coord> returnCoords= new ArrayList<Coord>();
-    	Post post = PostBuilder
+    	PostBuilder
     				.aPost()
     				.withReturnCoords(returnCoords)
     				.build();
