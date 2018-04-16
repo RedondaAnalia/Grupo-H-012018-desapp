@@ -107,12 +107,7 @@
 	<!-- ___________ Beans  de negocio___________ -->
 	<!-- ________________________________________ -->
 	<!-- ________________________________________ -->
-	<!--
-	<bean id="persistence.personrepository" class="ar.edu.unq.repositories.PersonRepository" >
-		<property name="sessionFactory" ref="persistence.sessionFactory" />
-	</bean>
 
-	-->
 	<bean id="persistence.userrepository" class="persistence.repositories.UserRepository" >
 		<property name="sessionFactory" ref="persistence.sessionFactory" />
 	</bean>

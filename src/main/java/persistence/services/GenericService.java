@@ -7,7 +7,7 @@ import persistence.repositories.GenericRepository;
 
 public class GenericService<T> implements Serializable {
 
-    private static final long serialVersionUID = -6540963495078524186L;
+    //private static final long serialVersionUID = -6540963495078524186L;
 
     private GenericRepository<T> repository;
 
@@ -37,6 +37,16 @@ public class GenericService<T> implements Serializable {
     @Transactional
     public void update(final T object) {
         this.getRepository().update(object);
+    }
+
+    @Transactional
+    public void findById(Serializable id){
+        this.getRepository().findById(id);
+    }
+
+    @Transactional
+    public void deleteAll(){
+        this.getRepository().deleteAll();
     }
 
 }

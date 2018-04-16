@@ -12,17 +12,5 @@
 		<property name="repository" ref="persistence.userrepository" />
 	</bean>
 
-	<!--
-
-        <bean id="services.general" class="ar.edu.unq.services.GeneralService">
-            <property name="carService" ref="services.car" />
-            <property name="personService" ref="services.person" />
-        </bean>
-
-        <bean id="services.car" class="ar.edu.unq.services.CarService">
-            <property name="repository" ref="persistence.carrepository" />
-        </bean>
-
-        -->
 
 </beans>

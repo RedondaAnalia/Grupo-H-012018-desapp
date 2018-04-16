@@ -63,4 +63,8 @@ public abstract class HibernateGenericDAO<T>
         this.getHibernateTemplate().update(entity);
     }
 
+    public void deleteAll() {
+        this.getHibernateTemplate().deleteAll(this.findAll());
+    }
+
 }
