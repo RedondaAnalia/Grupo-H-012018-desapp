@@ -18,7 +18,7 @@ import model.interfaces.IUserState;
 	 *  - Calculate his own reputation.
 	 */
 
-public class User {
+public class User extends Entity{
 	
 	private String CUIL;
 	private String name;
@@ -36,7 +36,9 @@ public class User {
 	 * Constructors
 	 */
 	
-	public User(){};
+	public User(){
+		super();
+	};
 	
 	//TODO: validarCUIL.
 	public User(String CUIL, String name, String surname, String address, String email){

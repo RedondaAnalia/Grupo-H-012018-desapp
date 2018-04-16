@@ -10,7 +10,7 @@ public abstract class HibernateGenericDAO<T>
         GenericRepository<T>, Serializable {
 
     //public static Logger log = Logger.getLogger(PersonRepository.class);
-    private static final long serialVersionUID = 5058950102420892922L;
+    //private static final long serialVersionUID = 5058950102420892922L;
 
     protected Class<T> persistentClass = this.getDomainClass();
 
