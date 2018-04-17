@@ -22,7 +22,7 @@ public class HibernateTestCase {
 
     @Test
     public void testSave() {
-        userService.save(UserBuilder.anUser().build());
+        this.userService.save(UserBuilder.anUser().build());
         assertEquals(1, userService.retriveAll().size());
     }
 
@@ -33,6 +33,19 @@ public class HibernateTestCase {
         userService.delete(user);
         assertEquals(0, userService.retriveAll().size());
     }
+
+    @Test
+    public void testFilterUser() {
+        User brunoG = UserBuilder.anUser().withNameAndSurname("BrunoBruno","G").build();
+        User FelipeG = UserBuilder.anUser().withNameAndSurname("FelipeFelipe","G").build();
+        User teoC = UserBuilder.anUser().withNameAndSurname("TeoTeo","C").build();
+        userService.save(brunoG);
+        userService.save(FelipeG);
+        userService.save(teoC);
+        assertEquals(2, userService.filterUser("G").size());
+    }
+
+
 
     /*
     @Test

@@ -1,8 +1,11 @@
 package persistence.repositories;
 
+import org.springframework.stereotype.Repository;
+
 import java.io.Serializable;
 import java.util.List;
 
+@Repository
 public interface GenericRepository<T> {
 
     void save(T entity);
