@@ -12,7 +12,7 @@ public abstract class HibernateGenericDAO<T>
     //public static Logger log = Logger.getLogger(PersonRepository.class);
     //private static final long serialVersionUID = 5058950102420892922L;
 
-    protected Class<T> persistentClass = this.getDomainClass();
+    private Class<T> persistentClass = this.getDomainClass();
 
     @SuppressWarnings("unchecked")
     public int count() {

@@ -9,7 +9,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import java.util.List;
 
-@Path("/service")
+@Path("/services")
 public class UserRest{
 
     private UserRepository userRepository;

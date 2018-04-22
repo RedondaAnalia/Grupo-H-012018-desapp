@@ -11,8 +11,7 @@
     <tx:annotation-driven transaction-manager="persistence.transactionManager"	proxy-target-class="true" />
 
 <!--
-		========================= GENERAL DEFINITIONS
-		=========================
+		========================= GENERAL DEFINITIONS =========================
 	-->
 	<!--
 		Configurer that replaces ${...} placeholders with values from
