@@ -12,5 +12,5 @@ notifications:
     on_failure: always # default: always
 
 before_script:
-      - mysql -u root --password=root
-      - mysql -e 'create database IF NOT EXISTS unqdb;'
+    - "mysql -e 'create database IF NOT EXISTS unqdb;'"
+    - "cp ./.travis.database.yml ./database.yml"
