@@ -47,4 +47,9 @@ public class UserBuilder {
 		this.address=address;
 		return this;
 	}
+
+	public UserBuilder withCUIL(String cuil){
+		this.CUIL=cuil;
+		return this;
+	}
 }

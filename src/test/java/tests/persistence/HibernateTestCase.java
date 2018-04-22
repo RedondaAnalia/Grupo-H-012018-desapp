@@ -36,9 +36,9 @@ public class HibernateTestCase {
 
     @Test
     public void testFilterUser() {
-        User brunoG = UserBuilder.anUser().withNameAndSurname("BrunoBruno","G").build();
-        User FelipeG = UserBuilder.anUser().withNameAndSurname("FelipeFelipe","G").build();
-        User teoC = UserBuilder.anUser().withNameAndSurname("TeoTeo","C").build();
+        User brunoG = UserBuilder.anUser().withCUIL("2").withNameAndSurname("BrunoBruno","G").build();
+        User FelipeG = UserBuilder.anUser().withCUIL("3").withNameAndSurname("FelipeFelipe","G").build();
+        User teoC = UserBuilder.anUser().withCUIL("4").withNameAndSurname("TeoTeo","C").build();
         userService.save(brunoG);
         userService.save(FelipeG);
         userService.save(teoC);

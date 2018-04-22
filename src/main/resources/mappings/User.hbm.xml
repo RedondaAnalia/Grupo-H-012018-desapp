@@ -5,11 +5,12 @@
                    default-cascade="save-update">
 
     <class name="model.User">
-
-        <id column="ID" name="id">
-            <generator class="native" />
+        <!--
+                <id column="CUIL" name="id">
+                   <generator class="native" />
         </id>
-
+        -->
+        <id name="CUIL" />
         <property name="name" />
         <property name="surname" />
         <property name="address" />
