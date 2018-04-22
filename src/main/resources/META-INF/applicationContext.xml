@@ -46,7 +46,7 @@ http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd">
     <bean id="daoUser" class="persistence.services.UserService" />
 
     <bean id="userRest" class="service.UserRest">
-        <property name="userRepository" ref="daoUser"/>
+        <property name="userService" ref="daoUser"/>
     </bean>
 
 </beans>
