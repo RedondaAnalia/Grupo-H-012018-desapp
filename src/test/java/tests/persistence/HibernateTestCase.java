@@ -42,20 +42,8 @@ public class HibernateTestCase {
         userService.save(brunoG);
         userService.save(FelipeG);
         userService.save(teoC);
-        assertEquals(2, userService.filterUser("G").size());
+        assertEquals(1, userService.filterUser("3").size());
     }
-
-
-
-    /*
-    @Test
-    public void testUpdate() {
-        User user = UserBuilder.anUser().withNameAndSurname("M","G").build();
-        userService.save(user);
-        userService.update();
-        assertEquals(, );
-    }
-    */
 
     @After
     public void cleanup() {

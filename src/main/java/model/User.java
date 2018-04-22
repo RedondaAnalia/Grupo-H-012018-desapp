@@ -11,6 +11,7 @@ import model.interfaces.IUserState;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /***
 	 **This class sets an User in the system. At the moment this can:
@@ -22,6 +23,7 @@ import javax.persistence.Table;
 	 *  - Calculate his own reputation.
 	 */
 
+@XmlRootElement(name="user")
 @Table(name = "User")
 public class User extends Entity{
 
