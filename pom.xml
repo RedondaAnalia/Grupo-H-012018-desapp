@@ -69,9 +69,9 @@
           <version>3.2.2</version>
       </dependency>
 
-      <!-- /////// -->
+
       <!-- Service -->
-      <!-- /////// -->
+
       <dependency>
           <groupId>org.slf4j</groupId>
           <artifactId>slf4j-log4j12</artifactId>
@@ -119,6 +119,7 @@
           </exclusions>
       </dependency>
 
+      <!-- Persistence -->
 
       <dependency>
           <groupId>org.springframework</groupId>
@@ -130,10 +131,6 @@
           <artifactId>cglib</artifactId>
           <version>2.1_3</version>
       </dependency>
-
-      <!-- /////////// -->
-      <!-- Persistence -->
-      <!-- /////////// -->
 
       <dependency>
           <groupId>org.springframework</groupId>
@@ -205,10 +202,61 @@
           <version>5.1.6</version>
       </dependency>
 
+      <!-- CXF -->
+
+      <dependency>
+          <groupId>org.apache.cxf</groupId>
+          <artifactId>cxf-rt-frontend-jaxws</artifactId>
+          <version>2.4.1</version>
+      </dependency>
+
+      <dependency>
+          <groupId>org.apache.cxf</groupId>
+          <artifactId>cxf-rt-transports-http</artifactId>
+          <version>2.4.1</version>
+      </dependency>
+
+      <!-- Jetty is needed if you're are not using the CXFServlet -->
+      <dependency>
+          <groupId>org.apache.cxf</groupId>
+          <artifactId>cxf-rt-transports-http-jetty</artifactId>
+          <version>2.4.1</version>
+      </dependency>
+
+      <dependency>
+          <groupId>org.apache.cxf</groupId>
+          <artifactId>cxf-bundle-jaxrs</artifactId>
+          <version>2.4.1</version>
+          <exclusions>
+              <exclusion>
+                  <groupId>org.eclipse.jetty</groupId>
+                  <artifactId>jetty-server</artifactId>
+              </exclusion>
+          </exclusions>
+
+      </dependency>
+
+      <dependency>
+          <groupId>javax.ws.rs</groupId>
+          <artifactId>javax.ws.rs-api</artifactId>
+          <version>2.0</version>
+      </dependency>
+
+
   </dependencies>
 
   <build>
+      <finalName>crpynd</finalName>
       <plugins>
+
+          <plugin>
+              <groupId>org.mortbay.jetty</groupId>
+              <artifactId>maven-jetty-plugin</artifactId>
+              <configuration>
+                  <scanIntervalSeconds>3</scanIntervalSeconds>
+              </configuration>
+          </plugin>
+
           <plugin>
               <groupId>org.apache.maven.plugins</groupId>
               <artifactId>maven-compiler-plugin</artifactId>
