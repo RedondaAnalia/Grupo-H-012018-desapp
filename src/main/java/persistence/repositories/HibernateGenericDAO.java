@@ -9,9 +9,6 @@ public abstract class HibernateGenericDAO<T>
         extends HibernateDaoSupport implements
         GenericRepository<T>, Serializable {
 
-    //public static Logger log = Logger.getLogger(PersonRepository.class);
-    //private static final long serialVersionUID = 5058950102420892922L;
-
     private Class<T> persistentClass = this.getDomainClass();
 
     @SuppressWarnings("unchecked")

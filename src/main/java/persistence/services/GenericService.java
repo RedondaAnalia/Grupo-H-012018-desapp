@@ -7,8 +7,6 @@ import persistence.repositories.GenericRepository;
 
 public class GenericService<T> implements Serializable {
 
-    //private static final long serialVersionUID = -6540963495078524186L;
-
     private GenericRepository<T> repository;
 
     public GenericRepository<T> getRepository() {

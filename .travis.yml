@@ -11,10 +11,14 @@ notifications:
     on_success: always # default: change
     on_failure: always # default: always
 
-before_script:
-      - "mysql -u root --password=root;"
-      - "mysql -e 'create database IF NOT EXISTS unqdb;'"
-
 after_success:
   - mvn cobertura:cobertura
   - mvn com.gavinmogan:codacy-maven-plugin:coverage -DcoverageReportFile=target/site/cobertura/coverage.xml -DprojectToken=<c75deea85ba742219a4a61328ce58b15> -DapiToken=<c75deea85ba742219a4a61328ce58b15>
+
+addons:
+  apt:
+    sources:
+      - mysql-5.7-trusty
+    packages:
+      - mysql-server
+      - mysql-client
