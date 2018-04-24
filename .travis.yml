@@ -21,3 +21,6 @@ test:
   username: travis
   encoding: utf8
   dist: precise
+
+  mysql -u root -e "CREATE DATABASE unqdb;"
+  mysql -u root -e "GRANT ALL PRIVILEGES ON unqdb.* TO 'travis'@'%';";
