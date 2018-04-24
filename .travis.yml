@@ -15,12 +15,5 @@ after_success:
   - mvn cobertura:cobertura
   - mvn com.gavinmogan:codacy-maven-plugin:coverage -DcoverageReportFile=target/site/cobertura/coverage.xml -DprojectToken=<c75deea85ba742219a4a61328ce58b15> -DapiToken=<c75deea85ba742219a4a61328ce58b15>
 
-test:
-  adapter: mysql2
-  database: index_shotgun_test
-  username: travis
-  encoding: utf8
-  dist: precise
-
-  mysql -u root -e "CREATE DATABASE unqdb;"
-  mysql -u root -e "GRANT ALL PRIVILEGES ON unqdb.* TO 'travis'@'%';";
+before_script:
+    - cp .travis.database.yml config/database.yml
