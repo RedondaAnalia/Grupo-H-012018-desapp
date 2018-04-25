@@ -3,8 +3,6 @@ language: java
 services:
   - mysql
 
-sudo: required
-
 notifications:
   email:
     recipients:
@@ -16,15 +14,3 @@ notifications:
 after_success:
   - mvn cobertura:cobertura
   - mvn com.gavinmogan:codacy-maven-plugin:coverage -DcoverageReportFile=target/site/cobertura/coverage.xml -DprojectToken=<c75deea85ba742219a4a61328ce58b15> -DapiToken=<c75deea85ba742219a4a61328ce58b15>
-
-addons:
-  apt:
-    sources:
-      - mysql-5.7-trusty
-    packages:
-      - mysql-server
-
-before_script:
-  - sudo mysql -e "use mysql; update user set authentication_string=PASSWORD('') where User='root'; update user set plugin='mysql_native_password';FLUSH PRIVILEGES;"
-  - sudo mysql_upgrade
-  - sudo service mysql restart

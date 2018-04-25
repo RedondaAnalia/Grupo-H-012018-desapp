@@ -43,10 +43,10 @@ http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd">
         </jaxrs:features>
     </jaxrs:server>
 
-    <bean id="daoUser" class="persistence.services.UserService" />
+
 
     <bean id="userRest" class="service.UserRest">
-        <property name="userService" ref="daoUser"/>
+        <property name="userService" ref="services.user"/>
     </bean>
 
 </beans>
