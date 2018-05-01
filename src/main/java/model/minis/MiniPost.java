@@ -14,4 +14,14 @@ public class MiniPost extends Entity {
     public MiniPost(){
         super();
     }
+
+    public MiniPost(MiniVehicle vehicle, LocalDateTime sinceDate, LocalDateTime untilDate) {
+        this.vehicle = vehicle;
+        this.sinceDate = sinceDate;
+        this.UntilDate = untilDate;
+    }
+
+    public String descVehicle(){
+        return this.vehicle.getdesc();
+    }
 }

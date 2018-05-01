@@ -4,7 +4,6 @@ import builders.PostBuilder;
 import builders.UserBuilder;
 import builders.VehicleBuilder;
 import model.Coord;
-import model.Post;
 import model.User;
 import model.Vehicle;
 import model.exceptions.NoCoordsEnoughException;

@@ -14,4 +14,13 @@ public class MiniVehicle extends Entity {
     public MiniVehicle(){
         super();
     }
+
+    public MiniVehicle(VehicleType type, String description) {
+        this.description = description;
+        this.type = type;
+    }
+
+    public String getdesc() {
+        return this.description;
+    }
 }

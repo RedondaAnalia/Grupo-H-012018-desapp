@@ -4,13 +4,16 @@ import builders.UserBuilder;
 import static org.junit.Assert.*;
 
 import model.User;
+import model.minis.MiniPost;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import persistence.services.PostService;
 import persistence.services.UserService;
+import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({ "/META-INF/spring-persistence-context.xml",
@@ -19,6 +22,9 @@ public class HibernateTestCase {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private PostService postService;
 
     @Test
     public void testSave() {
@@ -43,6 +49,12 @@ public class HibernateTestCase {
         userService.save(FelipeG);
         userService.save(teoC);
         assertEquals(1, userService.filterUser("3").size());
+    }
+
+    @Test
+    public void bla(){
+        List<MiniPost> minips = this.postService.getRepository().allMiniPost();
+        assertEquals(minips.get(0).descVehicle(),"A default description, a little bit longer because is not allowed a shorter description");
     }
 
     @After

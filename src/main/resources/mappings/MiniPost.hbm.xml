@@ -8,9 +8,9 @@
         <id column="ID" name="id">
             <generator class="native"/>
         </id>
-        <property name="sinceDate" />
-        <property name="UntilDate" />
-        <!--<one-to-one lazy="false" name="vehicle" class="model.minis.MiniVehicle"/>-->
+        <property name="sinceDate" type="java.time.LocalDateTime"/>
+        <property name="UntilDate" type="java.time.LocalDateTime"/>
+        <one-to-one lazy="false" name="vehicle" class="model.minis.MiniVehicle"/>
     </class>
 
 </hibernate-mapping>
