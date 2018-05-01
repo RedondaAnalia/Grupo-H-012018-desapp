@@ -8,11 +8,6 @@ import model.exceptions.NameTooShortException;
 import model.exceptions.NoAddressException;
 import model.interfaces.IUserState;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-
 /***
 	 **This class sets an User in the system. At the moment this can:
 	 *  - Build an user. This requires: CUIL, name, surname, address and email
@@ -23,12 +18,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 	 *  - Calculate his own reputation.
 	 */
 
-@XmlRootElement(name="user")
-@Table(name = "User")
-public class User extends Entity{
 
-	@Id
-	@Column(name = "CUIL")
+public class User{
+
 	private String CUIL;
 
 	private String name;
@@ -38,8 +30,8 @@ public class User extends Entity{
 	private Account account;
 	private IUserState status;
 	private ArrayList<Integer> scores;
-	private String userName;
-	private String password;
+	//private String userName;
+	//private String password;
 	
 	
 	/**
@@ -193,4 +185,24 @@ public class User extends Entity{
 		public void enabledUser() {
 		this.status=new UserEnabled();
 		}
+
+    public String getAddress() {
+        return address;
+    }
+
+	public String getCUIL() {
+		return CUIL;
 	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+}

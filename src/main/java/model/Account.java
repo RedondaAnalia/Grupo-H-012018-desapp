@@ -2,7 +2,10 @@ package model;
 
 import model.exceptions.NoCreditException;
 
-public class Account {
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name="account")
+public class Account extends Entity{
 
     private double credit;
 
