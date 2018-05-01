@@ -23,12 +23,13 @@ http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd">
 
 
     <!-- =========================== -->
-    <!-- =========Servicios  ========= -->
+    <!-- ========= Servicios ======= -->
     <!-- =========================== -->
 
-    <jaxrs:server id="user" address="/"  >
+    <jaxrs:server id="rest" address="/"  >
         <jaxrs:serviceBeans>
             <ref bean="userRest" />
+            <ref bean="postRest" />
         </jaxrs:serviceBeans>
         <jaxrs:extensionMappings>
             <entry key="json" value="application/json" />
@@ -43,10 +44,12 @@ http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd">
         </jaxrs:features>
     </jaxrs:server>
 
-
-
     <bean id="userRest" class="service.UserRest">
         <property name="userService" ref="services.user"/>
+    </bean>
+
+    <bean id="postRest" class="service.PostRest">
+        <property name="postService" ref="services.post"/>
     </bean>
 
 </beans>

@@ -6,10 +6,25 @@
        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd 
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
-	<!-- beans de spring -->
+	<!-- Initialize Services
+	<bean id="initialize" class="services.initialization.ServiceInitializer">
+		<constructor-arg>
+			<list>
+				<ref bean="PostService"></ref>
+			</list>
+		</constructor-arg>
+	</bean>
+-->
+	<!-- =========================== -->
+	<!-- ==== beans de spring ====== -->
+	<!-- =========================== -->
 
 	<bean id="services.user" class="persistence.services.UserService">
 		<property name="repository" ref="persistence.userrepository" />
+	</bean>
+
+	<bean id="services.post" class="persistence.services.PostService">
+		<property name="repository" ref="persistence.postrepository" />
 	</bean>
 
 </beans>
