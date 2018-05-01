@@ -2,9 +2,8 @@ package service;
 
 import model.minis.MiniPost;
 import persistence.services.PostService;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+
+import javax.ws.rs.*;
 import java.util.List;
 
 @Path("/servicesPost")
@@ -27,6 +26,23 @@ public class PostRest {
     public List<MiniPost> allMiniPost(){
         return this.postService.allMiniPost();
     }
+/*
+    @POST
+    @Path("/")
+    @Consumes("application/json")
+    @Produces("application/json")
+    public Response createPost(MiniPost miniPost) {
+        this.getPostService().getRepository().save(miniPost);
+        return Response.ok().build();
+    }
 
 
+    public MiniPost fromDTO(MiniPostDTO dto){
+
+    }
+
+    public MiniPostDTO toDTO(MiniPost minip){
+
+    }
+        */
 }

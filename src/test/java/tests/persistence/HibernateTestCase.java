@@ -36,25 +36,19 @@ public class HibernateTestCase {
     public void testDelete() {
         User user = UserBuilder.anUser().build();
         userService.save(user);
-        userService.delete(user);
+        userService.deleteAll();;
         assertEquals(0, userService.retriveAll().size());
     }
 
     @Test
     public void testFilterUser() {
-        User brunoG = UserBuilder.anUser().withCUIL("2").withNameAndSurname("BrunoBruno","G").build();
-        User FelipeG = UserBuilder.anUser().withCUIL("3").withNameAndSurname("FelipeFelipe","G").build();
-        User teoC = UserBuilder.anUser().withCUIL("4").withNameAndSurname("TeoTeo","C").build();
+        User brunoG = UserBuilder.anUser().withCUIL("200").withNameAndSurname("BrunoBruno","G").build();
+        User FelipeG = UserBuilder.anUser().withCUIL("300").withNameAndSurname("FelipeFelipe","G").build();
+        User teoC = UserBuilder.anUser().withCUIL("400").withNameAndSurname("TeoTeo","C").build();
         userService.save(brunoG);
         userService.save(FelipeG);
         userService.save(teoC);
-        assertEquals(1, userService.filterUser("3").size());
-    }
-
-    @Test
-    public void bla(){
-        List<MiniPost> minips = this.postService.getRepository().allMiniPost();
-        assertEquals(minips.get(0).descVehicle(),"A default description, a little bit longer because is not allowed a shorter description");
+        assertEquals(1, userService.filterUser("300").size());
     }
 
     @After

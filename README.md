@@ -7,12 +7,15 @@
 Servicios
 
 DESARROLLO
+
 http://localhost:8080/desapp-grouph-backend/rest/servicesUsers/byCuil/{parametro}
+http://localhost:8080/desapp-grouph-backend/rest/servicesPost/allMiniPost
+
 
 PRODUCCIÓN
 
 https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/servicesUsers/byCuil/{parametro}
-
+https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/servicesPost/allMiniPost
 
 
 ------------------------------------------------------------------

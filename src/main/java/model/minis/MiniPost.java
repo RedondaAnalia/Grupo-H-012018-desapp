@@ -21,7 +21,27 @@ public class MiniPost extends Entity {
         this.UntilDate = untilDate;
     }
 
-    public String descVehicle(){
-        return this.vehicle.getdesc();
+    public MiniVehicle getVehicle() {
+        return vehicle;
+    }
+
+    public void setVehicle(MiniVehicle vehicle) {
+        this.vehicle = vehicle;
+    }
+
+    public LocalDateTime getSinceDate() {
+        return sinceDate;
+    }
+
+    public void setSinceDate(LocalDateTime sinceDate) {
+        this.sinceDate = sinceDate;
+    }
+
+    public LocalDateTime getUntilDate() {
+        return UntilDate;
+    }
+
+    public void setUntilDate(LocalDateTime untilDate) {
+        UntilDate = untilDate;
     }
 }
