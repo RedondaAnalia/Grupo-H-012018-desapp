@@ -25,13 +25,13 @@ public class HibernateTestCase {
 
     @Autowired
     private PostService postService;
-
+/*
     @Test
     public void testSave() {
         this.userService.save(UserBuilder.anUser().build());
         assertEquals(1, userService.retriveAll().size());
     }
-
+*/
     @Test
     public void testDelete() {
         User user = UserBuilder.anUser().build();
