@@ -1,9 +1,14 @@
 package service;
 
+import model.enums.VehicleType;
 import model.minis.MiniPost;
+import model.minis.MiniVehicle;
 import persistence.services.PostService;
+import service.dto.MiniPostDTO;
 
 import javax.ws.rs.*;
+//import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Path("/servicesPost")
@@ -26,23 +31,25 @@ public class PostRest {
     public List<MiniPost> allMiniPost(){
         return this.postService.allMiniPost();
     }
-/*
+
     @POST
-    @Path("/")
+    @Path("/createPost")
     @Consumes("application/json")
     @Produces("application/json")
-    public Response createPost(MiniPost miniPost) {
+    public Response createPost(MiniPostDTO dto) {
+        MiniPost miniPost = fromDTO(dto);
         this.getPostService().getRepository().save(miniPost);
         return Response.ok().build();
     }
 
-
-    public MiniPost fromDTO(MiniPostDTO dto){
-
+    private MiniPost fromDTO(MiniPostDTO dto){
+        MiniPost post = new MiniPost();
+        post.setSinceDate(dto.getSinceDate());
+        post.setUntilDate(dto.getUntilDate());
+        MiniVehicle miniVehicle = new MiniVehicle(
+                VehicleType.valueOf(dto.getVehicle().getType()), dto.getVehicle().getDescription());
+        post.setVehicle(miniVehicle);
+        return post;
     }
 
-    public MiniPostDTO toDTO(MiniPost minip){
-
-    }
-        */
 }

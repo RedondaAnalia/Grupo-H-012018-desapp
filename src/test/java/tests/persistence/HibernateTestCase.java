@@ -31,15 +31,15 @@ public class HibernateTestCase {
         this.userService.save(UserBuilder.anUser().build());
         assertEquals(1, userService.retriveAll().size());
     }
-*/
+
     @Test
     public void testDelete() {
         User user = UserBuilder.anUser().build();
         userService.save(user);
-        userService.deleteAll();;
+        userService.deleteAll();
         assertEquals(0, userService.retriveAll().size());
     }
-
+*/
     @Test
     public void testFilterUser() {
         User brunoG = UserBuilder.anUser().withCUIL("200").withNameAndSurname("BrunoBruno","G").build();
