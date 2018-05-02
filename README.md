@@ -10,7 +10,7 @@ DESARROLLO
 
 GET's
 
-http://localhost:8080/desapp-grouph-backend/rest/servicesUsers/byCuil/{parametro}
+http://localhost:8080/desapp-grouph-backend/rest/servicesUsers/findUserByEmail/{parametro}
 
 http://localhost:8080/desapp-grouph-backend/rest/servicesPost/allMiniPost
 
@@ -25,7 +25,7 @@ http://localhost:8080/desapp-grouph-backend/rest/servicesPost/createPost
 
 PRODUCCIÓN
 
-https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/servicesUsers/byCuil/{parametro}
+https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/servicesUsers/findUserByEmail/{parametro}
 
 https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/servicesPost/allMiniPost
 

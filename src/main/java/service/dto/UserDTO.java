@@ -10,12 +10,13 @@ import java.util.ArrayList;
 @XmlRootElement(name="user")
 public class UserDTO  extends Entity {
 
-    @Id
     private String CUIL;
 
     private String name;
     private String surname;
     private String address;
+
+    @Id
     private String email;
     //private Account account;
     //private IUserState status;

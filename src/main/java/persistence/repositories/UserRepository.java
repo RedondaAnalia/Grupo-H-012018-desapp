@@ -28,7 +28,7 @@ public class UserRepository
             @Override
             public List<User> doInHibernate(final Session session) throws HibernateException {
                 Criteria criteria = session.createCriteria(User.class);
-                criteria.add(Restrictions.like("CUIL", "%" + pattern + "%"));
+                criteria.add(Restrictions.like("email", "%" + pattern + "%"));
                 return criteria.list();
             }
 

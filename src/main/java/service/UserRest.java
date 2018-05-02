@@ -23,10 +23,10 @@ public class UserRest{
     }
 
     @GET
-    @Path("/byCuil/{cuil}")
+    @Path("/findUserByEmail/{mail}")
     @Produces("application/json")
-    public List<UserDTO> findUserByCUIL(@PathParam("cuil") final String cuil){
-        return this.userService.filterUser(cuil);
+    public List<UserDTO> findUserByEmail(@PathParam("mail") final String mail){
+        return this.userService.filterUser(mail);
     }
 
 }

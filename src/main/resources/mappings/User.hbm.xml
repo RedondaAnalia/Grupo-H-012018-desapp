@@ -6,11 +6,11 @@
 
     <class name="model.User">
 
-        <id name="CUIL" />
+        <id name="email" />
+        <property name="CUIL" />
         <property name="name" />
         <property name="surname" />
         <property name="address" />
-        <property name="email" />
         <!--<property name="userName" />
         <property name="password" />
         <one-to-one name="status" class="model.interfaces.IUserState"/>-->
