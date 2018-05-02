@@ -42,13 +42,13 @@ public class HibernateTestCase {
 */
     @Test
     public void testFilterUser() {
-        User brunoG = UserBuilder.anUser().withCUIL("200").withNameAndSurname("BrunoBruno","G").build();
-        User FelipeG = UserBuilder.anUser().withCUIL("300").withNameAndSurname("FelipeFelipe","G").build();
-        User teoC = UserBuilder.anUser().withCUIL("400").withNameAndSurname("TeoTeo","C").build();
+        User brunoG = UserBuilder.anUser().withCUIL("200").withEmail("brunito@gmail.com").withNameAndSurname("BrunoBruno","G").build();
+        User FelipeG = UserBuilder.anUser().withCUIL("300").withEmail("felipe@gmail.com").withNameAndSurname("FelipeFelipe","G").build();
+        User teoC = UserBuilder.anUser().withCUIL("400").withEmail("teo@gmail.com").withNameAndSurname("TeoTeo","C").build();
         userService.save(brunoG);
         userService.save(FelipeG);
         userService.save(teoC);
-        assertEquals(1, userService.filterUser("300").size());
+        assertEquals(1, userService.filterUser("felipe@gmail.com").size());
     }
 
     @After
