@@ -22,14 +22,14 @@ public class UserRepository
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    public List<User> filterUser(final String pattern) {
+    public User filterUser(final String pattern) {
 
-        return (List<User>) this.getHibernateTemplate().execute(new HibernateCallback() {
+        return (User) this.getHibernateTemplate().execute(new HibernateCallback() {
             @Override
-            public List<User> doInHibernate(final Session session) throws HibernateException {
+            public User doInHibernate(final Session session) throws HibernateException {
                 Criteria criteria = session.createCriteria(User.class);
                 criteria.add(Restrictions.like("email", "%" + pattern + "%"));
-                return criteria.list();
+                return (User)criteria.uniqueResult();
             }
 
         });

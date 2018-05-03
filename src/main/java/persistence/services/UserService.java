@@ -22,9 +22,9 @@ public class UserService extends GenericService<User> implements Initializable{
     }
 
     @Transactional
-    public List<UserDTO> filterUser(final String pattern){
-        List<User> users = this.getRepository().filterUser(pattern);
-        return users.stream().map(this::toDTO).collect(Collectors.toList());
+    public UserDTO filterUser(final String pattern){
+        User user = this.getRepository().filterUser(pattern);
+        return toDTO(user);
     }
 
     @Transactional
@@ -39,7 +39,7 @@ public class UserService extends GenericService<User> implements Initializable{
 
     }
 
-    public UserDTO toDTO(User user){
+    private UserDTO toDTO(User user){
         UserDTO dto = new UserDTO();
         dto.setAddress(user.getAddress());
         dto.setCUIL(user.getCUIL());
