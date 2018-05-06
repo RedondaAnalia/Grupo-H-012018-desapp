@@ -5,13 +5,12 @@ import model.minis.MiniPost;
 import model.minis.MiniVehicle;
 import persistence.services.PostService;
 import service.dto.MiniPostDTO;
-
 import javax.ws.rs.*;
-//import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
-@Path("/servicesPost")
+@Path("servicesPost")
 public class PostRest {
 
     private PostService postService;
@@ -34,8 +33,8 @@ public class PostRest {
 
     @POST
     @Path("/createPost")
-    @Consumes("application/json")
-    @Produces("application/json")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response createPost(MiniPostDTO dto) {
         MiniPost miniPost = fromDTO(dto);
         this.getPostService().getRepository().save(miniPost);

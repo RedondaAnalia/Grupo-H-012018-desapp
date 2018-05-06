@@ -1,6 +1,8 @@
 package service.dto;
 
-public class MiniVehicleDTO{
+import model.Entity;
+
+public class MiniVehicleDTO extends Entity{
 
 
     private String type;

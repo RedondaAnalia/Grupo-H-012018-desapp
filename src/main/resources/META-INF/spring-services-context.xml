@@ -28,4 +28,8 @@
 		<property name="repository" ref="persistence.postrepository" />
 	</bean>
 
+	<bean id="services.vehicle" class="persistence.services.VehicleService">
+		<property name="repository" ref="persistence.vehiclerepository" />
+	</bean>
+
 </beans>

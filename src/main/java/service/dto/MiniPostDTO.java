@@ -1,8 +1,9 @@
 package service.dto;
 
+import model.Entity;
 import java.time.LocalDateTime;
 
-public class MiniPostDTO{
+public class MiniPostDTO extends Entity {
 
     private MiniVehicleDTO vehicle;
     private LocalDateTime sinceDate;

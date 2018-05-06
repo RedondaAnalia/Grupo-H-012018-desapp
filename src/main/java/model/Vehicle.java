@@ -6,9 +6,11 @@ import model.exceptions.DescriptionTooShortException;
 import model.exceptions.InvalidCapacityException;
 import model.exceptions.NoVehicleTypeException;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 
-public class Vehicle {
+@XmlRootElement(name="vehicle")
+public class Vehicle extends Entity{
 	
 	private User owner;
 	private VehicleType type;
@@ -19,7 +21,7 @@ public class Vehicle {
 	/*
 	 * Constructors
 	 */
-	
+
 	public Vehicle(User owner, VehicleType type, int capacity, String description){
 //		this.photos=new ArrayList<File>();
 		if(type==null){
