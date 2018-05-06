@@ -35,10 +35,10 @@ public class PostRest {
     @Path("/createPost")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response createPost(MiniPostDTO dto) {
+    public MiniPost createPost(MiniPostDTO dto) {
         MiniPost miniPost = fromDTO(dto);
         this.getPostService().getRepository().save(miniPost);
-        return Response.ok().build();
+        return miniPost;
     }
 
     private MiniPost fromDTO(MiniPostDTO dto){
