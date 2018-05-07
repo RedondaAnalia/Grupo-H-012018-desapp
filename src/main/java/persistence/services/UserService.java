@@ -7,9 +7,6 @@ import persistence.repositories.Initializable;
 import persistence.repositories.UserRepository;
 import service.dto.UserDTO;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 public class UserService extends GenericService<User> implements Initializable{
 
     private UserRepository repository;

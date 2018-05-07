@@ -14,6 +14,8 @@ http://localhost:8080/desapp-grouph-backend/rest/servicesUsers/findUserByEmail/{
 
 http://localhost:8080/desapp-grouph-backend/rest/servicesPost/allMiniPost
 
+localhost:8080/desapp-grouph-backend/rest/servicesVehicle/findVehicleById/{id}
+
 
 POST's
 
@@ -30,6 +32,8 @@ https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/servicesUsers/findUserByE
 https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/servicesPost/allMiniPost
 
 https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/servicesPost/createPost
+
+https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/servicesVehicle/findVehicleById/{id}
 
 ------------------------------------------------------------------
     

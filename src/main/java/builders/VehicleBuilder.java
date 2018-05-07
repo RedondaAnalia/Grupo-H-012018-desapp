@@ -18,6 +18,11 @@ public class VehicleBuilder {
 	public Vehicle build(){
 		return new Vehicle(owner,type,capacity,description);
 	}
+
+	public VehicleBuilder withOwner(User owner){
+		this.owner=owner;
+		return this;
+	}
 	
 	public VehicleBuilder withType(VehicleType type){
 		this.type=type;
