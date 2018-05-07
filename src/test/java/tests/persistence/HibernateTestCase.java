@@ -1,10 +1,9 @@
 package tests.persistence;
-
+/*
 import builders.UserBuilder;
 import static org.junit.Assert.*;
 
 import model.User;
-import model.minis.MiniPost;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,7 +12,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import persistence.services.PostService;
 import persistence.services.UserService;
-import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({ "/META-INF/spring-persistence-context.xml",
@@ -39,7 +37,7 @@ public class HibernateTestCase {
         userService.deleteAll();
         assertEquals(0, userService.retriveAll().size());
     }
-*/
+
     @Test
     public void testFilterUser() {
         User brunoG = UserBuilder.anUser().withCUIL("200").withEmail("brunito@gmail.com").withNameAndSurname("BrunoBruno","G").build();
@@ -55,4 +53,6 @@ public class HibernateTestCase {
     public void cleanup() {
         this.userService.deleteAll();
     }
+
 }
+*/
