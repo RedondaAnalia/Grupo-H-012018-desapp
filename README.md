@@ -8,18 +8,33 @@ Servicios
 
 DESARROLLO
 
-GET's
+USER
 
 http://localhost:8080/desapp-grouph-backend/rest/servicesUsers/findUserByEmail/{parametro}
 
-http://localhost:8080/desapp-grouph-backend/rest/servicesPost/allMiniPost
+http://localhost:8080/desapp-grouph-backend/rest/servicesUsers/createUser/
 
-localhost:8080/desapp-grouph-backend/rest/servicesVehicle/findVehicleById/{id}
+http://localhost:8080/desapp-grouph-backend/rest/servicesUsers/updateUser
 
 
-POST's
+
+VEHICLE
+
+http://localhost:8080/desapp-grouph-backend/rest/findVehicleById/{id}
+
+http://localhost:8080/desapp-grouph-backend/rest/createVehicle/
+
+http://localhost:8080/desapp-grouph-backend/rest/updateVehicle/
+
+http://localhost:8080/desapp-grouph-backend/rest/deleteVehicle/
+
+
+POST
 
 http://localhost:8080/desapp-grouph-backend/rest/servicesPost/createPost
+
+http://localhost:8080/desapp-grouph-backend/rest/servicesPost/allMiniPost
+
 
 
 

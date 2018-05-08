@@ -1,11 +1,9 @@
 package service.dto;
 
-import model.Account;
 import model.Entity;
-import model.interfaces.IUserState;
 import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.util.ArrayList;
+
 
 @XmlRootElement(name="user")
 public class UserDTO  extends Entity {
@@ -19,7 +17,7 @@ public class UserDTO  extends Entity {
     @Id
     private String email;
     //private Account account;
-    //private IUserState status;
+    private int status;
     //private ArrayList<Integer> scores;
     private String userName;
     private String password;
@@ -80,5 +78,13 @@ public class UserDTO  extends Entity {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

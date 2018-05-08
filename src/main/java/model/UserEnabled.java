@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import model.interfaces.IUserState;
 
-public class UserEnabled implements IUserState{
+public class UserEnabled extends IUserState{
 
 	public Reservation rent(Post post, LocalDateTime reservationSinceDate,
 					 LocalDateTime reservationUntilDate, User tenantUser) {

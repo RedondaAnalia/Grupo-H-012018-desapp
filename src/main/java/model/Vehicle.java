@@ -5,16 +5,15 @@ import model.exceptions.DescriptionTooLongException;
 import model.exceptions.DescriptionTooShortException;
 import model.exceptions.InvalidCapacityException;
 import model.exceptions.NoVehicleTypeException;
-import javax.xml.bind.annotation.XmlRootElement;
+import java.util.List;
 
-@XmlRootElement(name="vehicle")
 public class Vehicle extends Entity{
 	
 	private User owner;
 	private VehicleType type;
 	private int capacity;
 	private String description;
-	//private List<String> photos;
+	private List<String> photos;
 	
 	/*
 	 * Constructors
@@ -73,7 +72,7 @@ public class Vehicle extends Entity{
 	public void setDescription(String description) {
 		this.description = description;
 	}
-/*
+
 	public List<String> getPhotos() {
 		return photos;
 	}
@@ -81,5 +80,5 @@ public class Vehicle extends Entity{
 	public void setPhotos(List<String> photos) {
 		this.photos = photos;
 	}
-*/
+
 }

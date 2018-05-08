@@ -5,7 +5,6 @@ import model.User;
 import org.springframework.transaction.annotation.Transactional;
 import persistence.repositories.Initializable;
 import persistence.repositories.UserRepository;
-import service.dto.UserDTO;
 
 public class UserService extends GenericService<User> implements Initializable{
 
@@ -19,9 +18,9 @@ public class UserService extends GenericService<User> implements Initializable{
     }
 
     @Transactional
-    public UserDTO filterUser(final String pattern){
+    public User filterUser(final String pattern){
         User user = this.getRepository().filterUser(pattern);
-        return toDTO(user);
+        return user;
     }
 
     @Transactional
@@ -36,13 +35,4 @@ public class UserService extends GenericService<User> implements Initializable{
 
     }
 
-    private UserDTO toDTO(User user){
-        UserDTO dto = new UserDTO();
-        dto.setAddress(user.getAddress());
-        dto.setCUIL(user.getCUIL());
-        dto.setEmail(user.getEmail());
-        dto.setName(user.getName());
-        dto.setSurname(user.getSurname());
-        return dto;
-    }
 }

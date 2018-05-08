@@ -18,7 +18,6 @@ import model.interfaces.IUserState;
 	 *  - Calculate his own reputation.
 	 */
 
-
 public class User{
 
 	private String CUIL;
@@ -30,8 +29,8 @@ public class User{
 	private Account account;
 	private IUserState status;
 	private ArrayList<Integer> scores;
-	//private String userName;
-	//private String password;
+	private String userName;
+	private String password;
 	
 	
 	/**
@@ -204,5 +203,61 @@ public class User{
 
 	public String getEmail() {
 		return email;
+	}
+
+	public void setCUIL(String CUIL) {
+		this.CUIL = CUIL;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
+	}
+
+	public IUserState getStatus() {
+		return status;
+	}
+
+	public void setStatus(IUserState status) {
+		this.status = status;
+	}
+
+	public ArrayList<Integer> getScores() {
+		return scores;
+	}
+
+	public void setScores(ArrayList<Integer> scores) {
+		this.scores = scores;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 }
