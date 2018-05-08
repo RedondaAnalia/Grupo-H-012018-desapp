@@ -8,7 +8,6 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate4.HibernateCallback;
 import org.springframework.stereotype.Repository;
-import java.util.List;
 
 @Repository
 public class UserRepository

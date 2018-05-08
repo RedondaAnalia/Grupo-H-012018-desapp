@@ -20,7 +20,6 @@ public class UserDTO  extends Entity {
     private int status;
     //private ArrayList<Integer> scores;
     private String userName;
-    private String password;
 
     public UserDTO(){}
 
@@ -70,14 +69,6 @@ public class UserDTO  extends Entity {
 
     public void setUserName(String userName) {
         this.userName = userName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public int getStatus() {

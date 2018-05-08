@@ -30,8 +30,7 @@ public class User{
 	private IUserState status;
 	private ArrayList<Integer> scores;
 	private String userName;
-	private String password;
-	
+
 	
 	/**
 	 * Constructors
@@ -251,13 +250,5 @@ public class User{
 
 	public void setUserName(String userName) {
 		this.userName = userName;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 }

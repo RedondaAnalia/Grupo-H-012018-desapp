@@ -15,8 +15,7 @@
         <property name="surname" />
         <property name="address" />
         <property name="userName" />
-        <property name="password" />
-        <one-to-one name="status" class="model.interfaces.IUserState"/>
+        <property name="status"/>
         <!--<one-to-one name="account" class="model.Account"/>-->
 
 <!--

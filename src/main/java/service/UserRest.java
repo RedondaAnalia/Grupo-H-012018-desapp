@@ -1,6 +1,8 @@
 package service;
 
 import model.User;
+import model.UserDisabled;
+import model.UserEnabled;
 import persistence.services.UserService;
 import service.dto.UserDTO;
 import javax.ws.rs.*;
@@ -60,10 +62,11 @@ public class UserRest{
         user.setAddress(dto.getAddress());
         user.setEmail(dto.getEmail());
         //private Account account;
-        //private IUserState status;
+        if (dto.getStatus()==1)
+            user.setStatus(new UserEnabled());
+        else user.setStatus(new UserDisabled());
         //private ArrayList<Integer> scores;
         user.setUserName(dto.getUserName());
-        user.setPassword(dto.getPassword());
         return user;
     }
 
@@ -74,6 +77,10 @@ public class UserRest{
         dto.setEmail(user.getEmail());
         dto.setName(user.getName());
         dto.setSurname(user.getSurname());
+        if(user.getStatus().isEnabled())
+            dto.setStatus(1);
+            else
+                dto.setStatus(0);
         return dto;
     }
 }
