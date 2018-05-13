@@ -6,9 +6,6 @@ import model.UserEnabled;
 import persistence.services.UserService;
 import service.dto.UserDTO;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Response;
-
-@Path("/servicesUsers")
 public class UserRest{
 
     private UserService userService;
@@ -21,11 +18,6 @@ public class UserRest{
         return this.userService;
     }
 
-    /**
-     * Servicio que busca al usuario por mail
-     * @param mail
-     * @return UserDTO
-     */
     @GET
     @Path("/findUserByEmail/{mail}")
     @Produces("application/json")
@@ -33,39 +25,46 @@ public class UserRest{
         return toDTO(this.userService.filterUser(mail));
     }
 
+    @GET
+    @Path("/sizeUsers")
+    @Produces("application/json")
+    public int sizeUsers(){
+        return this.userService.countUsers();
+    }
 
     @POST
-    @Path("/createUser")
+    @Path("/createUser/")
     @Produces("application/json")
     @Consumes("application/json")
-    public Response createUser(UserDTO dto){
+    public UserDTO createUser(UserDTO dto){
         User user = fromDTO(dto);
         this.getUserService().save(user);
-        return Response.ok().build();
+        return dto;
     }
 
     @PUT
     @Path("/updateUser")
     @Produces("application/json")
     @Consumes("application/json")
-    public Response updateUser(UserDTO dto){
+    public UserDTO updateUser(UserDTO dto){
         User user = fromDTO(dto);
         this.getUserService().update(user);
-        return Response.ok().build();
+        return dto;
     }
 
-    public User fromDTO(UserDTO dto){
+    private User fromDTO(UserDTO dto){
         User user = new User();
         user.setCUIL(dto.getCUIL());
         user.setName(dto.getName());
         user.setSurname(dto.getSurname());
         user.setAddress(dto.getAddress());
         user.setEmail(dto.getEmail());
-        //private Account account;
+        user.addCredit(dto.getAccount());
         if (dto.getStatus()==1)
             user.setStatus(new UserEnabled());
         else user.setStatus(new UserDisabled());
-        //private ArrayList<Integer> scores;
+        for(Integer s: dto.getScores())
+            user.getScores().add(new Integer(s));
         user.setUserName(dto.getUserName());
         return user;
     }
@@ -77,10 +76,14 @@ public class UserRest{
         dto.setEmail(user.getEmail());
         dto.setName(user.getName());
         dto.setSurname(user.getSurname());
+        dto.setUserName(user.getUserName());
         if(user.getStatus().isEnabled())
             dto.setStatus(1);
             else
                 dto.setStatus(0);
+        for(Integer s: user.getScores())
+            dto.getScores().add(s);
+        dto.setAccount(user.getAccount().getCredit());
         return dto;
     }
 }

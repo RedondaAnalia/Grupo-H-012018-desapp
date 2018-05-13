@@ -10,12 +10,13 @@ DESARROLLO
 
 USER
 
-http://localhost:8080/desapp-grouph-backend/rest/servicesUsers/findUserByEmail/{parametro}
+http://localhost:8080/desapp-grouph-backend/rest/findUserByEmail/{parametro}
 
-http://localhost:8080/desapp-grouph-backend/rest/servicesUsers/createUser/
+http://localhost:8080/desapp-grouph-backend/rest/createUser
 
-http://localhost:8080/desapp-grouph-backend/rest/servicesUsers/updateUser
+http://localhost:8080/desapp-grouph-backend/rest/updateUser
 
+http://localhost:8080/desapp-grouph-backend/rest/sizeUsers
 
 
 VEHICLE
@@ -26,7 +27,7 @@ http://localhost:8080/desapp-grouph-backend/rest/createVehicle/
 
 http://localhost:8080/desapp-grouph-backend/rest/updateVehicle/
 
-http://localhost:8080/desapp-grouph-backend/rest/deleteVehicle/
+http://localhost:8080/desapp-grouph-backend/rest/deleteVehicle/{id}
 
 
 POST
@@ -42,13 +43,21 @@ http://localhost:8080/desapp-grouph-backend/rest/servicesPost/allMiniPost
 
 PRODUCCIÓN
 
-https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/servicesUsers/findUserByEmail/{parametro}
+USER 
+
+(GET) https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/findUserByEmail/{parametro}
+
+(POST) https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/createUser
+
+(PUT) https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/updateUser
+
+(GET) https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/sizeUsers
 
 https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/servicesPost/allMiniPost
 
 https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/servicesPost/createPost
 
-https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/servicesVehicle/findVehicleById/{id}
+https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/findVehicleById/{id}
 
 ------------------------------------------------------------------
     

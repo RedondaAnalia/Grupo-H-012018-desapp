@@ -16,15 +16,13 @@
         <property name="address" />
         <property name="userName" />
         <property name="status"/>
-        <!--<one-to-one name="account" class="model.Account"/>-->
-
-<!--
-        <list name="scores" collection-type="Integer">
-            <key column="score"/>
-            <list-index column="score" />
-            <one-to-many class="java.lang.Integer"/>
+        <property name="account"/>
+        <list name="scores" lazy="false">
+            <key column="score_id"/>
+            <index column="seq"/>
+            <element column="score" type="integer"/>
         </list>
--->
+
     </class>
 
 </hibernate-mapping>

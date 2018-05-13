@@ -2,6 +2,8 @@ package model;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
+
 import model.exceptions.InvalidEmailException;
 import model.exceptions.NameTooLongException;
 import model.exceptions.NameTooShortException;
@@ -28,7 +30,7 @@ public class User{
 	private String email;
 	private Account account;
 	private IUserState status;
-	private ArrayList<Integer> scores;
+	private List<Integer> scores;
 	private String userName;
 
 	
@@ -38,6 +40,9 @@ public class User{
 	
 	public User(){
 		super();
+		this.account= new Account();
+		this.status= new UserEnabled();
+		this.scores= new ArrayList<Integer>();
 	};
 
 	public User(String CUIL, String name, String surname, String address, String email){
@@ -236,11 +241,11 @@ public class User{
 		this.status = status;
 	}
 
-	public ArrayList<Integer> getScores() {
+	public List<Integer> getScores() {
 		return scores;
 	}
 
-	public void setScores(ArrayList<Integer> scores) {
+	public void setScores(List<Integer> scores) {
 		this.scores = scores;
 	}
 

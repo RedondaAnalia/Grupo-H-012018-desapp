@@ -35,4 +35,8 @@ public class UserService extends GenericService<User> implements Initializable{
 
     }
 
+    @Transactional
+    public int countUsers() {
+        return this.getRepository().count();
+    }
 }

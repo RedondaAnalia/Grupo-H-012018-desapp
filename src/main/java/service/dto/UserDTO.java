@@ -3,6 +3,8 @@ package service.dto;
 import model.Entity;
 import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @XmlRootElement(name="user")
@@ -16,12 +18,14 @@ public class UserDTO  extends Entity {
 
     @Id
     private String email;
-    //private Account account;
+    private double account;
     private int status;
-    //private ArrayList<Integer> scores;
+    private List<Integer> scores;
     private String userName;
 
-    public UserDTO(){}
+    public UserDTO(){
+        this.scores = new ArrayList<Integer>();
+    }
 
     public String getCUIL() {
         return CUIL;
@@ -77,5 +81,21 @@ public class UserDTO  extends Entity {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public double getAccount() {
+        return account;
+    }
+
+    public void setAccount(double account) {
+        this.account = account;
+    }
+
+    public List<Integer> getScores() {
+        return scores;
+    }
+
+    public void setScores(List<Integer> scores) {
+        this.scores = scores;
     }
 }
