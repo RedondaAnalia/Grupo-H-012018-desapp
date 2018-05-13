@@ -7,10 +7,8 @@ import persistence.services.PostService;
 import service.dto.MiniPostDTO;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import java.util.List;
 
-@Path("servicesPost")
 public class PostRest {
 
     private PostService postService;

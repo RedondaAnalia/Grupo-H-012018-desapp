@@ -35,8 +35,8 @@ public abstract class HibernateGenericDAO<T>
     }
 
     public List<T> findAll() {
-        List<T> find = (List<T>) this.getHibernateTemplate().find("from " + this.persistentClass.getName() + " o");
-        return find;
+        return (List<T>) this.getHibernateTemplate().
+                find("from " + this.persistentClass.getName() + " o");
 
     }
 

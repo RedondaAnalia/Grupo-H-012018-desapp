@@ -15,13 +15,11 @@
         <property name="capacity" />
         <property name="description" />
         <many-to-one name="owner" class="model.User" lazy="false" />
-<!--
         <list name="photos">
            <key column="id"/>
            <list-index column="type"/>
            <element type="string" />
         </list>
--->
     </class>
 
 </hibernate-mapping>

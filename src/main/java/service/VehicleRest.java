@@ -1,13 +1,12 @@
 package service;
 
 import model.Vehicle;
-import persistence.services.UserService;
 import persistence.services.VehicleService;
 import service.dto.VehicleDTO;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
-//@Path("/servicesVehicle")
+
 public class VehicleRest {
 
     private VehicleService vehicleService;
@@ -19,53 +18,52 @@ public class VehicleRest {
     public void setVehicleService(VehicleService vehicleService) {
         this.vehicleService = vehicleService;
     }
-
-    private UserService userService;
+/*
+    private UserService uS;
 
     public void setUserService(UserService userService){
-        this.userService = userService;
+        this.uS = userService;
     }
 
     public UserService getUserService(){
-        return this.userService;
+        return this.uS;
     }
-
+*/
 
     @GET
     @Path("/findVehicleById/{id}")
     @Produces("application/json")
-    public Vehicle findVehicleById(@PathParam("id") final int id){
-        return this.getVehicleService().findVehicleById(id);
+    public VehicleDTO findVehicleById(@PathParam("id") final int id){
+        return toDTO(this.getVehicleService().findVehicleById(id));
     }
 
     @POST
     @Path("/createVehicle")
     @Produces("application/json")
     @Consumes("application/json")
-    public Response createVehicle(VehicleDTO dto){
+    public VehicleDTO createVehicle(VehicleDTO dto){
         Vehicle vehicle = fromDTO(dto);
         this.getVehicleService().save(vehicle);
-        return Response.ok().build();
+        return dto;
     }
-
 
     @PUT
     @Path("/updateVehicle")
     @Produces("application/json")
     @Consumes("application/json")
-    public Response updateVehicle(VehicleDTO dto){
+    public VehicleDTO updateVehicle(VehicleDTO dto){
         Vehicle vehicle = fromDTO(dto);
         this.getVehicleService().update(vehicle);
-        return Response.ok().build();
+        return dto;
     }
 
 
     @DELETE
     @Path("/deleteVehicle/{id}")
-    @Consumes("text/plain")
-    public void deleteVehicle(@PathParam("id") final int id){
+    @Consumes("application/json")
+    public Response deleteVehicle(@PathParam("id") final int id){
         this.getVehicleService().delete(this.getVehicleService().findById(id));
-        //return Response.ok().build();
+        return Response.ok().build();
     }
 
 
@@ -75,7 +73,16 @@ public class VehicleRest {
         vehicle.setType(dto.getType());
         vehicle.setCapacity(dto.getCapacity());
         vehicle.setDescription(dto.getDescription());
-        //private List<String> photos;
+        for(String p:dto.getPhotos())
+            vehicle.getPhotos().add(p);
         return vehicle;
+    }
+
+    private VehicleDTO toDTO(Vehicle vehicle){
+        VehicleDTO dto = new VehicleDTO();
+        dto.setCapacity(vehicle.getCapacity());
+        dto.setDescription(vehicle.getDescription());
+        dto.setType(vehicle.getType());
+        return dto;
     }
 }

@@ -5,6 +5,8 @@ import model.exceptions.DescriptionTooLongException;
 import model.exceptions.DescriptionTooShortException;
 import model.exceptions.InvalidCapacityException;
 import model.exceptions.NoVehicleTypeException;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Vehicle extends Entity{
@@ -19,10 +21,12 @@ public class Vehicle extends Entity{
 	 * Constructors
 	 */
 
-	public Vehicle(){}
+	public Vehicle(){
+		this.photos = new ArrayList<String>();
+	}
 
 	public Vehicle(User owner, VehicleType type, int capacity, String description){
-		//this.photos=new ArrayList<String>();
+		this.photos=new ArrayList<String>();
 		if(type==null){
 			throw new NoVehicleTypeException();
 		}

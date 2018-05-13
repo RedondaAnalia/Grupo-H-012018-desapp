@@ -32,9 +32,9 @@ http://localhost:8080/desapp-grouph-backend/rest/deleteVehicle/{id}
 
 POST
 
-http://localhost:8080/desapp-grouph-backend/rest/servicesPost/createPost
+http://localhost:8080/desapp-grouph-backend/rest/createPost
 
-http://localhost:8080/desapp-grouph-backend/rest/servicesPost/allMiniPost
+http://localhost:8080/desapp-grouph-backend/rest/allMiniPost
 
 
 
@@ -53,9 +53,9 @@ USER
 
 (GET) https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/sizeUsers
 
-https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/servicesPost/allMiniPost
+(GET) https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/allMiniPost
 
-https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/servicesPost/createPost
+https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/createPost
 
 https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/findVehicleById/{id}
 

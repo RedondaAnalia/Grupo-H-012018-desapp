@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
 @XmlRootElement(name="vehicle")
-public class VehicleDTO  extends Entity {
+public class VehicleDTO extends Entity {
 
     private int owner;
     private VehicleType type;
