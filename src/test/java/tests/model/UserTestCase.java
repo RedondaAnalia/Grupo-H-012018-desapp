@@ -24,7 +24,7 @@ public class UserTestCase {
 	
 	@Test(expected= NameTooShortException.class)
 	public void shouldThrowAnExceptionWhenTheNameIsTooShort(){
-		User user= UserBuilder.anUser().withNameAndSurname("ab", "c").build();
+		UserBuilder.anUser().withNameAndSurname("ab", "c").build();
 	}
 	
 	@Test(expected= NameTooLongException.class)

@@ -15,10 +15,10 @@
         <property name="capacity" />
         <property name="description" />
         <many-to-one name="owner" class="model.User" lazy="false" />
-        <list name="photos">
-           <key column="id"/>
-           <list-index column="type"/>
-           <element type="string" />
+        <list name="photos" lazy="false">
+           <key column="img_id"/>
+           <list-index column="seq"/>
+           <element column="photo" type="string" />
         </list>
     </class>
 

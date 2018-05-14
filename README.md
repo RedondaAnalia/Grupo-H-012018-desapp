@@ -10,31 +10,31 @@ DESARROLLO
 
 USER
 
-http://localhost:8080/desapp-grouph-backend/rest/findUserByEmail/{parametro}
+http://localhost:8080/desapp-grouph-backend/rest/servicesUsers/findUserByEmail/{parametro}
 
-http://localhost:8080/desapp-grouph-backend/rest/createUser
+http://localhost:8080/desapp-grouph-backend/rest/servicesUsers/createUser
 
-http://localhost:8080/desapp-grouph-backend/rest/updateUser
+http://localhost:8080/desapp-grouph-backend/rest/servicesUsers/updateUser
 
-http://localhost:8080/desapp-grouph-backend/rest/sizeUsers
+http://localhost:8080/desapp-grouph-backend/rest/servicesUsers/sizeUsers
 
 
 VEHICLE
 
-http://localhost:8080/desapp-grouph-backend/rest/findVehicleById/{id}
+http://localhost:8080/desapp-grouph-backend/rest/servicesVehicle/findVehicleById/{id}
 
-http://localhost:8080/desapp-grouph-backend/rest/createVehicle/
+http://localhost:8080/desapp-grouph-backend/rest/servicesVehicle/createVehicle/
 
-http://localhost:8080/desapp-grouph-backend/rest/updateVehicle/
+http://localhost:8080/desapp-grouph-backend/rest/servicesVehicle/updateVehicle/
 
-http://localhost:8080/desapp-grouph-backend/rest/deleteVehicle/{id}
+http://localhost:8080/desapp-grouph-backend/rest/servicesVehicle/deleteVehicle/{id}
 
 
 POST
 
-http://localhost:8080/desapp-grouph-backend/rest/createPost
+http://localhost:8080/desapp-grouph-backend/rest/servicesPost/createPost
 
-http://localhost:8080/desapp-grouph-backend/rest/allMiniPost
+http://localhost:8080/desapp-grouph-backend/rest/servicesPost/allMiniPost
 
 
 

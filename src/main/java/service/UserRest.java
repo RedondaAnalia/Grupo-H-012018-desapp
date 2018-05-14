@@ -6,6 +6,8 @@ import model.UserEnabled;
 import persistence.services.UserService;
 import service.dto.UserDTO;
 import javax.ws.rs.*;
+
+@Path("/servicesUsers")
 public class UserRest{
 
     private UserService userService;

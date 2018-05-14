@@ -1,12 +1,12 @@
 package service;
 
 import model.Vehicle;
+import persistence.services.UserService;
 import persistence.services.VehicleService;
 import service.dto.VehicleDTO;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Response;
 
-
+@Path("/servicesVehicle")
 public class VehicleRest {
 
     private VehicleService vehicleService;
@@ -18,17 +18,17 @@ public class VehicleRest {
     public void setVehicleService(VehicleService vehicleService) {
         this.vehicleService = vehicleService;
     }
-/*
-    private UserService uS;
+
+    private UserService userService;
 
     public void setUserService(UserService userService){
-        this.uS = userService;
+        this.userService = userService;
     }
 
     public UserService getUserService(){
-        return this.uS;
+        return this.userService;
     }
-*/
+
 
     @GET
     @Path("/findVehicleById/{id}")
@@ -61,20 +61,22 @@ public class VehicleRest {
     @DELETE
     @Path("/deleteVehicle/{id}")
     @Consumes("application/json")
-    public Response deleteVehicle(@PathParam("id") final int id){
-        this.getVehicleService().delete(this.getVehicleService().findById(id));
-        return Response.ok().build();
+    public VehicleDTO deleteVehicle(@PathParam("id") final int id){
+        Vehicle vehicle = this.getVehicleService().findById(id);
+        this.getVehicleService().delete(vehicle);
+        return toDTO(vehicle);
     }
 
 
     private Vehicle fromDTO(VehicleDTO dto){
         Vehicle vehicle = new Vehicle();
-        //vehicle.setOwner(this.getUserService().findById(dto.getOwner()));
+        vehicle.setOwner(this.getUserService().findById(dto.getOwner()));
         vehicle.setType(dto.getType());
         vehicle.setCapacity(dto.getCapacity());
         vehicle.setDescription(dto.getDescription());
         for(String p:dto.getPhotos())
             vehicle.getPhotos().add(p);
+        vehicle.setId(dto.getId());
         return vehicle;
     }
 
@@ -83,6 +85,10 @@ public class VehicleRest {
         dto.setCapacity(vehicle.getCapacity());
         dto.setDescription(vehicle.getDescription());
         dto.setType(vehicle.getType());
+        dto.setOwner(vehicle.getOwner().getEmail());
+        for(String p:vehicle.getPhotos())
+            dto.getPhotos().add(p);
+        dto.setId(vehicle.getId());
         return dto;
     }
 }

@@ -5,23 +5,27 @@ import model.Entity;
 import model.enums.VehicleType;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.ArrayList;
 import java.util.List;
 
 @XmlRootElement(name="vehicle")
 public class VehicleDTO extends Entity {
 
-    private int owner;
+    private String owner;
     private VehicleType type;
     private int capacity;
     private String description;
     private List<String> photos;
 
+    public VehicleDTO(){
+        this.photos = new ArrayList<String>();
+    }
 
-    public int getOwner() {
+    public String getOwner() {
         return owner;
     }
 
-    public void setOwner(int owner) {
+    public void setOwner(String owner) {
         this.owner = owner;
     }
 

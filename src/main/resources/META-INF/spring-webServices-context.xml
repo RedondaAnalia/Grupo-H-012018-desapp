@@ -53,6 +53,7 @@ http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd">
 
     <bean id="vehicleRest" class="service.VehicleRest">
         <property name="vehicleService" ref="services.vehicle"/>
+        <property name="userService" ref="services.user"/>
     </bean>
 
 </beans>
