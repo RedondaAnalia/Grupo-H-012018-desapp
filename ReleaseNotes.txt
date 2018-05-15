@@ -27,15 +27,15 @@ TAG ENTREGA 2.0
 ---------------------------------------------------------------------
 
 NEW FEATURES:
-* Pantalla de alta d usuario
-* Pantalla de modificación de usuario
+* Pantalla AM usuario
 * Integración con Auth0
 * Integración con GoogleMaps
 * Servicios REST para los usuarios
 * Servicios REST para los vehiculos
 * Algunos pocos servicios REST para los Post
 * Pantalla de nuevo Post (incompleto)
-* Implementación de la base de datos con HSQL
+* Implementación de la base de datos con HSQLDB
+* Creamos datos fake de Usuario y Vehiculo
 
 
 NOTES:
