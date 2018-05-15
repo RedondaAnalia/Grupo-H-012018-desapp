@@ -45,19 +45,31 @@ PRODUCCIÓN
 
 USER 
 
-(GET) https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/findUserByEmail/{parametro}
+(GET) https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/servicesUsers/findUserByEmail/{parametro}
 
-(POST) https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/createUser
+(POST) https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/servicesUsers/createUser
 
-(PUT) https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/updateUser
+(PUT) https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/servicesUsers/updateUser
 
-(GET) https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/sizeUsers
+(GET) https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/servicesUsers/sizeUsers
 
-(GET) https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/allMiniPost
+POST
 
-https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/createPost
+(GET) https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/servicesPost/allMiniPost
 
-https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/findVehicleById/{id}
+https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/servicesPost/createPost
+
+
+VEHICLE
+
+(GET) https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/servicesVehicle/findVehicleById/{id}
+
+(POST) https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/servicesVehicle/createVehicle/
+
+(PUT) https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/servicesVehicle/updateVehicle/
+
+(DELETE) https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/servicesVehicle/deleteVehicle/{id}
+
 
 ------------------------------------------------------------------
     
