@@ -28,6 +28,7 @@ TAG ENTREGA 2.0
 
 NEW FEATURES:
 * Pantalla AM usuario
+* Para la pantalla ABM del vehiculo (por ahora solo el alta)
 * Integración con Auth0
 * Integración con GoogleMaps
 * Servicios REST para los usuarios
