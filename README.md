@@ -2,6 +2,78 @@
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/c75deea85ba742219a4a61328ce58b15)](https://app.codacy.com/app/marivgil/Grupo-H-012018-desapp?utm_source=github.com&utm_medium=referral&utm_content=RedondaAnalia/Grupo-H-012018-desapp&utm_campaign=badger)
 
+
+
+Servicios
+
+DESARROLLO
+
+USER
+
+http://localhost:8080/desapp-grouph-backend/rest/servicesUsers/findUserByEmail/{parametro}
+
+http://localhost:8080/desapp-grouph-backend/rest/servicesUsers/createUser
+
+http://localhost:8080/desapp-grouph-backend/rest/servicesUsers/updateUser
+
+http://localhost:8080/desapp-grouph-backend/rest/servicesUsers/sizeUsers
+
+
+VEHICLE
+
+http://localhost:8080/desapp-grouph-backend/rest/servicesVehicle/findVehicleById/{id}
+
+http://localhost:8080/desapp-grouph-backend/rest/servicesVehicle/createVehicle/
+
+http://localhost:8080/desapp-grouph-backend/rest/servicesVehicle/updateVehicle/
+
+http://localhost:8080/desapp-grouph-backend/rest/servicesVehicle/deleteVehicle/{id}
+
+
+POST
+
+http://localhost:8080/desapp-grouph-backend/rest/servicesPost/createPost
+
+http://localhost:8080/desapp-grouph-backend/rest/servicesPost/allMiniPost
+
+
+
+
+
+
+PRODUCCIÓN
+
+USER 
+
+(GET) https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/servicesUsers/findUserByEmail/{parametro}
+
+(POST) https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/servicesUsers/createUser
+
+(PUT) https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/servicesUsers/updateUser
+
+(GET) https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/servicesUsers/sizeUsers
+
+POST
+
+(GET) https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/servicesPost/allMiniPost
+
+https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/servicesPost/createPost
+
+
+VEHICLE
+
+(GET) https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/servicesVehicle/findVehicleById/{id}
+
+(POST) https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/servicesVehicle/createVehicle/
+
+(PUT) https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/servicesVehicle/updateVehicle/
+
+(DELETE) https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/servicesVehicle/deleteVehicle/{id}
+
+
+------------------------------------------------------------------
+    
+
 Repositorio Desarrollo de Aplicaciones, semestre 1, 2018. 
 
 

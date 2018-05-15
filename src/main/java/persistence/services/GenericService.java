@@ -38,8 +38,8 @@ public class GenericService<T> implements Serializable {
     }
 
     @Transactional
-    public void findById(Serializable id){
-        this.getRepository().findById(id);
+    public T findById(Serializable id){
+        return this.getRepository().findById(id);
     }
 
     @Transactional

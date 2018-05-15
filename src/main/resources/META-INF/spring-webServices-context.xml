@@ -1,11 +1,9 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:jaxws="http://cxf.apache.org/jaxws"
        xmlns:jaxrs="http://cxf.apache.org/jaxrs"
        xmlns:cxf="http://cxf.apache.org/core"
        xsi:schemaLocation="
 http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
 http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
 http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd">
 
@@ -14,7 +12,7 @@ http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd">
     <!-- =========================== -->
 
     <import resource="classpath:META-INF/cxf/cxf.xml" />
-    <import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
+    <!--<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />-->
     <import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
 
     <bean id="jaxbProvider" class="org.apache.cxf.jaxrs.provider.JAXBElementProvider" />
@@ -23,16 +21,18 @@ http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd">
 
 
     <!-- =========================== -->
-    <!-- =========Servicios  ========= -->
+    <!-- ========= Servicios ======= -->
     <!-- =========================== -->
 
-    <jaxrs:server id="user" address="/"  >
+    <jaxrs:server id="rest" address="/"  >
         <jaxrs:serviceBeans>
             <ref bean="userRest" />
+            <ref bean="postRest" />
+            <ref bean="vehicleRest" />
         </jaxrs:serviceBeans>
         <jaxrs:extensionMappings>
             <entry key="json" value="application/json" />
-            <entry key="xml" value="application/xml" />
+            <!--<entry key="xml" value="application/xml" />-->
         </jaxrs:extensionMappings>
         <jaxrs:providers>
             <ref bean="jaxbProvider" />
@@ -43,9 +43,16 @@ http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd">
         </jaxrs:features>
     </jaxrs:server>
 
-
-
     <bean id="userRest" class="service.UserRest">
+        <property name="userService" ref="services.user"/>
+    </bean>
+
+    <bean id="postRest" class="service.PostRest">
+        <property name="postService" ref="services.post"/>
+    </bean>
+
+    <bean id="vehicleRest" class="service.VehicleRest">
+        <property name="vehicleService" ref="services.vehicle"/>
         <property name="userService" ref="services.user"/>
     </bean>
 

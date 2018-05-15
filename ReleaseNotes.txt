@@ -20,3 +20,29 @@ NOTES:
 
 KNOWN ISSUES:
 * Quartz aún no tiene el comportamiento esperado
+
+
+---------------------------------------------------------------------
+TAG ENTREGA 2.0
+---------------------------------------------------------------------
+
+NEW FEATURES:
+* Pantalla AM usuario
+* Para la pantalla ABM del vehiculo (por ahora solo el alta)
+* Integración con Auth0
+* Integración con GoogleMaps
+* Servicios REST para los usuarios
+* Servicios REST para los vehiculos
+* Algunos pocos servicios REST para los Post
+* Pantalla de nuevo Post (incompleto)
+* Implementación de la base de datos con HSQLDB
+* Creamos datos fake de Usuario y Vehiculo
+
+
+NOTES:
+* Para esta entrega falta el i18n
+* Falta integración entre el frontend y el backend
+
+
+KNOWN ISSUES:
+*

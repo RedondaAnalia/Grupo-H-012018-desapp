@@ -2,16 +2,13 @@ package model;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
+
 import model.exceptions.InvalidEmailException;
 import model.exceptions.NameTooLongException;
 import model.exceptions.NameTooShortException;
 import model.exceptions.NoAddressException;
 import model.interfaces.IUserState;
-
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /***
 	 **This class sets an User in the system. At the moment this can:
@@ -23,12 +20,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 	 *  - Calculate his own reputation.
 	 */
 
-@XmlRootElement(name="user")
-@Table(name = "User")
-public class User extends Entity{
+public class User{
 
-	@Id
-	@Column(name = "CUIL")
 	private String CUIL;
 
 	private String name;
@@ -37,10 +30,9 @@ public class User extends Entity{
 	private String email;
 	private Account account;
 	private IUserState status;
-	private ArrayList<Integer> scores;
+	private List<Integer> scores;
 	private String userName;
-	private String password;
-	
+
 	
 	/**
 	 * Constructors
@@ -48,6 +40,9 @@ public class User extends Entity{
 	
 	public User(){
 		super();
+		this.account= new Account();
+		this.status= new UserEnabled();
+		this.scores= new ArrayList<Integer>();
 	};
 
 	public User(String CUIL, String name, String surname, String address, String email){
@@ -193,4 +188,72 @@ public class User extends Entity{
 		public void enabledUser() {
 		this.status=new UserEnabled();
 		}
+
+    public String getAddress() {
+        return address;
+    }
+
+	public String getCUIL() {
+		return CUIL;
 	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setCUIL(String CUIL) {
+		this.CUIL = CUIL;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
+	}
+
+	public IUserState getStatus() {
+		return status;
+	}
+
+	public void setStatus(IUserState status) {
+		this.status = status;
+	}
+
+	public List<Integer> getScores() {
+		return scores;
+	}
+
+	public void setScores(List<Integer> scores) {
+		this.scores = scores;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+}

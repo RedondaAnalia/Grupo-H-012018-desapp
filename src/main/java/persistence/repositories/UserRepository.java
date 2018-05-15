@@ -8,7 +8,6 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate4.HibernateCallback;
 import org.springframework.stereotype.Repository;
-import java.util.List;
 
 @Repository
 public class UserRepository
@@ -22,14 +21,14 @@ public class UserRepository
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    public List<User> filterUser(final String pattern) {
+    public User filterUser(final String pattern) {
 
-        return (List<User>) this.getHibernateTemplate().execute(new HibernateCallback() {
+        return (User) this.getHibernateTemplate().execute(new HibernateCallback() {
             @Override
-            public List<User> doInHibernate(final Session session) throws HibernateException {
+            public User doInHibernate(final Session session) throws HibernateException {
                 Criteria criteria = session.createCriteria(User.class);
-                criteria.add(Restrictions.like("CUIL", "%" + pattern + "%"));
-                return criteria.list();
+                criteria.add(Restrictions.like("email", "%" + pattern + "%"));
+                return (User)criteria.uniqueResult();
             }
 
         });

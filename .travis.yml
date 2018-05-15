@@ -12,5 +12,4 @@ notifications:
     on_failure: always # default: always
 
 after_success:
-  - mvn cobertura:cobertura
-  - mvn com.gavinmogan:codacy-maven-plugin:coverage -DcoverageReportFile=target/site/cobertura/coverage.xml -DprojectToken=<c75deea85ba742219a4a61328ce58b15> -DapiToken=<c75deea85ba742219a4a61328ce58b15>
+- mvn com.gavinmogan:codacy-maven-plugin:coverage -DcoverageReportFile=target/site/jacoco/jacoco.xml -DprojectToken=<c75deea85ba742219a4a61328ce58b15> -DapiToken=<c75deea85ba742219a4a61328ce58b15>

@@ -2,17 +2,27 @@ package model.interfaces;
 
 import model.*;
 
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public interface IUserState {
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class IUserState extends Entity{
 	
 	
-	Post post(Vehicle vehicle, User user, Coord pickUpCoord,ArrayList<Coord>returnCoords,
-			  LocalDateTime sinceDate, LocalDateTime untilDate, double costPerHour);
+	public Post post(Vehicle vehicle, User user, Coord pickUpCoord,ArrayList<Coord>returnCoords,
+			  LocalDateTime sinceDate, LocalDateTime untilDate, double costPerHour){
+		return null;
+	};
 
-	Reservation rent(Post post, LocalDateTime reservationSinceDate,
-					 LocalDateTime reservationUntilDate, User tenantUser);//ver cual va a ser la penalizacion
+	public Reservation rent(Post post, LocalDateTime reservationSinceDate,
+					 LocalDateTime reservationUntilDate, User tenantUser)
+	{
+		return null;
+	}
 
-	boolean isEnabled();
+	public boolean isEnabled() {
+		return false;
+	}
 }

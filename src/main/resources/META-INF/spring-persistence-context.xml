@@ -45,17 +45,11 @@
 	<!--
 		Defines a global session factory that will be used by all modules.
 	-->
-<!-- 	<bean id="persistence.sessionFactory"
-		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean"> -->
-		
+
 	<bean id="persistence.sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean" >
 
 		<property name="dataSource" ref="persistence.dataSource" />
-<!--  
-		<property name="entityCacheStrategies" ref="persistence.hibernateClassCacheProperties" />
-		<property name="collectionCacheStrategies" ref="persistence.hibernateCollectionCacheProperties" />
--->
 
 		<property name="hibernateProperties">
 			<props>
@@ -69,12 +63,8 @@
 
 				<prop key="hibernate.cglib.use_reflection_optimizer">true</prop>
 				<prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>
-				<!-- Propiedades para la configuración de la cache de segundo nivel
-
-				<prop key="hibernate.cache.use_second_level_cache">false</prop>
-				<prop key="hibernate.cache.use_query_cache">true</prop> -->
 				<prop key="hibernate.connection.autocommit">true</prop>
-<!-- 				<prop key="hibernate.query.factory_class">org.hibernate.hql.classic.ClassicQueryTranslatorFactory</prop> -->
+
 			</props>
 		</property>
 
@@ -92,7 +82,7 @@
 	<bean id="persistence.transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="persistence.sessionFactory" />
-<!-- 		<property name="jdbcExceptionTranslator" ref="persistence.jdbcExceptionTranslator" /> -->
+
 	</bean>
 
 	<bean name="persistence.jdbcExceptionTranslator"
@@ -105,7 +95,7 @@
 	
 	<!-- ________________________________________ -->
 	<!-- ________________________________________ -->
-	<!-- ___________ Beans  de negocio___________ -->
+	<!-- ___________ Beans de negocio___________ -->
 	<!-- ________________________________________ -->
 	<!-- ________________________________________ -->
 
@@ -113,5 +103,12 @@
 		<property name="sessionFactory" ref="persistence.sessionFactory" />
 	</bean>
 
+	<bean id="persistence.postrepository" class="persistence.repositories.PostRepository" >
+		<property name="sessionFactory" ref="persistence.sessionFactory" />
+	</bean>
+
+	<bean id="persistence.vehiclerepository" class="persistence.repositories.VehicleRepository" >
+		<property name="sessionFactory" ref="persistence.sessionFactory" />
+	</bean>
 
 </beans>

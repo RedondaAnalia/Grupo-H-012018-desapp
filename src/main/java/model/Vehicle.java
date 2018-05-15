@@ -7,21 +7,26 @@ import model.exceptions.InvalidCapacityException;
 import model.exceptions.NoVehicleTypeException;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class Vehicle {
+public class Vehicle extends Entity{
 	
 	private User owner;
 	private VehicleType type;
 	private int capacity;
 	private String description;
-	private ArrayList<String> photos;
+	private List<String> photos;
 	
 	/*
 	 * Constructors
 	 */
-	
+
+	public Vehicle(){
+		this.photos = new ArrayList<String>();
+	}
+
 	public Vehicle(User owner, VehicleType type, int capacity, String description){
-//		this.photos=new ArrayList<File>();
+		this.photos=new ArrayList<String>();
 		if(type==null){
 			throw new NoVehicleTypeException();
 		}
@@ -38,6 +43,46 @@ public class Vehicle {
 		this.owner=owner;
 		this.capacity=capacity;
 		this.description=description;
+	}
+
+	public User getOwner() {
+		return owner;
+	}
+
+	public void setOwner(User owner) {
+		this.owner = owner;
+	}
+
+	public VehicleType getType() {
+		return type;
+	}
+
+	public void setType(VehicleType type) {
+		this.type = type;
+	}
+
+	public int getCapacity() {
+		return capacity;
+	}
+
+	public void setCapacity(int capacity) {
+		this.capacity = capacity;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public List<String> getPhotos() {
+		return photos;
+	}
+
+	public void setPhotos(List<String> photos) {
+		this.photos = photos;
 	}
 
 }

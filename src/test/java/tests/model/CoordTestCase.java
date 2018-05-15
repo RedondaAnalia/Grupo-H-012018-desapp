@@ -10,12 +10,12 @@ public class CoordTestCase {
 
 	@Test(expected=RuntimeException.class)
 	public void shouldThrowAnExceptionWhenLatIsWrong() {
-		Coord coord= CoordBuilder.anCoord().withLat(-190).build(); 
+		CoordBuilder.anCoord().withLat(-190).build();
 	}
 	
 	@Test(expected=RuntimeException.class)
 	public void shouldThrowAnExceptionWhenLngIsWrong() {
-		Coord coord= CoordBuilder.anCoord().withLng(-190).build(); 
+		CoordBuilder.anCoord().withLng(-190).build();
 	}
 	
 	@Test(expected=RuntimeException.class)

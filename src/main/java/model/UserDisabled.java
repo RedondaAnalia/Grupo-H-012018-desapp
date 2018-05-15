@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import model.exceptions.UserBlockedException;
 import model.interfaces.IUserState;
 
-public class UserDisabled implements IUserState{
+public class UserDisabled extends IUserState{
 
 	private LocalDateTime untilDate=null;
 
