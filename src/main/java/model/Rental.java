@@ -36,7 +36,7 @@ public class Rental {
 
         this.state.ownerUserConfirmated(this);
 
-        this.throwJob(VerifyTenantConfirmationJob.class);
+        //this.throwJob(VerifyTenantConfirmationJob.class);
 
     }
 
