@@ -3,9 +3,16 @@ package service;
 import model.User;
 import model.UserDisabled;
 import model.UserEnabled;
+import model.Vehicle;
 import persistence.services.UserService;
+import persistence.services.VehicleService;
 import service.dto.UserDTO;
+import service.dto.UserWithVehiclesDTO;
+import service.dto.VehicleDTO;
+
 import javax.ws.rs.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Path("/servicesUsers")
 public class UserRest{
@@ -16,9 +23,20 @@ public class UserRest{
         this.userService = userService;
     }
 
-    public UserService getUserService(){
+    private UserService getUserService(){
         return this.userService;
     }
+
+    private VehicleService vehicleService;
+
+    private VehicleService getVehicleService() {
+        return vehicleService;
+    }
+
+    public void setVehicleService(VehicleService vehicleService) {
+        this.vehicleService = vehicleService;
+    }
+
 
     @GET
     @Path("/findUserByEmail/{mail}")
@@ -38,20 +56,20 @@ public class UserRest{
     @Path("/createUser/")
     @Produces("application/json")
     @Consumes("application/json")
-    public UserDTO createUser(UserDTO dto){
+    public UserWithVehiclesDTO createUser(UserDTO dto){
         User user = fromDTO(dto);
         this.getUserService().save(user);
-        return dto;
+        return toDTO(this.getVehicleService().filterVehicleByUser(dto.getEmail()), user);
     }
 
     @PUT
     @Path("/updateUser")
     @Produces("application/json")
     @Consumes("application/json")
-    public UserDTO updateUser(UserDTO dto){
+    public UserWithVehiclesDTO updateUser(UserDTO dto){
         User user = fromDTO(dto);
         this.getUserService().update(user);
-        return dto;
+        return toDTO(this.getVehicleService().filterVehicleByUser(dto.getEmail()), user);
     }
 
     private User fromDTO(UserDTO dto){
@@ -62,13 +80,47 @@ public class UserRest{
         user.setAddress(dto.getAddress());
         user.setEmail(dto.getEmail());
         user.addCredit(dto.getAccount());
-        if (dto.getStatus()==1)
+        if (dto.getStatus())
             user.setStatus(new UserEnabled());
         else user.setStatus(new UserDisabled());
         for(Integer s: dto.getScores())
-            user.getScores().add(new Integer(s));
+            user.getScores().add(s);
         user.setUserName(dto.getUserName());
         return user;
+    }
+
+
+    private UserWithVehiclesDTO toDTO(List<Vehicle> vehicles, User user){
+        UserWithVehiclesDTO dto = new UserWithVehiclesDTO();
+
+        List<VehicleDTO> vehicleDTOS = new ArrayList<>();
+        for(Vehicle vehicle : vehicles){
+            VehicleDTO dtoV = new VehicleDTO();
+            dtoV.setCapacity(vehicle.getCapacity());
+            dtoV.setDescription(vehicle.getDescription());
+            dtoV.setType(vehicle.getType());
+            dtoV.setOwner(vehicle.getOwner().getEmail());
+            for(String p:vehicle.getPhotos())
+                dtoV.getPhotos().add(p);
+            dtoV.setId(vehicle.getId());
+            vehicleDTOS.add(dtoV);
+        }
+        dto.setVehicles(vehicleDTOS);
+
+        dto.setAddress(user.getAddress());
+        dto.setCUIL(user.getCUIL());
+        dto.setEmail(user.getEmail());
+        dto.setName(user.getName());
+        dto.setSurname(user.getSurname());
+        dto.setUserName(user.getUserName());
+        if(user.getStatus().isEnabled())
+            dto.setStatus(true);
+        else
+            dto.setStatus(false);
+        for(Integer s: user.getScores())
+            dto.getScores().add(s);
+        dto.setAccount(user.getAccount().getCredit());
+        return dto;
     }
 
     private UserDTO toDTO(User user){
@@ -80,9 +132,9 @@ public class UserRest{
         dto.setSurname(user.getSurname());
         dto.setUserName(user.getUserName());
         if(user.getStatus().isEnabled())
-            dto.setStatus(1);
+            dto.setStatus(true);
             else
-                dto.setStatus(0);
+                dto.setStatus(false);
         for(Integer s: user.getScores())
             dto.getScores().add(s);
         dto.setAccount(user.getAccount().getCredit());

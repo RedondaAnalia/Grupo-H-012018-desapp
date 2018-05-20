@@ -9,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 import persistence.repositories.Initializable;
 import persistence.repositories.VehicleRepository;
 
+import java.util.List;
+
 public class VehicleService extends GenericService<Vehicle> implements Initializable {
 
     private VehicleRepository repository;
@@ -50,5 +52,10 @@ public class VehicleService extends GenericService<Vehicle> implements Initializ
     @Transactional
     public Vehicle findVehicleById(int id) {
         return this.getRepository().findById(id);
+    }
+
+    @Transactional
+    public List<Vehicle> filterVehicleByUser(String email){
+        return this.getRepository().filterVehicleByUser(email);
     }
 }

@@ -1,14 +1,11 @@
 package service.dto;
 
-import model.Entity;
 import javax.persistence.Id;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.List;
 
+public class UserWithVehiclesDTO {
 
-@XmlRootElement(name="user")
-public class UserDTO  extends Entity {
 
     private String CUIL;
 
@@ -22,8 +19,9 @@ public class UserDTO  extends Entity {
     private boolean status;
     private List<Integer> scores;
     private String userName;
+    private List<VehicleDTO> vehicles;
 
-    public UserDTO(){
+    public UserWithVehiclesDTO(){
         this.scores = new ArrayList<Integer>();
     }
 
@@ -97,5 +95,13 @@ public class UserDTO  extends Entity {
 
     public void setScores(List<Integer> scores) {
         this.scores = scores;
+    }
+
+    public List<VehicleDTO> getVehicles() {
+        return vehicles;
+    }
+
+    public void setVehicles(List<VehicleDTO> idVehicle) {
+        this.vehicles = idVehicle;
     }
 }

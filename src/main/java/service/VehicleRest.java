@@ -1,17 +1,21 @@
 package service;
 
+import model.User;
 import model.Vehicle;
 import persistence.services.UserService;
 import persistence.services.VehicleService;
+import service.dto.UserWithVehiclesDTO;
 import service.dto.VehicleDTO;
 import javax.ws.rs.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Path("/servicesVehicle")
 public class VehicleRest {
 
     private VehicleService vehicleService;
 
-    public VehicleService getVehicleService() {
+    private VehicleService getVehicleService() {
         return vehicleService;
     }
 
@@ -25,7 +29,7 @@ public class VehicleRest {
         this.userService = userService;
     }
 
-    public UserService getUserService(){
+    private UserService getUserService(){
         return this.userService;
     }
 
@@ -41,32 +45,60 @@ public class VehicleRest {
     @Path("/createVehicle")
     @Produces("application/json")
     @Consumes("application/json")
-    public VehicleDTO createVehicle(VehicleDTO dto){
+    public UserWithVehiclesDTO createVehicle(VehicleDTO dto){
         Vehicle vehicle = fromDTO(dto);
         this.getVehicleService().save(vehicle);
-        return dto;
+        return toDTO(this.getVehicleService().filterVehicleByUser(dto.getOwner()),
+                vehicle.getOwner());
     }
 
     @PUT
     @Path("/updateVehicle")
     @Produces("application/json")
     @Consumes("application/json")
-    public VehicleDTO updateVehicle(VehicleDTO dto){
+    public UserWithVehiclesDTO updateVehicle(VehicleDTO dto){
         Vehicle vehicle = fromDTO(dto);
         this.getVehicleService().update(vehicle);
-        return dto;
+        return toDTO(this.getVehicleService().filterVehicleByUser(dto.getOwner()),
+                vehicle.getOwner());
     }
 
 
     @DELETE
     @Path("/deleteVehicle/{id}")
     @Consumes("application/json")
-    public VehicleDTO deleteVehicle(@PathParam("id") final int id){
+    @Produces("application/json")
+    public UserWithVehiclesDTO deleteVehicle(@PathParam("id") final int id){
         Vehicle vehicle = this.getVehicleService().findById(id);
         this.getVehicleService().delete(vehicle);
-        return toDTO(vehicle);
+        return toDTO(this.getVehicleService().filterVehicleByUser(vehicle.getOwner().getEmail()),
+        vehicle.getOwner());
     }
 
+    private UserWithVehiclesDTO toDTO(List<Vehicle> vehicles, User user){
+        UserWithVehiclesDTO dto = new UserWithVehiclesDTO();
+
+        List<VehicleDTO> vehicleDTOS = new ArrayList<>();
+        for(Vehicle v : vehicles){
+            vehicleDTOS.add(toDTO(v));
+        }
+        dto.setVehicles(vehicleDTOS);
+
+        dto.setAddress(user.getAddress());
+        dto.setCUIL(user.getCUIL());
+        dto.setEmail(user.getEmail());
+        dto.setName(user.getName());
+        dto.setSurname(user.getSurname());
+        dto.setUserName(user.getUserName());
+        if(user.getStatus().isEnabled())
+            dto.setStatus(true);
+        else
+            dto.setStatus(false);
+        for(Integer s: user.getScores())
+            dto.getScores().add(s);
+        dto.setAccount(user.getAccount().getCredit());
+        return dto;
+    }
 
     private Vehicle fromDTO(VehicleDTO dto){
         Vehicle vehicle = new Vehicle();
