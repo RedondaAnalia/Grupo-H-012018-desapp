@@ -4,11 +4,13 @@ package persistence.repositories;
 import java.io.Serializable;
 import java.util.List;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
+import org.apache.log4j.Logger;
 
 public abstract class HibernateGenericDAO<T>
         extends HibernateDaoSupport implements
         GenericRepository<T>, Serializable {
 
+    public static Logger log = Logger.getLogger(HibernateGenericDAO.class);
     private Class<T> persistentClass = this.getDomainClass();
 
     @SuppressWarnings("unchecked")
@@ -21,11 +23,10 @@ public abstract class HibernateGenericDAO<T>
     }
 
     public void delete(final T entity) {
-        // EJEMPLO DE COMO USAR LOG4J CON ERROR
         try {
             this.getHibernateTemplate().delete(entity);
         } catch (RuntimeException e) {
-            //log.error(e);
+            log.error(e);
         }
     }
 

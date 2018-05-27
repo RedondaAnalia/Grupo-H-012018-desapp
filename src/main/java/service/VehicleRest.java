@@ -2,11 +2,13 @@ package service;
 
 import model.User;
 import model.Vehicle;
+import org.apache.log4j.Logger;
 import persistence.services.UserService;
 import persistence.services.VehicleService;
 import service.dto.UserWithVehiclesDTO;
 import service.dto.VehicleDTO;
 import javax.ws.rs.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,11 +35,16 @@ public class VehicleRest {
         return this.userService;
     }
 
+    public static Logger log = Logger.getLogger(VehicleRest.class);
 
     @GET
     @Path("/findVehicleById/{id}")
     @Produces("application/json")
     public VehicleDTO findVehicleById(@PathParam("id") final int id){
+        log.info("Timestamp: "+ LocalDateTime.now()+
+                " | User: " +
+                " | Operación: findVehicleById"+
+                " | parámetros: "+ String.valueOf(id));
         return toDTO(this.getVehicleService().findVehicleById(id));
     }
 
