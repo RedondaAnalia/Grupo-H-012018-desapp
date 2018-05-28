@@ -26,7 +26,7 @@ public class PostRest {
     @GET
     @Path("/allMiniPost")
     @Produces("application/json")
-    public List<MiniPost> allMiniPost(){
+    public List<MiniPost> allMiniPostRest(){
         return this.postService.allMiniPost();
     }
 
@@ -34,7 +34,7 @@ public class PostRest {
     @Path("/createPost")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public MiniPost createPost(MiniPostDTO dto) {
+    public MiniPost createPostRest(MiniPostDTO dto) {
         MiniPost miniPost = fromDTO(dto);
         this.getPostService().getRepository().save(miniPost);
         return miniPost;

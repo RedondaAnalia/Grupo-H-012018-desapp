@@ -35,16 +35,10 @@ public class VehicleRest {
         return this.userService;
     }
 
-    public static Logger log = Logger.getLogger(VehicleRest.class);
-
     @GET
     @Path("/findVehicleById/{id}")
     @Produces("application/json")
-    public VehicleDTO findVehicleById(@PathParam("id") final int id){
-        log.info("Timestamp: "+ LocalDateTime.now()+
-                " | User: " +
-                " | Operación: findVehicleById"+
-                " | parámetros: "+ String.valueOf(id));
+    public VehicleDTO findVehicleByIdRest(@PathParam("id") final int id){
         return toDTO(this.getVehicleService().findVehicleById(id));
     }
 
@@ -52,7 +46,7 @@ public class VehicleRest {
     @Path("/createVehicle")
     @Produces("application/json")
     @Consumes("application/json")
-    public UserWithVehiclesDTO createVehicle(VehicleDTO dto){
+    public UserWithVehiclesDTO createVehicleRest(VehicleDTO dto){
         Vehicle vehicle = fromDTO(dto);
         this.getVehicleService().save(vehicle);
         return toDTO(this.getVehicleService().filterVehicleByUser(dto.getOwner()),
@@ -63,7 +57,7 @@ public class VehicleRest {
     @Path("/updateVehicle")
     @Produces("application/json")
     @Consumes("application/json")
-    public UserWithVehiclesDTO updateVehicle(VehicleDTO dto){
+    public UserWithVehiclesDTO updateVehicleRest(VehicleDTO dto){
         Vehicle vehicle = fromDTO(dto);
         this.getVehicleService().update(vehicle);
         return toDTO(this.getVehicleService().filterVehicleByUser(dto.getOwner()),
@@ -75,7 +69,7 @@ public class VehicleRest {
     @Path("/deleteVehicle/{id}")
     @Consumes("application/json")
     @Produces("application/json")
-    public UserWithVehiclesDTO deleteVehicle(@PathParam("id") final int id){
+    public UserWithVehiclesDTO deleteVehicleRest(@PathParam("id") final int id){
         Vehicle vehicle = this.getVehicleService().findById(id);
         this.getVehicleService().delete(vehicle);
         return toDTO(this.getVehicleService().filterVehicleByUser(vehicle.getOwner().getEmail()),
