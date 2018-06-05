@@ -48,7 +48,7 @@ public class MiniPostRest {
         MiniVehicle miniVehicle = new MiniVehicle(
                 VehicleType.valueOf(dto.getVehicle().getType()), dto.getVehicle().getDescription(), dto.getVehicle().getPhotos());
         post.setVehicle(miniVehicle);
-
+        post.setCostPerDay(dto.getCostPerDay());
         return post;
     }
 

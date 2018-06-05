@@ -34,7 +34,8 @@ public class MiniPostService extends GenericService<MiniPost> implements Initial
         this.getRepository().save(MiniPostBuilder.aMiniPost().
                 withVehicle(MiniVehicleBuilder.aVehicle().build()).
                 withSinceDate(LocalDateTime.now()).
-                withUntilDate(LocalDateTime.MIN).build());
+                withUntilDate(LocalDateTime.MIN).
+                withCostPerDay(10).build());
 
     }
 }

@@ -11,6 +11,7 @@ public class MiniPostDTO extends Entity {
     private MiniVehicleDTO vehicle;
     private LocalDateTime sinceDate;
     private LocalDateTime UntilDate;
+    private double costPerDay;
 
     public MiniPostDTO(){}
 
@@ -36,5 +37,13 @@ public class MiniPostDTO extends Entity {
 
     public void setUntilDate(LocalDateTime untilDate) {
         UntilDate = untilDate;
+    }
+
+    public double getCostPerDay() {
+        return costPerDay;
+    }
+
+    public void setCostPerDay(double costPerDay) {
+        this.costPerDay = costPerDay;
     }
 }

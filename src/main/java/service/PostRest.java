@@ -35,7 +35,7 @@ public class PostRest {
     @Produces(MediaType.APPLICATION_JSON)
     public Post createPostRest(PostDTO dto) {
         Post post = fromDTO(dto);
-        this.getPostService().getRepository().save(post);
+        this.getPostService().save(post);
         return post;
     }
 
