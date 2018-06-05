@@ -10,15 +10,17 @@ public class MiniPost extends Entity {
     private MiniVehicle vehicle;
     private LocalDateTime sinceDate;
     private LocalDateTime UntilDate;
+    private double costPerDay;
 
     public MiniPost(){
         super();
     }
 
-    public MiniPost(MiniVehicle vehicle, LocalDateTime sinceDate, LocalDateTime untilDate) {
+    public MiniPost(MiniVehicle vehicle, LocalDateTime sinceDate, LocalDateTime untilDate, double cost) {
         this.vehicle = vehicle;
         this.sinceDate = sinceDate;
         this.UntilDate = untilDate;
+        this.costPerDay = cost;
     }
 
     public MiniVehicle getVehicle() {
@@ -44,4 +46,13 @@ public class MiniPost extends Entity {
     public void setUntilDate(LocalDateTime untilDate) {
         UntilDate = untilDate;
     }
+
+    public double getCostPerDay() {
+        return costPerDay;
+    }
+
+    public void setCostPerDay(double costPerDay) {
+        this.costPerDay = costPerDay;
+    }
+
 }

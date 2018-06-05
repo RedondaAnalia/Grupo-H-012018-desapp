@@ -1,10 +1,9 @@
 package service;
 
-import model.enums.VehicleType;
-import model.minis.MiniPost;
-import model.minis.MiniVehicle;
+import model.Post;
 import persistence.services.PostService;
-import service.dto.MiniPostDTO;
+import service.dto.PostDTO;
+
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
@@ -24,29 +23,33 @@ public class PostRest {
 
 
     @GET
-    @Path("/allMiniPost")
+    @Path("/allPost")
     @Produces("application/json")
-    public List<MiniPost> allMiniPost(){
-        return this.postService.allMiniPost();
+    public List<Post> allPostRest(){
+        return this.postService.allPost();
     }
 
     @POST
     @Path("/createPost")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public MiniPost createPost(MiniPostDTO dto) {
-        MiniPost miniPost = fromDTO(dto);
-        this.getPostService().getRepository().save(miniPost);
-        return miniPost;
+    public Post createPostRest(PostDTO dto) {
+        Post post = fromDTO(dto);
+        this.getPostService().save(post);
+        return post;
     }
 
-    private MiniPost fromDTO(MiniPostDTO dto){
-        MiniPost post = new MiniPost();
-        post.setSinceDate(dto.getSinceDate());
-        post.setUntilDate(dto.getUntilDate());
-        MiniVehicle miniVehicle = new MiniVehicle(
-                VehicleType.valueOf(dto.getVehicle().getType()), dto.getVehicle().getDescription());
-        post.setVehicle(miniVehicle);
+    private Post fromDTO(PostDTO dto){
+        Post post = new Post();
+        //post.setVehicle(dto.getVehicle());
+        post.setCostPerDay(dto.getCostPerDay());
+        //post.setOwnerUser(dto.getOwnerUser());
+        post.setPhone(dto.getPhone());
+        post.setId(dto.getId());
+        //post.setPickUpCoord(dto.getPickUpCoord());
+        //post.setReturnCoords(dto.getReturnCoords());
+        //post.setSinceDate(LocalDateTime.parse(dto.getSinceDate()));
+        //post.setUntilDate(LocalDateTime.parse(dto.getUntilDate()));
         return post;
     }
 

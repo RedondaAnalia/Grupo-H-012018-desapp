@@ -1,16 +1,11 @@
 package persistence.services;
-
-import builders.MiniPostBuilder;
-import builders.MiniVehicleBuilder;
-import model.minis.MiniPost;
+import model.Post;
 import org.springframework.transaction.annotation.Transactional;
 import persistence.repositories.Initializable;
 import persistence.repositories.PostRepository;
-
-import java.time.LocalDateTime;
 import java.util.List;
 
-public class PostService extends GenericService<MiniPost> implements Initializable{
+public class PostService extends GenericService<Post> implements Initializable{
 
     private PostRepository repository;
 
@@ -23,18 +18,19 @@ public class PostService extends GenericService<MiniPost> implements Initializab
 
 
     @Transactional
-    public List<MiniPost> allMiniPost(){
-        return this.getRepository().allMiniPost();
+    public List<Post> allPost(){
+        return this.getRepository().allPost();
     }
 
     @Transactional
     public void initialize() {
+   /*
         this.getRepository().save(MiniPostBuilder.aMiniPost().build());
 
         this.getRepository().save(MiniPostBuilder.aMiniPost().
                 withVehicle(MiniVehicleBuilder.aVehicle().build()).
                 withSinceDate(LocalDateTime.now()).
                 withUntilDate(LocalDateTime.MIN).build());
-
+*/
     }
 }

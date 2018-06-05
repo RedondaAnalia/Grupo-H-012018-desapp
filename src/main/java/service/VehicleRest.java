@@ -2,11 +2,13 @@ package service;
 
 import model.User;
 import model.Vehicle;
+import org.apache.log4j.Logger;
 import persistence.services.UserService;
 import persistence.services.VehicleService;
 import service.dto.UserWithVehiclesDTO;
 import service.dto.VehicleDTO;
 import javax.ws.rs.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,11 +35,10 @@ public class VehicleRest {
         return this.userService;
     }
 
-
     @GET
     @Path("/findVehicleById/{id}")
     @Produces("application/json")
-    public VehicleDTO findVehicleById(@PathParam("id") final int id){
+    public VehicleDTO findVehicleByIdRest(@PathParam("id") final int id){
         return toDTO(this.getVehicleService().findVehicleById(id));
     }
 
@@ -45,7 +46,7 @@ public class VehicleRest {
     @Path("/createVehicle")
     @Produces("application/json")
     @Consumes("application/json")
-    public UserWithVehiclesDTO createVehicle(VehicleDTO dto){
+    public UserWithVehiclesDTO createVehicleRest(VehicleDTO dto){
         Vehicle vehicle = fromDTO(dto);
         this.getVehicleService().save(vehicle);
         return toDTO(this.getVehicleService().filterVehicleByUser(dto.getOwner()),
@@ -56,7 +57,7 @@ public class VehicleRest {
     @Path("/updateVehicle")
     @Produces("application/json")
     @Consumes("application/json")
-    public UserWithVehiclesDTO updateVehicle(VehicleDTO dto){
+    public UserWithVehiclesDTO updateVehicleRest(VehicleDTO dto){
         Vehicle vehicle = fromDTO(dto);
         this.getVehicleService().update(vehicle);
         return toDTO(this.getVehicleService().filterVehicleByUser(dto.getOwner()),
@@ -68,7 +69,7 @@ public class VehicleRest {
     @Path("/deleteVehicle/{id}")
     @Consumes("application/json")
     @Produces("application/json")
-    public UserWithVehiclesDTO deleteVehicle(@PathParam("id") final int id){
+    public UserWithVehiclesDTO deleteVehicleRest(@PathParam("id") final int id){
         Vehicle vehicle = this.getVehicleService().findById(id);
         this.getVehicleService().delete(vehicle);
         return toDTO(this.getVehicleService().filterVehicleByUser(vehicle.getOwner().getEmail()),

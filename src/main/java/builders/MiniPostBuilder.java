@@ -9,6 +9,7 @@ public class MiniPostBuilder {
     private MiniVehicle vehicle = MiniVehicleBuilder.aVehicle().build();
     private LocalDateTime sinceDate= LocalDateTime.now();
     private LocalDateTime untilDate=(LocalDateTime.now().plusDays(3L));
+    private double costPerDay;
 
 
     public static MiniPostBuilder aMiniPost(){
@@ -16,7 +17,7 @@ public class MiniPostBuilder {
     }
 
     public MiniPost build(){
-        return new MiniPost(this.vehicle, this.sinceDate, this.untilDate);
+        return new MiniPost(this.vehicle, this.sinceDate, this.untilDate, this.costPerDay);
     }
 
     public MiniPostBuilder withUntilDate(LocalDateTime UntilDate){
@@ -31,6 +32,11 @@ public class MiniPostBuilder {
 
     public MiniPostBuilder withVehicle(MiniVehicle vehicle){
         this.vehicle = vehicle;
+        return this;
+    }
+
+    public MiniPostBuilder withCostPerDay(double cost){
+        this.costPerDay = cost;
         return this;
     }
 

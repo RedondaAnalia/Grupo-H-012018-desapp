@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
-	xsi:schemaLocation="
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	   xsi:schemaLocation="
        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
-       
-       
-       
-    <tx:annotation-driven transaction-manager="persistence.transactionManager"	proxy-target-class="true" />
 
-<!--
-		========================= GENERAL DEFINITIONS =========================
-	-->
+
+
+	<tx:annotation-driven transaction-manager="persistence.transactionManager"	proxy-target-class="true" />
+
+	<!--
+            ========================= GENERAL DEFINITIONS =========================
+        -->
 	<!--
 		Configurer that replaces ${...} placeholders with values from
 		properties files
 	-->
 	<!-- (in this case, mail and JDBC related properties) -->
 	<bean id="persistence.propertyConfigurer"
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		  class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
 			<list>
 				<value>classpath*:META-INF/hibernate.properties</value>
@@ -35,10 +35,10 @@
 		<property name="username" value="${jdbc.username}" />
 		<property name="password" value="${jdbc.password}" />
 		<property name="defaultAutoCommit" value="false" />
-        <property name="poolPreparedStatements" value="true" />
-        <property name="initialSize" value="20" />
-        <property name="maxActive" value="30" />
-        <property name="maxIdle" value="25" />
+		<property name="poolPreparedStatements" value="true" />
+		<property name="initialSize" value="20" />
+		<property name="maxActive" value="30" />
+		<property name="maxIdle" value="25" />
 
 	</bean>
 
@@ -47,7 +47,7 @@
 	-->
 
 	<bean id="persistence.sessionFactory"
-		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean" >
+		  class="org.springframework.orm.hibernate4.LocalSessionFactoryBean" >
 
 		<property name="dataSource" ref="persistence.dataSource" />
 
@@ -78,21 +78,21 @@
 	</bean>
 
 
-<!-- Transaction manager for a single JDBC DataSource -->
+	<!-- Transaction manager for a single JDBC DataSource -->
 	<bean id="persistence.transactionManager"
-		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		  class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="persistence.sessionFactory" />
 
 	</bean>
 
 	<bean name="persistence.jdbcExceptionTranslator"
-		class="org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator">
+		  class="org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator">
 		<constructor-arg>
 			<ref bean="persistence.dataSource" />
 		</constructor-arg>
 	</bean>
 
-	
+
 	<!-- ________________________________________ -->
 	<!-- ________________________________________ -->
 	<!-- ___________ Beans de negocio___________ -->
@@ -103,11 +103,15 @@
 		<property name="sessionFactory" ref="persistence.sessionFactory" />
 	</bean>
 
-	<bean id="persistence.postrepository" class="persistence.repositories.PostRepository" >
+	<bean id="persistence.minipostrepository" class="persistence.repositories.MiniPostRepository" >
 		<property name="sessionFactory" ref="persistence.sessionFactory" />
 	</bean>
 
 	<bean id="persistence.vehiclerepository" class="persistence.repositories.VehicleRepository" >
+		<property name="sessionFactory" ref="persistence.sessionFactory" />
+	</bean>
+
+	<bean id="persistence.postrepository" class="persistence.repositories.PostRepository" >
 		<property name="sessionFactory" ref="persistence.sessionFactory" />
 	</bean>
 

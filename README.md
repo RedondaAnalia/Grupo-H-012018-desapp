@@ -34,7 +34,12 @@ POST
 
 http://localhost:8080/desapp-grouph-backend/rest/servicesPost/createPost
 
-http://localhost:8080/desapp-grouph-backend/rest/servicesPost/allMiniPost
+
+MINIPOST
+
+http://localhost:8080/desapp-grouph-backend/rest/servicesMiniPost/allMiniPost
+
+http://localhost:8080/desapp-grouph-backend/rest/servicesMiniPost/createMiniPost
 
 
 

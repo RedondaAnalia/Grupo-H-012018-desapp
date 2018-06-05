@@ -41,14 +41,14 @@ public class UserRest{
     @GET
     @Path("/findUserByEmail/{mail}")
     @Produces("application/json")
-    public UserDTO findUserByEmail(@PathParam("mail") final String mail){
+    public UserDTO findUserByEmailRest(@PathParam("mail") final String mail){
         return toDTO(this.userService.filterUser(mail));
     }
 
     @GET
     @Path("/sizeUsers")
     @Produces("application/json")
-    public int sizeUsers(){
+    public int sizeUsersRest(){
         return this.userService.countUsers();
     }
 
@@ -56,7 +56,7 @@ public class UserRest{
     @Path("/createUser/")
     @Produces("application/json")
     @Consumes("application/json")
-    public UserWithVehiclesDTO createUser(UserDTO dto){
+    public UserWithVehiclesDTO createUserRest(UserDTO dto){
         User user = fromDTO(dto);
         this.getUserService().save(user);
         return toDTO(this.getVehicleService().filterVehicleByUser(dto.getEmail()), user);
@@ -66,7 +66,7 @@ public class UserRest{
     @Path("/updateUser")
     @Produces("application/json")
     @Consumes("application/json")
-    public UserWithVehiclesDTO updateUser(UserDTO dto){
+    public UserWithVehiclesDTO updateUserRest(UserDTO dto){
         User user = fromDTO(dto);
         this.getUserService().update(user);
         return toDTO(this.getVehicleService().filterVehicleByUser(dto.getEmail()), user);
