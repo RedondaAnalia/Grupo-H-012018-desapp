@@ -3,38 +3,43 @@ package aspects;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.SuffixFileFilter;
 import org.apache.commons.io.filefilter.TrueFileFilter;
-import org.aspectj.lang.annotation.Aspect;
+import org.apache.log4j.Logger;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
-@Aspect
+
 public class ArchitectureCheck {
 
-    private Collection<File> files;
+    private static Logger log = Logger.getLogger(ArchitectureCheck.class);
 
-    public Boolean checkSystemOutPrintLnInModel(){
-/*
-        File rFile = new File(jfc.getSelectedFile().getAbsolutePath());
+    public static Boolean existsSystemOutPrintLnInModel(String proyectPath){
+
+        Boolean existsPrintln = false;
+
+        File path = new File(new File("").getAbsolutePath() + proyectPath);
         SuffixFileFilter extFilter = new SuffixFileFilter("java");
-        Collection filesListUtil = FileUtils.listFiles(rFile, extFilter, TrueFileFilter.INSTANCE);
+        Collection filesListUtil = FileUtils.listFiles(path, extFilter, TrueFileFilter.INSTANCE);
         ArrayList<File> filesList = new ArrayList<File>();
-        ArrayList<File> dirsList = new ArrayList<File>();
 
-
-        for(java.util.Iterator fileIter = filesListUtil.iterator(); fileIter.hasNext();){
-            File currentF = (File) fileIter.next();
-            if(currentF.isDirectory()){
-                dirsList.add(currentF);
-            }else{
-                filesList.add(currentF);;
+        try {
+            for (Object currentF : filesListUtil) {
+                filesList.add((File) currentF);
             }
+
+            for (File f : filesList) {
+                String s = FileUtils.readFileToString(f);
+                if (s.contains("System.out.println")) {
+                    existsPrintln = true;
+                    break;
+                }
+            }
+        }catch (IOException ioe){
+            log.error(ioe.getMessage());
         }
 
-        for(File d: dirsList){
-
-*/ return null;
-        }
-
+        return existsPrintln;
+    }
 }
