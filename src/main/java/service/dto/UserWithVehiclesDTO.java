@@ -19,6 +19,7 @@ public class UserWithVehiclesDTO {
     private boolean status;
     private List<Integer> scores;
     private String userName;
+    private double reputation;
     private List<VehicleDTO> vehicles;
 
     public UserWithVehiclesDTO(){
@@ -103,5 +104,13 @@ public class UserWithVehiclesDTO {
 
     public void setVehicles(List<VehicleDTO> idVehicle) {
         this.vehicles = idVehicle;
+    }
+
+    public double getReputation() {
+        return reputation;
+    }
+
+    public void setReputation(double reputation) {
+        this.reputation = reputation;
     }
 }

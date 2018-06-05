@@ -13,6 +13,12 @@ public class MiniVehicleDTO extends Entity{
 
     public MiniVehicleDTO(){}
 
+    public MiniVehicleDTO(String type, String description, List<String> photos){
+        this.type = type;
+        this.description = description;
+        this.photos = photos;
+    }
+
     public String getType() {
         return type;
     }

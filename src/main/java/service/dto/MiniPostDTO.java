@@ -9,8 +9,8 @@ import java.time.LocalDateTime;
 public class MiniPostDTO extends Entity {
 
     private MiniVehicleDTO vehicle;
-    private LocalDateTime sinceDate;
-    private LocalDateTime UntilDate;
+    private String sinceDate;
+    private String UntilDate;
     private double costPerDay;
 
     public MiniPostDTO(){}
@@ -23,19 +23,19 @@ public class MiniPostDTO extends Entity {
         this.vehicle = vehicle;
     }
 
-    public LocalDateTime getSinceDate() {
+    public String getSinceDate() {
         return sinceDate;
     }
 
-    public void setSinceDate(LocalDateTime sinceDate) {
+    public void setSinceDate(String sinceDate) {
         this.sinceDate = sinceDate;
     }
 
-    public LocalDateTime getUntilDate() {
+    public String getUntilDate() {
         return UntilDate;
     }
 
-    public void setUntilDate(LocalDateTime untilDate) {
+    public void setUntilDate(String untilDate) {
         UntilDate = untilDate;
     }
 

@@ -34,6 +34,9 @@ public class VehicleService extends GenericService<Vehicle> implements Initializ
         User espi = UserBuilder.anUser().withCUIL("7").
                 withEmail("espinarys@gmail.com").withNameAndSurname("Espi", "Noso").build();
 
+        User ana = UserBuilder.anUser().withCUIL("1").withEmail("a.redonda89@gmail.com").
+                withNameAndSurname("Analia", "Redonda").build();
+
         this.getRepository().save(VehicleBuilder.aVehicle().withCapacity(3).
                 withPhoto("https://cdn.wallpaperjam.com/content/images/9e/fd/9efd172a5aea57e895acf503100b148d67c709a6.jpg").
                 withOwner(dany).build());
@@ -46,7 +49,8 @@ public class VehicleService extends GenericService<Vehicle> implements Initializ
                 withPhoto("https://www.actualidadmotor.com/wp-content/uploads/2014/07/historia-camaro-bumblebee-transformers-4-5-e1406538012544.jpg").
                 withPhoto("https://patiodeautos.com/img/noticias/bumblebee-proxima.jpg").
                 withPhoto("http://img.europapress.es/fotoweb/fotonoticia_20160606130445_1280.jpg").
-                withCapacity(2).withOwner(espi).build());
+                withCapacity(2).withOwner(ana).build());
+
     }
 
     @Transactional
