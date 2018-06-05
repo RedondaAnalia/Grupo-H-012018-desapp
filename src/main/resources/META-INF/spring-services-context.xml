@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
-	xsi:schemaLocation="
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	   xsi:schemaLocation="
        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd 
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
@@ -13,6 +13,8 @@
 				<ref bean="services.post"/>
 				<ref bean="services.user"/>
 				<ref bean="services.vehicle"/>
+				<ref bean="services.minipost"/>
+				<ref bean="services.post"/>
 				<!--<ref bean="services.rental"/>-->
 			</list>
 		</constructor-arg>
@@ -26,12 +28,16 @@
 		<property name="repository" ref="persistence.userrepository" />
 	</bean>
 
-	<bean id="services.post" class="persistence.services.PostService">
-		<property name="repository" ref="persistence.postrepository" />
+	<bean id="services.minipost" class="persistence.services.MiniPostService">
+		<property name="repository" ref="persistence.minipostrepository" />
 	</bean>
 
 	<bean id="services.vehicle" class="persistence.services.VehicleService">
 		<property name="repository" ref="persistence.vehiclerepository" />
+	</bean>
+
+	<bean id="services.post" class="persistence.services.PostService">
+		<property name="repository" ref="persistence.postrepository" />
 	</bean>
 
 </beans>

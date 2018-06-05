@@ -1,21 +1,21 @@
 package persistence.repositories;
 
-import model.minis.MiniPost;
+import model.Post;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
 public class PostRepository
-        extends HibernateGenericDAO<MiniPost>
-        implements GenericRepository<MiniPost> {
+        extends HibernateGenericDAO<Post>
+        implements GenericRepository<Post> {
 
     @Override
-    protected Class<MiniPost> getDomainClass() {
-        return MiniPost.class;
+    protected Class<Post> getDomainClass() {
+        return Post.class;
     }
 
-    public List<MiniPost> allMiniPost() {
+    public List<Post> allPost() {
         return this.findAll();
     }
 }

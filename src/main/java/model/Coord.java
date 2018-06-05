@@ -7,7 +7,7 @@ import java.util.NoSuchElementException;
  * @author usuario
  *
  */
-public class Coord {
+public class Coord extends Entity{
 
 	private double lat;
 	private double lng;

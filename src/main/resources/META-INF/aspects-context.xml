@@ -8,8 +8,6 @@ http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
 
     <aop:aspectj-autoproxy />
 
-
-    <bean id="systemoutprintlnadviceaspect" class="aspects.SystemOutPrintLnAdviceAspect"/>
     <bean id="loggerbeforeaspect" class="aspects.LoggerBeforeAspect"/>
 
 </beans>

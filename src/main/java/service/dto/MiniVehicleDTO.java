@@ -2,11 +2,14 @@ package service.dto;
 
 import model.Entity;
 
+import java.util.List;
+
 public class MiniVehicleDTO extends Entity{
 
 
     private String type;
     private String description;
+    private List<String> photos;
 
     public MiniVehicleDTO(){}
 
@@ -26,4 +29,11 @@ public class MiniVehicleDTO extends Entity{
         this.description = description;
     }
 
+    public List<String> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(List<String> photos) {
+        this.photos = photos;
+    }
 }

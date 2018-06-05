@@ -25,7 +25,7 @@ public class UserService extends GenericService<User> implements Initializable{
 
     @Transactional
     public void initialize() {
-        this.getRepository().save(UserBuilder.anUser().withCUIL("1").withEmail("anita.enanita@gmail.com").withNameAndSurname("Analia", "Redonda").build());
+        this.getRepository().save(UserBuilder.anUser().withCUIL("1").withEmail("a.redonda89@gmail.com").withNameAndSurname("Analia", "Redonda").build());
         this.getRepository().save(UserBuilder.anUser().withCUIL("2").withEmail("niñita.violenta@gmail.com").withNameAndSurname("Ines", "Sosa").build());
         this.getRepository().save(UserBuilder.anUser().withCUIL("3").withEmail("ultraK@gmail.com").withNameAndSurname("Paula", "Schab").build());
         this.getRepository().save(UserBuilder.anUser().withCUIL("4").withEmail("gallina@gmail.com").withNameAndSurname("Marty", "MacFly").build());

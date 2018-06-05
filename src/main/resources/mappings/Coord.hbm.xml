@@ -6,17 +6,14 @@
 
 <hibernate-mapping default-access="field"
                    default-cascade="save-update">
-    <class name="model.minis.MiniVehicle">
+
+    <class name="model.Coord">
         <id column="ID" name="id">
             <generator class="native"/>
         </id>
-        <property name="type" />
-        <property name="description" />
-        <list name="photos" lazy="false">
-            <key column="img_id"/>
-            <list-index column="seq"/>
-            <element column="photo" type="string" />
-        </list>
+        <property name="lat"/>
+        <property name="lng"/>
+
     </class>
 
 </hibernate-mapping>

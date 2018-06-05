@@ -19,6 +19,21 @@
     </param-value>
   </context-param>
 
+  <context-param>
+    <param-name>com.auth0.domain</param-name>
+    <param-value>carpndgrupoh.auth0.com</param-value>
+  </context-param>
+
+  <context-param>
+    <param-name>com.auth0.clientId</param-name>
+    <param-value>dwaMUqQ9orGjlezTE07kbnv03QHqeg1y</param-value>
+  </context-param>
+
+  <context-param>
+    <param-name>com.auth0.clientSecret</param-name>
+    <param-value>Ros0_KNTFqe-wG9WFPIB_ksag3u4LJId_TNY5plNxQej_PM2glg0IUdHnRYdPTkC</param-value>
+  </context-param>
+
   <listener>
     <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
   </listener>
