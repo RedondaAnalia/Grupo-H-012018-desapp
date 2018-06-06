@@ -41,8 +41,9 @@ public class UserRest{
     @GET
     @Path("/findUserByEmail/{mail}")
     @Produces("application/json")
-    public UserDTO findUserByEmailRest(@PathParam("mail") final String mail){
-        return toDTO(this.userService.filterUser(mail));
+    public UserWithVehiclesDTO findUserByEmailRest(@PathParam("mail") final String mail){
+        User udto = this.userService.filterUser(mail);
+        return toDTO(this.getVehicleService().filterVehicleByUser(mail), udto);
     }
 
     @GET
@@ -113,6 +114,7 @@ public class UserRest{
         dto.setName(user.getName());
         dto.setSurname(user.getSurname());
         dto.setUserName(user.getUserName());
+        dto.setReputation(user.reputation());
         if(user.getStatus().isEnabled())
             dto.setStatus(true);
         else

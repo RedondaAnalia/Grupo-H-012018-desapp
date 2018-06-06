@@ -32,7 +32,9 @@ public class MiniPostService extends GenericService<MiniPost> implements Initial
         this.getRepository().save(MiniPostBuilder.aMiniPost().build());
 
         this.getRepository().save(MiniPostBuilder.aMiniPost().
-                withVehicle(MiniVehicleBuilder.aVehicle().build()).
+                withVehicle(MiniVehicleBuilder.aVehicle().
+                        withPhoto("https://vignette.wikia.nocookie.net/s__/images/c/c2/SPN_0043_%28Impala%29.jpg/revision/latest?cb=20140305225245&path-prefix=supernatural%2Fde").
+                        build()).
                 withSinceDate(LocalDateTime.now()).
                 withUntilDate(LocalDateTime.MIN).
                 withCostPerDay(10).build());

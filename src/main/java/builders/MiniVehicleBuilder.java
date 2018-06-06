@@ -31,4 +31,9 @@ public class MiniVehicleBuilder {
         return this;
     }
 
+    public MiniVehicleBuilder withPhoto(String photo){
+        this.photos.add(photo);
+        return this;
+    }
+
 }
