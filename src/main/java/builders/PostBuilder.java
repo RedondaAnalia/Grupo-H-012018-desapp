@@ -17,7 +17,7 @@ public class PostBuilder {
     private List<Coord> returnCoords = new ArrayList<Coord>();    
     private LocalDateTime sinceDate= LocalDateTime.now();
     private LocalDateTime untilDate=(LocalDateTime.now().plusDays(3L));
-    private double costPerHour;
+    private double costPerDay;
 
     public static PostBuilder aPost(){
         PostBuilder builder= new PostBuilder();
@@ -27,7 +27,7 @@ public class PostBuilder {
 
     public Post build(){
         return new Post(this.vehicle, this.ownerUser, this.pickUpCoord,
-                this.returnCoords, this.sinceDate, this.untilDate, this.costPerHour);
+                this.returnCoords, this.sinceDate, this.untilDate, this.costPerDay);
     }
 
     public PostBuilder withUntilDate(LocalDateTime UntilDate){
@@ -45,8 +45,8 @@ public class PostBuilder {
         return this;
     }
 
-    public PostBuilder whitCostPerHour(double cost){
-        this.costPerHour = cost;
+    public PostBuilder withCostPerDay(double cost){
+        this.costPerDay = cost;
         return this;
     }
     
@@ -58,5 +58,10 @@ public class PostBuilder {
     public PostBuilder withReturnCoords(List<Coord> returnCoords){
     	this.returnCoords=returnCoords;
     	return this;
+    }
+
+    public PostBuilder withVehicle(Vehicle vehicle){
+        this.vehicle = vehicle;
+        return this;
     }
 }

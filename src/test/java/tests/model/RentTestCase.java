@@ -37,7 +37,7 @@ public class RentTestCase {
 
         Post post = PostBuilder.
                 aPost().
-                whitCostPerHour(2).
+                withCostPerDay(2).
                 withSinceDate(LocalDateTime.now()).
                 withUntilDate(LocalDateTime.now().plusDays(3L)).build();
 
@@ -54,7 +54,7 @@ public class RentTestCase {
 
         Post post = PostBuilder.
                 aPost().
-                whitCostPerHour(2).
+                withCostPerDay(2).
                 withSinceDate(LocalDateTime.now()).
                 withUntilDate(LocalDateTime.now().plusDays(3L)).build();
 
@@ -74,7 +74,7 @@ public class RentTestCase {
 
         Post post = PostBuilder.
                 aPost().
-                whitCostPerHour(2).
+                withCostPerDay(2).
                 withSinceDate(LocalDateTime.now()).
                 withUntilDate(LocalDateTime.now().plusDays(3L)).build();
 
@@ -95,7 +95,7 @@ public class RentTestCase {
 
         Post post = PostBuilder.
                 aPost().
-                whitCostPerHour(2).
+                withCostPerDay(2).
                 withSinceDate(LocalDateTime.now()).
                 withUntilDate(LocalDateTime.now().plusDays(3L)).build();
 
@@ -116,7 +116,7 @@ public class RentTestCase {
 
         Post post = PostBuilder.
                 aPost().
-                whitCostPerHour(2).
+                withCostPerDay(2).
                 withSinceDate(LocalDateTime.now()).
                 withUntilDate(LocalDateTime.now().plusDays(3L)).build();
 
@@ -143,7 +143,7 @@ public class RentTestCase {
 
         Post post = PostBuilder.
                 aPost().
-                whitCostPerHour(2).
+                withCostPerDay(2).
                 withSinceDate(LocalDateTime.now()).
                 withUntilDate(LocalDateTime.now().plusDays(3L)).build();
 
@@ -170,7 +170,7 @@ public class RentTestCase {
 
         Post post = PostBuilder.
                 aPost().
-                whitCostPerHour(2).
+                withCostPerDay(2).
                 withSinceDate(LocalDateTime.now()).
                 withUntilDate(LocalDateTime.now().plusDays(3L)).build();
 
@@ -201,7 +201,7 @@ public class RentTestCase {
 
         Post post = PostBuilder.
                 aPost().
-                whitCostPerHour(2).
+                withCostPerDay(2).
                 withSinceDate(LocalDateTime.now()).
                 withUntilDate(LocalDateTime.now().plusDays(3L)).build();
 
@@ -231,7 +231,7 @@ public class RentTestCase {
 
         Post post = PostBuilder.
                 aPost().
-                whitCostPerHour(2).
+                withCostPerDay(2).
                 withSinceDate(LocalDateTime.now()).
                 withUntilDate(LocalDateTime.now().plusDays(3L)).build();
 
@@ -265,7 +265,7 @@ public class RentTestCase {
 
         Post post = PostBuilder.
                 aPost().
-                whitCostPerHour(2).
+                withCostPerDay(2).
                 withSinceDate(LocalDateTime.now()).
                 withUntilDate(LocalDateTime.now().plusDays(3L)).build();
 

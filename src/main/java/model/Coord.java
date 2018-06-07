@@ -28,6 +28,8 @@ public class Coord extends Entity{
 			throw new NoSuchElementException("Coordenada inexistente");
 		}
 	}
+
+	public Coord(){}
 	
 	/*
 	 * Getters and Setters.
@@ -40,4 +42,11 @@ public class Coord extends Entity{
 		return lng;
 	}
 
+	public void setLat(double lat) {
+		this.lat = lat;
+	}
+
+	public void setLng(double lng) {
+		this.lng = lng;
+	}
 }
