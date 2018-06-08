@@ -29,7 +29,7 @@ public class PostRest {
     @Path("/allPost")
     @Produces("application/json")
     public List<Post> allPostRest(){
-        return this.postService.allPost();
+        return this.getPostService().allPost();
     }
 
     @POST
@@ -47,6 +47,13 @@ public class PostRest {
     @Produces("application/json")
     public List<MiniPostDTO> allMiniPostRest(){
         return postToMiniPostDTO(this.getPostService().allPost());
+    }
+
+    @GET
+    @Path("/sizePost")
+    @Produces("application/json")
+    public int sizePost(){
+        return this.getPostService().sizePost();
     }
 
     private List<MiniPostDTO> postToMiniPostDTO(List<Post> posts){
@@ -76,33 +83,5 @@ public class PostRest {
         //post.setUntilDate(LocalDateTime.parse(dto.getUntilDate()));
         return post;
     }
-
-    /*
-        private MiniPostDTO toDTO(MiniPost mp){
-        MiniPostDTO dto = new MiniPostDTO();
-        dto.setCostPerDay(mp.getCostPerDay());
-        dto.setId(mp.getId());
-        dto.setVehicle(new MiniVehicleDTO(mp.getVehicle().getType().toString(),
-                mp.getVehicle().getDescription(),
-                mp.getVehicle().getPhotos()));
-        dto.setSinceDate(String.valueOf(mp.getSinceDate().getYear())+String.valueOf(mp.getSinceDate().getMonth()));
-        System.out.println(String.valueOf(mp.getSinceDate().getYear())+String.valueOf(mp.getSinceDate().getMonth()));
-        dto.setUntilDate(String.valueOf(mp.getUntilDate().getYear())+String.valueOf(mp.getUntilDate().getMonth()));
-        return dto;
-    }
-
-    private MiniPost fromDTO(MiniPostDTO dto){
-        MiniPost post = new MiniPost();
-        LocalDateTime date;
-        post.setSinceDate(LocalDateTime.parse(dto.getSinceDate()));
-        post.setUntilDate(LocalDateTime.parse(dto.getUntilDate()));
-        MiniVehicle miniVehicle = new MiniVehicle(
-                VehicleType.valueOf(dto.getVehicle().getType()),
-                dto.getVehicle().getDescription(), dto.getVehicle().getPhotos());
-        post.setVehicle(miniVehicle);
-        post.setCostPerDay(dto.getCostPerDay());
-        return post;
-    }
-    */
 
 }
