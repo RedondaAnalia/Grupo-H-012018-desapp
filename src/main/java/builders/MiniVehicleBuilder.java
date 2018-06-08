@@ -1,7 +1,7 @@
 package builders;
 
+import model.Vehicle;
 import model.enums.VehicleType;
-import model.minis.MiniVehicle;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +17,8 @@ public class MiniVehicleBuilder {
         return new MiniVehicleBuilder();
     }
 
-    public MiniVehicle build(){
-        return new MiniVehicle(type,description,photos);
+    public Vehicle build(){
+        return new Vehicle(null, this.type, 1, this.description);
     }
 
     public MiniVehicleBuilder withType(VehicleType type){

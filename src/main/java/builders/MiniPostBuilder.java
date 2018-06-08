@@ -1,23 +1,36 @@
 package builders;
 
-import model.minis.MiniPost;
-import model.minis.MiniVehicle;
+import model.Coord;
+import model.Post;
+import model.User;
+import model.Vehicle;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MiniPostBuilder {
 
-    private MiniVehicle vehicle = MiniVehicleBuilder.aVehicle().build();
+    private Vehicle vehicle = MiniVehicleBuilder.aVehicle().build();
     private LocalDateTime sinceDate= LocalDateTime.now();
     private LocalDateTime untilDate=(LocalDateTime.now().plusDays(3L));
     private double costPerDay;
+    private String userName;
 
 
     public static MiniPostBuilder aMiniPost(){
         return new MiniPostBuilder();
     }
 
-    public MiniPost build(){
-        return new MiniPost(this.vehicle, this.sinceDate, this.untilDate, this.costPerDay);
+    public Post build(){
+        List<Coord> lc = new ArrayList<Coord>();
+        lc.add(new Coord(1,1));
+        User u = new UserBuilder().withEmail(this.userName).build();
+        return new Post(this.vehicle, u, new Coord(1,1),lc,
+                this.sinceDate, this.untilDate, this.costPerDay);
+    }
+    public MiniPostBuilder withUserName(String name){
+        this.userName = name;
+        return this;
     }
 
     public MiniPostBuilder withUntilDate(LocalDateTime UntilDate){
@@ -30,7 +43,7 @@ public class MiniPostBuilder {
         return this;
     }
 
-    public MiniPostBuilder withVehicle(MiniVehicle vehicle){
+    public MiniPostBuilder withVehicle(Vehicle vehicle){
         this.vehicle = vehicle;
         return this;
     }

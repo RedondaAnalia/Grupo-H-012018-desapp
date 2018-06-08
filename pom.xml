@@ -231,6 +231,12 @@
       </dependency>
 
       <dependency>
+          <groupId>org.eclipse.jetty</groupId>
+          <artifactId>jetty-servlets</artifactId>
+          <version>9.4.10.v20180503</version>
+      </dependency>
+
+      <dependency>
           <groupId>org.apache.cxf</groupId>
           <artifactId>cxf-bundle-jaxrs</artifactId>
           <version>2.4.1</version>

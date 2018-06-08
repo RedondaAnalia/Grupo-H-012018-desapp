@@ -9,6 +9,7 @@ public class MiniPost extends Entity {
     private LocalDateTime sinceDate;
     private LocalDateTime UntilDate;
     private double costPerDay;
+    private String location;
 
     public MiniPost(){
         super();
@@ -53,4 +54,11 @@ public class MiniPost extends Entity {
         this.costPerDay = costPerDay;
     }
 
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
 }

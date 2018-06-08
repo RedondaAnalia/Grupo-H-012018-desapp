@@ -8,7 +8,7 @@ import java.util.List;
 
 
 @XmlRootElement(name="user")
-public class UserDTO  extends Entity {
+public class UserDTO{
 
     private String CUIL;
 

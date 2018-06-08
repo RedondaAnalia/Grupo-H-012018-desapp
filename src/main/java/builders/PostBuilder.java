@@ -12,6 +12,10 @@ import java.util.List;
 public class PostBuilder {
 
     private Vehicle vehicle = VehicleBuilder.aVehicle().build();
+    /*
+    Bajo ningún punto de vista conviene usar el user por defecto del UserBuilder.
+    Tiene un mail por defecto y es pk de la tabla de users
+     */
     private User ownerUser = UserBuilder.anUser().build();
     private Coord pickUpCoord = CoordBuilder.anCoord().build();
     private List<Coord> returnCoords = new ArrayList<Coord>();    
@@ -62,6 +66,11 @@ public class PostBuilder {
 
     public PostBuilder withVehicle(Vehicle vehicle){
         this.vehicle = vehicle;
+        return this;
+    }
+
+    public PostBuilder withownerUser(User user){
+        this.ownerUser = user;
         return this;
     }
 }

@@ -10,6 +10,8 @@ import model.exceptions.NameTooShortException;
 import model.exceptions.NoAddressException;
 import model.interfaces.IUserState;
 
+import javax.persistence.Id;
+
 /***
 	 **This class sets an User in the system. At the moment this can:
 	 *  - Build an user. This requires: CUIL, name, surname, address and email
@@ -27,6 +29,8 @@ public class User{
 	private String name;
 	private String surname;
 	private String address;
+
+	@Id
 	private String email;
 	private Account account;
 	private IUserState status;

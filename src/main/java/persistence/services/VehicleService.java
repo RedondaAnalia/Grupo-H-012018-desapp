@@ -27,19 +27,19 @@ public class VehicleService extends GenericService<Vehicle> implements Initializ
     public void initialize() {
 
         User tyrion = UserBuilder.anUser().withCUIL("5").
-                withEmail("genio_total@gmail.com").withNameAndSurname("Tyrion", "Lannister").build();
-        User dany = UserBuilder.anUser().withCUIL("6").
-                withEmail("mother_of_dragons@gmail.com").withNameAndSurname("Daenerys", "Targaryen").build();
+                withEmail("lannister@gmail.com").
+                withNameAndSurname("Tyrion", "Lannister").build();
+        User maru = UserBuilder.anUser().withCUIL("29800905").
+                withEmail("gil.maricruz@gmail.com").
+                withNameAndSurname("Maricruz", "Gil").build();
 
-        User espi = UserBuilder.anUser().withCUIL("7").
-                withEmail("espinarys@gmail.com").withNameAndSurname("Espi", "Noso").build();
-
-        User ana = UserBuilder.anUser().withCUIL("1").withEmail("a.redonda89@gmail.com").
+        User ana = UserBuilder.anUser().withCUIL("1").
+                withEmail("a.redonda89@gmail.com").
                 withNameAndSurname("Analia", "Redonda").build();
 
         this.getRepository().save(VehicleBuilder.aVehicle().withCapacity(3).
                 withPhoto("https://cdn.wallpaperjam.com/content/images/9e/fd/9efd172a5aea57e895acf503100b148d67c709a6.jpg").
-                withOwner(dany).build());
+                withOwner(maru).build());
 
         this.getRepository().save(VehicleBuilder.aVehicle().
                 withPhoto("https://vignette.wikia.nocookie.net/s__/images/c/c2/SPN_0043_%28Impala%29.jpg/revision/latest?cb=20140305225245&path-prefix=supernatural%2Fde").

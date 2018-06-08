@@ -100,10 +100,10 @@ public class UserRest{
             dtoV.setCapacity(vehicle.getCapacity());
             dtoV.setDescription(vehicle.getDescription());
             dtoV.setType(vehicle.getType());
-            dtoV.setOwner(vehicle.getOwner().getEmail());
+            //dtoV.setOwner(vehicle.getOwner());
             for(String p:vehicle.getPhotos())
                 dtoV.getPhotos().add(p);
-            dtoV.setId(vehicle.getId());
+            //dtoV.setId(vehicle.getId());
             vehicleDTOS.add(dtoV);
         }
         dto.setVehicles(vehicleDTOS);

@@ -19,6 +19,7 @@ public class Post extends Entity{
 	private LocalDateTime UntilDate;
 	private double costPerDay;
 	private int phone;
+	private String location;
 
 	
 	public Post(){}
@@ -114,5 +115,13 @@ public class Post extends Entity{
 
 	public void setPhone(int phone) {
 		this.phone = phone;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
 	}
 }
