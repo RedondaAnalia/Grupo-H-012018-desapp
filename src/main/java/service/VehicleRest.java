@@ -47,7 +47,7 @@ public class VehicleRest {
     public UserWithVehiclesDTO createVehicleRest(VehicleDTO dto){
         Vehicle vehicle = fromDTO(dto);
         this.getVehicleService().save(vehicle);
-        return toDTO(this.getVehicleService().filterVehicleByUser(dto.getOwner().getEmail()),
+        return toDTO(this.getVehicleService().filterVehicleByUser(dto.getOwner()),
                 vehicle.getOwner());
     }
 
@@ -58,7 +58,7 @@ public class VehicleRest {
     public UserWithVehiclesDTO updateVehicleRest(VehicleDTO dto){
         Vehicle vehicle = fromDTO(dto);
         this.getVehicleService().update(vehicle);
-        return toDTO(this.getVehicleService().filterVehicleByUser(dto.getOwner().getEmail()),
+        return toDTO(this.getVehicleService().filterVehicleByUser(dto.getOwner()),
                 vehicle.getOwner());
     }
 
@@ -101,7 +101,7 @@ public class VehicleRest {
 
     private Vehicle fromDTO(VehicleDTO dto){
         Vehicle vehicle = new Vehicle();
-        vehicle.setOwner(this.getUserService().findById(dto.getOwner().getEmail()));
+        vehicle.setOwner(this.getUserService().findById(dto.getOwner()));
         vehicle.setType(dto.getType());
         vehicle.setCapacity(dto.getCapacity());
         vehicle.setDescription(dto.getDescription());

@@ -11,7 +11,7 @@ import java.util.List;
 @XmlRootElement(name="vehicle")
 public class VehicleDTO extends Entity {
 
-    private UserDTO owner;
+    private String owner;
     private VehicleType type;
     private int capacity;
     private String description;
@@ -26,11 +26,11 @@ public class VehicleDTO extends Entity {
         this.photos = photos;
     }
 
-    public UserDTO getOwner() {
+    public String getOwner() {
         return owner;
     }
 
-    public void setOwner(UserDTO owner) {
+    public void setOwner(String owner) {
         this.owner = owner;
     }
 
