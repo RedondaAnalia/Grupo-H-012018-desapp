@@ -2,7 +2,9 @@ package service;
 
 import model.Coord;
 import model.Post;
+import model.Vehicle;
 import persistence.services.PostService;
+import persistence.services.UserService;
 import service.dto.*;
 
 import javax.ws.rs.*;
@@ -15,6 +17,8 @@ import java.util.List;
 @Path("/servicesPost")
 public class PostRest {
 
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
     private PostService postService;
 
     public void setPostService(PostService postService){
@@ -25,6 +29,15 @@ public class PostRest {
         return this.postService;
     }
 
+    private UserService userService;
+
+    public void setUserService(UserService userService){
+        this.userService = userService;
+    }
+
+    private UserService getUserService(){
+        return this.userService;
+    }
 
     @GET
     @Path("/allPost")
@@ -78,19 +91,21 @@ public class PostRest {
         return list;
     }
 
+
+
     private List<PostDTO> postToPostDTO(List<Post> posts) {
         List<PostDTO> list = new ArrayList<PostDTO>();
         for(Post p: posts) {
             PostDTO dto = new PostDTO();
             dto.setCostPerDay(p.getCostPerDay());
 
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            String formatSinceDate = p.getSinceDate().format(formatter);
+            String formatSinceDate = p.getSinceDate().format(this.formatter);
             dto.setSinceDate(formatSinceDate);
-            String formatUntilDate = p.getUntilDate().format(formatter);
+            String formatUntilDate = p.getUntilDate().format(this.formatter);
             dto.setUntilDate(formatUntilDate);
 
-            dto.setVehicle(new VehicleDTO(p.getVehicle().getType(), p.getVehicle().getDescription(), p.getVehicle().getPhotos()));
+            dto.setVehicle(new VehicleDTO(p.getVehicle().getType(),
+                    p.getVehicle().getDescription(), p.getVehicle().getPhotos()));
 /*
     private UserDTO ownerUser;
  */
@@ -117,18 +132,60 @@ public class PostRest {
         return dto;
     }
 
+    private Coord coordDTOToCoord(CoordDTO dto){
+        Coord c = new Coord();
+        c.setLat(dto.getLat());
+        c.setLng(dto.getLng());
+        return c;
+    }
+
     private Post fromDTO(PostDTO dto){
         Post post = new Post();
-        //post.setVehicle(dto.getVehicle());
+        post.setVehicle(fromDTO(dto.getVehicle()));
         post.setCostPerDay(dto.getCostPerDay());
         //post.setOwnerUser(dto.getOwnerUser());
         post.setPhone(dto.getPhone());
         post.setId(dto.getId());
-        //post.setPickUpCoord(dto.getPickUpCoord());
-        //post.setReturnCoords(dto.getReturnCoords());
-        post.setSinceDate(LocalDateTime.parse(dto.getSinceDate()));
-        //post.setUntilDate(LocalDateTime.parse(dto.getUntilDate()));
+        post.setPickUpCoord(coordDTOToCoord(dto.getPickUpCoord()));
+
+        List<Coord> cs = new ArrayList<Coord>();
+        for(CoordDTO cdto: dto.getReturnCoords()){
+            cs.add(coordDTOToCoord(cdto));
+        }
+        post.setReturnCoords(cs);
+        post.setSinceDate(
+                LocalDateTime.of(
+                        Integer.valueOf(dto.getSinceDate().substring(0,4)),
+                        Integer.valueOf(dto.getSinceDate().substring(5,7)),
+                        Integer.valueOf(dto.getSinceDate().substring(8,10)),
+                        0,
+                        0
+                )
+        );
+
+        post.setUntilDate(
+                LocalDateTime.of(
+                        Integer.valueOf(dto.getUntilDate().substring(0,4)),
+                        Integer.valueOf(dto.getUntilDate().substring(5,7)),
+                        Integer.valueOf(dto.getUntilDate().substring(8,10)),
+                        0,
+                        0
+                )
+        );
+        post.setLocation(dto.getLocation());
         return post;
+    }
+
+    private Vehicle fromDTO(VehicleDTO dto){
+        Vehicle vehicle = new Vehicle();
+//        vehicle.setOwner(this.getUserService().findById(dto.getOwner().getEmail()));
+        vehicle.setType(dto.getType());
+        vehicle.setCapacity(dto.getCapacity());
+        vehicle.setDescription(dto.getDescription());
+        for(String p:dto.getPhotos())
+            vehicle.getPhotos().add(p);
+        vehicle.setId(dto.getId());
+        return vehicle;
     }
 
 }

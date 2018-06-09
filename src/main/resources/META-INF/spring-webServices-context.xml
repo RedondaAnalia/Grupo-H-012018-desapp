@@ -55,6 +55,7 @@ http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd">
 
     <bean id="postRest" class="service.PostRest">
         <property name="postService" ref="services.post"/>
+        <property name="userService" ref="services.user"/>
     </bean>
 
 </beans>
