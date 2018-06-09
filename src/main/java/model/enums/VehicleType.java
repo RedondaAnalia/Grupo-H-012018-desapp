@@ -2,7 +2,7 @@ package model.enums;
 
 public enum VehicleType {
 
-	MOTOCICLETA,
+	MOTO,
 	AUTO,
 	CAMIONETA
 }

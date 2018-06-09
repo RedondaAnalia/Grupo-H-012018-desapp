@@ -11,10 +11,16 @@
         <id column="ID" name="id">
             <generator class="native"/>
         </id>
-        <one-to-one name="ownerUser" class="model.User" lazy="false" />
+        <!--<one-to-one name="ownerUser" class="model.User" lazy="false" />-->
         <one-to-one name="vehicle" class="model.Vehicle" lazy="false" />
         <one-to-one name="pickUpCoord" class="model.Coord" lazy="false" />
-        <!--<many-to-one name="returnCoords" class="model.Coord" lazy="false"/>-->
+
+        <list name="returnCoords" lazy="false">
+            <key column="id"/>
+            <list-index column="type"></list-index>
+            <one-to-many class="model.Coord"/>
+        </list>
+
        <!-- <property name="sinceDate" type="java.time.LocalDateTime"/>
         <property name="UntilDate" type="java.time.LocalDateTime"/> -->
         <property name="phone"/>

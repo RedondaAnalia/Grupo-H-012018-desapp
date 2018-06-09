@@ -53,10 +53,6 @@ public class Post extends Entity{
 		return this.costPerDay;
 	}
 
-	public User getUser() {
-		return this.ownerUser;
-	}
-
 	public Vehicle getVehicle() {
 		return vehicle;
 	}

@@ -1,6 +1,5 @@
 package service.dto;
 
-import model.Entity;
 import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;

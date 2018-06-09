@@ -22,15 +22,13 @@ import javax.persistence.Id;
 	 *  - Calculate his own reputation.
 	 */
 
-public class User{
+public class User extends Entity{
 
 	private String CUIL;
 
 	private String name;
 	private String surname;
 	private String address;
-
-	@Id
 	private String email;
 	private Account account;
 	private IUserState status;

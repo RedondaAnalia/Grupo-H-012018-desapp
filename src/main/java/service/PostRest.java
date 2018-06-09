@@ -61,8 +61,8 @@ public class PostRest {
         for(Post p: posts){
             MiniPostDTO mp = new MiniPostDTO();
             mp.setCostPerDay(p.getCostPerDay());
-            mp.setSinceDate(p.getSinceDate().toString());
-            mp.setUntilDate(mp.getUntilDate());
+            //mp.setSinceDate(p.getSinceDate().toString());
+            //mp.setUntilDate(mp.getUntilDate());
             mp.setVehicle(new MiniVehicleDTO(p.getVehicle().getType().toString(), p.getVehicle().
                     getDescription(), p.getVehicle().getPhotos()));
             list.add(mp);

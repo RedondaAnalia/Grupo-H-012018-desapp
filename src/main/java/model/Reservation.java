@@ -46,7 +46,7 @@ public class Reservation {
     }
 
     public User getOwnerUser(){
-        return this.post.getUser();
+        return this.post.getOwnerUser();
     }
 
     public Post getPost() {

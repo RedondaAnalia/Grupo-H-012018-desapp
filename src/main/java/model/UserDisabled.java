@@ -21,8 +21,8 @@ public class UserDisabled extends IUserState{
 		if(this.untilDate.isAfter(LocalDateTime.now())){
 			throw new UserBlockedException();
 		}else{
-			post.getUser().enabledUser();
-			return post.getUser().rent(post,reservationSinceDate,reservationUntilDate);
+			post.getOwnerUser().enabledUser();
+			return post.getOwnerUser().rent(post,reservationSinceDate,reservationUntilDate);
 		}
 
 
