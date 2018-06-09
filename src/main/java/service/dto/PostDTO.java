@@ -14,8 +14,8 @@ public class PostDTO extends Entity{
     private UserDTO ownerUser;
     private CoordDTO pickUpCoord;
     private List<CoordDTO> returnCoords= new ArrayList<CoordDTO>();
-    //private String sinceDate;
-    //private String UntilDate;
+    private String sinceDate;
+    private String UntilDate;
     private double costPerDay;
     private int phone;
 
@@ -52,7 +52,7 @@ public class PostDTO extends Entity{
     public void setReturnCoords(List<CoordDTO> returnCoords) {
         this.returnCoords = returnCoords;
     }
-/*
+
     public String getSinceDate() {
         return sinceDate;
     }
@@ -68,7 +68,7 @@ public class PostDTO extends Entity{
     public void setUntilDate(String untilDate) {
         UntilDate = untilDate;
     }
-*/
+
     public double getCostPerDay() {
         return costPerDay;
     }

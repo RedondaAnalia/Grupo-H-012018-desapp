@@ -20,6 +20,11 @@ public class VehicleDTO extends Entity {
     public VehicleDTO(){
         this.photos = new ArrayList<String>();
     }
+    public VehicleDTO(VehicleType type, String description, List<String> photos){
+        this.type = type;
+        this.description = description;
+        this.photos = photos;
+    }
 
     public UserDTO getOwner() {
         return owner;

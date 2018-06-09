@@ -21,8 +21,8 @@
             <one-to-many class="model.Coord"/>
         </list>
 
-       <!-- <property name="sinceDate" type="java.time.LocalDateTime"/>
-        <property name="UntilDate" type="java.time.LocalDateTime"/> -->
+       <property name="sinceDate" type="java.time.LocalDateTime"/>
+        <property name="UntilDate" type="java.time.LocalDateTime"/>
         <property name="phone"/>
         <property name="costPerDay"/>
 
