@@ -17,7 +17,7 @@
 
         <list name="returnCoords" lazy="false">
             <key column="id"/>
-            <list-index column="type"></list-index>
+            <list-index column="type"/>
             <one-to-many class="model.Coord"/>
         </list>
 
@@ -25,6 +25,7 @@
         <property name="UntilDate" type="java.time.LocalDateTime"/>
         <property name="phone"/>
         <property name="costPerDay"/>
+        <property name="location"/>
 
     </class>
 

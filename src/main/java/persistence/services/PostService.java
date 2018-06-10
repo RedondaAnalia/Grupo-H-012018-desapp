@@ -36,6 +36,7 @@ public class PostService extends GenericService<Post> implements Initializable{
                 PostBuilder.aPost().
                         withownerUser(feli).
                         withCostPerDay(100).
+                        withLocation("Quilmes").
                         build());
     }
 

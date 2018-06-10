@@ -12,6 +12,7 @@ public class MiniPostDTO extends Entity {
     private String sinceDate;
     private String UntilDate;
     private double costPerDay;
+    private String location;
 
     public MiniPostDTO(){}
 
@@ -45,5 +46,13 @@ public class MiniPostDTO extends Entity {
 
     public void setCostPerDay(double costPerDay) {
         this.costPerDay = costPerDay;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 }

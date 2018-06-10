@@ -11,7 +11,7 @@ import java.util.List;
 public class PostDTO extends Entity{
 
     private VehicleDTO vehicle;
-    private UserDTO ownerUser;
+    private String ownerUser;
     private CoordDTO pickUpCoord;
     private List<CoordDTO> returnCoords= new ArrayList<CoordDTO>();
     private String sinceDate;
@@ -30,11 +30,11 @@ public class PostDTO extends Entity{
         this.vehicle = vehicle;
     }
 
-    public UserDTO getOwnerUser() {
+    public String getOwnerUser() {
         return ownerUser;
     }
 
-    public void setOwnerUser(UserDTO ownerUser) {
+    public void setOwnerUser(String ownerUser) {
         this.ownerUser = ownerUser;
     }
 

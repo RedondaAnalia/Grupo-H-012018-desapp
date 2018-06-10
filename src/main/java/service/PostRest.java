@@ -74,7 +74,7 @@ public class PostRest {
         List<MiniPostDTO> list = new ArrayList<MiniPostDTO>();
         for(Post p: posts){
             MiniPostDTO mp = new MiniPostDTO();
-
+            mp.setLocation(p.getLocation());
             mp.setCostPerDay(p.getCostPerDay());
 
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -98,7 +98,7 @@ public class PostRest {
         for(Post p: posts) {
             PostDTO dto = new PostDTO();
             dto.setCostPerDay(p.getCostPerDay());
-
+            dto.setLocation(p.getLocation());
             String formatSinceDate = p.getSinceDate().format(this.formatter);
             dto.setSinceDate(formatSinceDate);
             String formatUntilDate = p.getUntilDate().format(this.formatter);
@@ -106,9 +106,9 @@ public class PostRest {
 
             dto.setVehicle(new VehicleDTO(p.getVehicle().getType(),
                     p.getVehicle().getDescription(), p.getVehicle().getPhotos()));
-/*
-    private UserDTO ownerUser;
- */
+
+            //dto.setOwnerUser(p.getOwnerUser().getEmail());
+
             dto.setPhone(p.getPhone());
             dto.setPickUpCoord(coordToCoordDTO(p.getPickUpCoord()));
 

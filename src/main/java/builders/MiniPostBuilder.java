@@ -15,6 +15,7 @@ public class MiniPostBuilder {
     private LocalDateTime untilDate=(LocalDateTime.now().plusDays(3L));
     private double costPerDay;
     private String userName;
+    private String location;
 
 
     public static MiniPostBuilder aMiniPost(){
@@ -26,7 +27,7 @@ public class MiniPostBuilder {
         lc.add(new Coord(1,1));
         User u = new UserBuilder().withEmail(this.userName).build();
         return new Post(this.vehicle, u, new Coord(1,1),lc,
-                this.sinceDate, this.untilDate, this.costPerDay);
+                this.sinceDate, this.untilDate, this.costPerDay, null);
     }
     public MiniPostBuilder withUserName(String name){
         this.userName = name;
@@ -50,6 +51,11 @@ public class MiniPostBuilder {
 
     public MiniPostBuilder withCostPerDay(double cost){
         this.costPerDay = cost;
+        return this;
+    }
+
+    public MiniPostBuilder withLocation(String location){
+        this.location=location;
         return this;
     }
 

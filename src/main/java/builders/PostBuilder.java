@@ -22,6 +22,7 @@ public class PostBuilder {
     private LocalDateTime sinceDate= LocalDateTime.now();
     private LocalDateTime untilDate=(LocalDateTime.now().plusDays(3L));
     private double costPerDay;
+    private String location;
 
     public static PostBuilder aPost(){
         PostBuilder builder= new PostBuilder();
@@ -31,7 +32,7 @@ public class PostBuilder {
 
     public Post build(){
         return new Post(this.vehicle, this.ownerUser, this.pickUpCoord,
-                this.returnCoords, this.sinceDate, this.untilDate, this.costPerDay);
+                this.returnCoords, this.sinceDate, this.untilDate, this.costPerDay, this.location);
     }
 
     public PostBuilder withUntilDate(LocalDateTime UntilDate){
@@ -71,6 +72,11 @@ public class PostBuilder {
 
     public PostBuilder withownerUser(User user){
         this.ownerUser = user;
+        return this;
+    }
+
+    public PostBuilder withLocation(String location){
+        this.location= location;
         return this;
     }
 }
