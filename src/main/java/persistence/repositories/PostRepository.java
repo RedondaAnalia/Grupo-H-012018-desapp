@@ -26,16 +26,12 @@ public class PostRepository
     }
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    public List<Post> postByType(VehicleType type){
+    public List<Post> postByType(String type){
 
-        return (List<Post>) this.getHibernateTemplate().execute(new HibernateCallback() {
-            @Override
-            public List<Post> doInHibernate(final Session session) throws HibernateException {
-                Criteria criteria = session.createCriteria(Post.class, "post").createAlias("post.vehicle", "vehicle");
-                criteria.add(Restrictions.like("vehicle.type", "%" + type + "%"));
-                return criteria.list();
-            }
-
+        return (List<Post>) this.getHibernateTemplate().execute((HibernateCallback) session -> {
+            Criteria criteria = session.createCriteria(Post.class, "post").createAlias("post.vehicle", "vehicle");
+            criteria.add(Restrictions.eq("vehicle.type", VehicleType.valueOf(type)));
+            return criteria.list();
         });
     }
 }

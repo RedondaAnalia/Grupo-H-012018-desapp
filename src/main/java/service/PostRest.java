@@ -75,7 +75,7 @@ public class PostRest {
     @GET
     @Path("/PostByType/{type}")
     @Produces("application/json")
-    public List<PostDTO> PostByTypeRest(@PathParam("type") final VehicleType type){
+    public List<PostDTO> PostByTypeRest(@PathParam("type") final String type){
         return postToPostDTO(this.getPostService().postByType(type));
     }
 

@@ -36,7 +36,7 @@ public class PostService extends GenericService<Post> implements Initializable{
     }
 
     @Transactional
-    public List<Post> postByType(VehicleType type) {
+    public List<Post> postByType(String type) {
         return this.getRepository().postByType(type);
     }
 

@@ -34,6 +34,10 @@ POST
 
 http://localhost:8080/desapp-grouph-backend/rest/servicesPost/createPost
 
+http://localhost:8080/desapp-grouph-backend/rest/servicesPost/PostByType/
+
+Datos fake para que traiga por AUTO o CAMIONETA
+
 
 MINIPOST
 
