@@ -3,6 +3,7 @@ package service;
 import model.Coord;
 import model.Post;
 import model.Vehicle;
+import model.enums.VehicleType;
 import persistence.services.PostService;
 import persistence.services.UserService;
 import service.dto.*;
@@ -69,6 +70,15 @@ public class PostRest {
     public int sizePost(){
         return this.getPostService().sizePost();
     }
+
+
+    @GET
+    @Path("/PostByType/{type}")
+    @Produces("application/json")
+    public List<PostDTO> PostByTypeRest(@PathParam("type") final VehicleType type){
+        return postToPostDTO(this.getPostService().postByType(type));
+    }
+
 
     private List<MiniPostDTO> postToMiniPostDTO(List<Post> posts){
         List<MiniPostDTO> list = new ArrayList<MiniPostDTO>();
