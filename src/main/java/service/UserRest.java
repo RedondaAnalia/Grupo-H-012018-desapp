@@ -43,6 +43,9 @@ public class UserRest{
     @Produces("application/json")
     public UserWithVehiclesDTO findUserByEmailRest(@PathParam("mail") final String mail){
         User udto = this.userService.filterUser(mail);
+        if (udto==null)
+            return null;
+            else
         return toDTO(this.getVehicleService().filterVehicleByUser(mail), udto);
     }
 

@@ -33,7 +33,7 @@ public class VehicleService extends GenericService<Vehicle> implements Initializ
                 withEmail("gil.maricruz@gmail.com").
                 withNameAndSurname("Maricruz", "Gil").build();
 
-        User ana = UserBuilder.anUser().withCUIL("1").
+        User ana = UserBuilder.anUser().withCUIL("27298009051").
                 withEmail("a.redonda89@gmail.com").
                 withNameAndSurname("Analia", "Redonda").build();
 
