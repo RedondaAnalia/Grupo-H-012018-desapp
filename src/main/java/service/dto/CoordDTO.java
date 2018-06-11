@@ -1,6 +1,11 @@
 package service.dto;
 
-public class CoordDTO {
+import model.Entity;
+
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name="coord")
+public class CoordDTO extends Entity {
 
     private double lat;
     private double lng;

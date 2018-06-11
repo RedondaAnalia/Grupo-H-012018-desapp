@@ -1,6 +1,5 @@
 package service.dto;
 
-import model.Entity;
 import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
@@ -8,7 +7,7 @@ import java.util.List;
 
 
 @XmlRootElement(name="user")
-public class UserDTO  extends Entity {
+public class UserDTO{
 
     private String CUIL;
 

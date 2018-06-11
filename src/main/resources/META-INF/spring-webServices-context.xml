@@ -27,7 +27,6 @@ http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd">
     <jaxrs:server id="rest" address="/"  >
         <jaxrs:serviceBeans>
             <ref bean="userRest" />
-            <ref bean="miniPostRest"/>
             <ref bean="vehicleRest"/>
             <ref bean="postRest"/>
         </jaxrs:serviceBeans>
@@ -49,10 +48,6 @@ http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd">
         <property name="vehicleService" ref="services.vehicle"/>
     </bean>
 
-    <bean id="miniPostRest" class="service.MiniPostRest">
-        <property name="miniPostService" ref="services.minipost"/>
-    </bean>
-
     <bean id="vehicleRest" class="service.VehicleRest">
         <property name="vehicleService" ref="services.vehicle"/>
         <property name="userService" ref="services.user"/>
@@ -60,6 +55,7 @@ http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd">
 
     <bean id="postRest" class="service.PostRest">
         <property name="postService" ref="services.post"/>
+        <property name="userService" ref="services.user"/>
     </bean>
 
 </beans>

@@ -43,6 +43,9 @@ public class UserRest{
     @Produces("application/json")
     public UserWithVehiclesDTO findUserByEmailRest(@PathParam("mail") final String mail){
         User udto = this.userService.filterUser(mail);
+        if (udto==null)
+            return null;
+            else
         return toDTO(this.getVehicleService().filterVehicleByUser(mail), udto);
     }
 
@@ -100,10 +103,10 @@ public class UserRest{
             dtoV.setCapacity(vehicle.getCapacity());
             dtoV.setDescription(vehicle.getDescription());
             dtoV.setType(vehicle.getType());
-            dtoV.setOwner(vehicle.getOwner().getEmail());
+            //dtoV.setOwner(vehicle.getOwner());
             for(String p:vehicle.getPhotos())
                 dtoV.getPhotos().add(p);
-            dtoV.setId(vehicle.getId());
+            //dtoV.setId(vehicle.getId());
             vehicleDTOS.add(dtoV);
         }
         dto.setVehicles(vehicleDTOS);

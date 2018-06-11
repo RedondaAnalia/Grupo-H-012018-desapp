@@ -19,12 +19,13 @@ public class Post extends Entity{
 	private LocalDateTime UntilDate;
 	private double costPerDay;
 	private int phone;
+	private String location;
 
 	
 	public Post(){}
 
 	public Post(Vehicle vehicle, User user, Coord pickUpCoord, List<Coord> returnCoords2,
-                LocalDateTime sinceDate, LocalDateTime UntilDate, double costPerDay){
+                LocalDateTime sinceDate, LocalDateTime UntilDate, double costPerDay, String location){
 
 		long days= sinceDate.until(UntilDate, ChronoUnit.DAYS);
 
@@ -46,14 +47,11 @@ public class Post extends Entity{
 		this.UntilDate = UntilDate;
 		//this.phone = phone;
         this.costPerDay = costPerDay;
+        this.location= location;
 	}
 	
 	public double getCostPerDay(){
 		return this.costPerDay;
-	}
-
-	public User getUser() {
-		return this.ownerUser;
 	}
 
 	public Vehicle getVehicle() {
@@ -114,5 +112,13 @@ public class Post extends Entity{
 
 	public void setPhone(int phone) {
 		this.phone = phone;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
 	}
 }

@@ -11,13 +11,14 @@ import java.util.List;
 public class PostDTO extends Entity{
 
     private VehicleDTO vehicle;
-    private UserDTO ownerUser;
+    private String ownerUser;
     private CoordDTO pickUpCoord;
     private List<CoordDTO> returnCoords= new ArrayList<CoordDTO>();
-    //private String sinceDate;
-    //private String UntilDate;
+    private String sinceDate;
+    private String UntilDate;
     private double costPerDay;
     private int phone;
+    private String location;
 
     public PostDTO(){}
 
@@ -29,11 +30,11 @@ public class PostDTO extends Entity{
         this.vehicle = vehicle;
     }
 
-    public UserDTO getOwnerUser() {
+    public String getOwnerUser() {
         return ownerUser;
     }
 
-    public void setOwnerUser(UserDTO ownerUser) {
+    public void setOwnerUser(String ownerUser) {
         this.ownerUser = ownerUser;
     }
 
@@ -52,7 +53,7 @@ public class PostDTO extends Entity{
     public void setReturnCoords(List<CoordDTO> returnCoords) {
         this.returnCoords = returnCoords;
     }
-/*
+
     public String getSinceDate() {
         return sinceDate;
     }
@@ -68,7 +69,7 @@ public class PostDTO extends Entity{
     public void setUntilDate(String untilDate) {
         UntilDate = untilDate;
     }
-*/
+
     public double getCostPerDay() {
         return costPerDay;
     }
@@ -83,5 +84,13 @@ public class PostDTO extends Entity{
 
     public void setPhone(int phone) {
         this.phone = phone;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 }

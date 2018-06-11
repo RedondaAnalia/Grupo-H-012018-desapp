@@ -1,6 +1,12 @@
 package persistence.repositories;
 
 import model.Post;
+import model.enums.VehicleType;
+import org.hibernate.Criteria;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
+import org.springframework.orm.hibernate4.HibernateCallback;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -17,5 +23,15 @@ public class PostRepository
 
     public List<Post> allPost() {
         return this.findAll();
+    }
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    public List<Post> postByType(String type){
+
+        return (List<Post>) this.getHibernateTemplate().execute((HibernateCallback) session -> {
+            Criteria criteria = session.createCriteria(Post.class, "post").createAlias("post.vehicle", "vehicle");
+            criteria.add(Restrictions.eq("vehicle.type", VehicleType.valueOf(type)));
+            return criteria.list();
+        });
     }
 }

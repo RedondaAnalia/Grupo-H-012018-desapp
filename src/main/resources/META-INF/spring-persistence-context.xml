@@ -103,10 +103,6 @@
 		<property name="sessionFactory" ref="persistence.sessionFactory" />
 	</bean>
 
-	<bean id="persistence.minipostrepository" class="persistence.repositories.MiniPostRepository" >
-		<property name="sessionFactory" ref="persistence.sessionFactory" />
-	</bean>
-
 	<bean id="persistence.vehiclerepository" class="persistence.repositories.VehicleRepository" >
 		<property name="sessionFactory" ref="persistence.sessionFactory" />
 	</bean>

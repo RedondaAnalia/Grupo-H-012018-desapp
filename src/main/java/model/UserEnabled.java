@@ -14,7 +14,7 @@ public class UserEnabled extends IUserState{
 
 	public Post post(Vehicle vehicle, User user, Coord pickUpCoord, ArrayList<Coord> returnCoords,
 					 LocalDateTime sinceDate, LocalDateTime untilDate, double costPerHour) {
-		return new Post(vehicle,user,pickUpCoord,returnCoords, sinceDate, untilDate,costPerHour);
+		return new Post(vehicle,user,pickUpCoord,returnCoords, sinceDate, untilDate,costPerHour, null);
 	}
 
 	public boolean isEnabled(){
