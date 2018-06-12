@@ -21,28 +21,28 @@ public class PostRest {
 
     private PostService postService;
 
-    public void setPostService(PostService postService){
+    public void setPostService(PostService postService) {
         this.postService = postService;
     }
 
-    private PostService getPostService(){
+    private PostService getPostService() {
         return this.postService;
     }
 
     private UserService userService;
 
-    public void setUserService(UserService userService){
+    public void setUserService(UserService userService) {
         this.userService = userService;
     }
 
-    private UserService getUserService(){
+    private UserService getUserService() {
         return this.userService;
     }
 
     @GET
     @Path("/allPost")
     @Produces("application/json")
-    public List<PostDTO> allPostRest(){
+    public List<PostDTO> allPostRest() {
         return postsToPostsDTO(this.getPostService().allPost());
     }
 
@@ -59,14 +59,14 @@ public class PostRest {
     @GET
     @Path("/allMiniPost")
     @Produces("application/json")
-    public List<MiniPostDTO> allMiniPostRest(){
+    public List<MiniPostDTO> allMiniPostRest() {
         return postToMiniPostDTO(this.getPostService().allPost());
     }
 
     @GET
     @Path("/sizePost")
     @Produces("application/json")
-    public int sizePost(){
+    public int sizePost() {
         return this.getPostService().sizePost();
     }
 
@@ -74,15 +74,22 @@ public class PostRest {
     @GET
     @Path("/PostByType/{type}")
     @Produces("application/json")
-    public List<PostDTO> PostByTypeRest(@PathParam("type") final String type){
+    public List<PostDTO> PostByTypeRest(@PathParam("type") final String type) {
         return postsToPostsDTO(this.getPostService().postByType(type));
     }
 
     @GET
     @Path("/postById/{id}")
     @Produces("application/json")
-    public PostDTO postByIdRest(@PathParam("id") final int id){
+    public PostDTO postByIdRest(@PathParam("id") final int id) {
         return postToPostDTO(this.getPostService().postById(id));
+    }
+
+    @GET
+    @Path("/postByLocation/{location}")
+    @Produces("application/json")
+    public List<PostDTO>  postByLocationRest(@PathParam("location") final String location){
+        return postsToPostsDTO(this.getPostService().postByLocation(location));
     }
 
     private List<MiniPostDTO> postToMiniPostDTO(List<Post> posts){

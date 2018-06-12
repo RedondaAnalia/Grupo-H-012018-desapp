@@ -34,4 +34,13 @@ public class PostRepository
             return criteria.list();
         });
     }
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    public List<Post> postByLocation(String location) {
+        return (List<Post>) this.getHibernateTemplate().execute((HibernateCallback) session -> {
+            Criteria criteria = session.createCriteria(Post.class, "post");
+            criteria.add(Restrictions.eq("location", (location)));
+            return criteria.list();
+        });
+    }
 }

@@ -111,7 +111,13 @@ public class PostService extends GenericService<Post> implements Initializable{
 
     }
 
+    @Transactional
     public Post postById(int id) {
         return this.getRepository().findById(id);
+    }
+
+    @Transactional
+    public List<Post> postByLocation(String location) {
+        return this.getRepository().postByLocation(location);
     }
 }
