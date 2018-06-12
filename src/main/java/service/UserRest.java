@@ -61,7 +61,7 @@ public class UserRest{
     @Produces("application/json")
     @Consumes("application/json")
     public UserWithVehiclesDTO createUserRest(UserDTO dto){
-        User user = fromDTO(dto);
+        User user = fromDTOToCreate(dto);
         this.getUserService().save(user);
         return toDTO(this.getVehicleService().filterVehicleByUser(dto.getEmail()), user);
     }
@@ -96,6 +96,17 @@ public class UserRest{
             @PathParam("mail") String mail){
         return toDTO(this.getVehicleService().filterVehicleByUser(mail),
                 this.getUserService().debitCreditToUser(credit, mail));
+    }
+
+    private User fromDTOToCreate(UserDTO dto){
+        User user = new User();
+        user.setCUIL(dto.getCUIL());
+        user.setName(dto.getName());
+        user.setSurname(dto.getSurname());
+        user.setAddress(dto.getAddress());
+        user.setEmail(dto.getEmail());
+        user.setUserName(dto.getUserName());
+        return user;
     }
 
     private User fromDTO(UserDTO dto){
