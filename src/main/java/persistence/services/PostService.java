@@ -93,6 +93,25 @@ public class PostService extends GenericService<Post> implements Initializable{
                         withLocation("Quilmes").
                         build());
 
+        this.getRepository().save(
+                PostBuilder.aPost().
+                        withownerUser(feli).
+                        withVehicle(v3).
+                        withCostPerDay(200).
+                        withLocation("Wilde").
+                        build());
+
+        this.getRepository().save(
+                PostBuilder.aPost().
+                        withownerUser(feli).
+                        withVehicle(v2).
+                        withCostPerDay(150).
+                        withLocation("Don Bosco").
+                        build());
+
     }
 
+    public Post postById(int id) {
+        return this.getRepository().findById(id);
+    }
 }

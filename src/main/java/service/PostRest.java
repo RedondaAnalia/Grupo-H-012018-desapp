@@ -3,7 +3,6 @@ package service;
 import model.Coord;
 import model.Post;
 import model.Vehicle;
-import model.enums.VehicleType;
 import persistence.services.PostService;
 import persistence.services.UserService;
 import service.dto.*;
@@ -44,7 +43,7 @@ public class PostRest {
     @Path("/allPost")
     @Produces("application/json")
     public List<PostDTO> allPostRest(){
-        return postToPostDTO(this.getPostService().allPost());
+        return postsToPostsDTO(this.getPostService().allPost());
     }
 
     @POST
@@ -76,12 +75,18 @@ public class PostRest {
     @Path("/PostByType/{type}")
     @Produces("application/json")
     public List<PostDTO> PostByTypeRest(@PathParam("type") final String type){
-        return postToPostDTO(this.getPostService().postByType(type));
+        return postsToPostsDTO(this.getPostService().postByType(type));
     }
 
+    @GET
+    @Path("/postById/{id}")
+    @Produces("application/json")
+    public PostDTO postByIdRest(@PathParam("id") final int id){
+        return postToPostDTO(this.getPostService().postById(id));
+    }
 
     private List<MiniPostDTO> postToMiniPostDTO(List<Post> posts){
-        List<MiniPostDTO> list = new ArrayList<MiniPostDTO>();
+        List<MiniPostDTO> list = new ArrayList<>();
         for(Post p: posts){
             MiniPostDTO mp = new MiniPostDTO();
             mp.setLocation(p.getLocation());
@@ -101,36 +106,37 @@ public class PostRest {
         return list;
     }
 
+    private PostDTO postToPostDTO(Post p) {
+        PostDTO dto = new PostDTO();
+        dto.setCostPerDay(p.getCostPerDay());
+        dto.setLocation(p.getLocation());
+        String formatSinceDate = p.getSinceDate().format(this.formatter);
+        dto.setSinceDate(formatSinceDate);
+        String formatUntilDate = p.getUntilDate().format(this.formatter);
+        dto.setUntilDate(formatUntilDate);
+        dto.setVehicle(new VehicleDTO(p.getVehicle().getType(),
+                p.getVehicle().getDescription(), p.getVehicle().getPhotos()));
 
+        //dto.setOwnerUser(p.getOwnerUser().getEmail());
 
-    private List<PostDTO> postToPostDTO(List<Post> posts) {
-        List<PostDTO> list = new ArrayList<PostDTO>();
-        for(Post p: posts) {
-            PostDTO dto = new PostDTO();
-            dto.setCostPerDay(p.getCostPerDay());
-            dto.setLocation(p.getLocation());
-            String formatSinceDate = p.getSinceDate().format(this.formatter);
-            dto.setSinceDate(formatSinceDate);
-            String formatUntilDate = p.getUntilDate().format(this.formatter);
-            dto.setUntilDate(formatUntilDate);
-
-            dto.setVehicle(new VehicleDTO(p.getVehicle().getType(),
-                    p.getVehicle().getDescription(), p.getVehicle().getPhotos()));
-
-            //dto.setOwnerUser(p.getOwnerUser().getEmail());
-
-            dto.setPhone(p.getPhone());
-            dto.setPickUpCoord(coordToCoordDTO(p.getPickUpCoord()));
-
-            List<CoordDTO> returnCoords = new ArrayList<CoordDTO>();
-            for(Coord c: p.getReturnCoords()){
+        dto.setPhone(p.getPhone());
+        dto.setPickUpCoord(coordToCoordDTO(p.getPickUpCoord()));
+        List<CoordDTO> returnCoords = new ArrayList<>();
+        for(Coord c: p.getReturnCoords()){
                 CoordDTO cdto = new CoordDTO();
                 cdto.setLng(c.getLng());
                 cdto.setLat(c.getLat());
                 returnCoords.add(cdto);
-            }
-            dto.setReturnCoords(returnCoords);
-            list.add(dto);
+        }
+        dto.setReturnCoords(returnCoords);
+        return dto;
+    }
+
+
+    private List<PostDTO> postsToPostsDTO(List<Post> posts) {
+        List<PostDTO> list = new ArrayList<>();
+        for(Post p: posts) {
+            list.add(postToPostDTO(p));
         }
         return list;
     }
@@ -158,7 +164,7 @@ public class PostRest {
         post.setId(dto.getId());
         post.setPickUpCoord(coordDTOToCoord(dto.getPickUpCoord()));
 
-        List<Coord> cs = new ArrayList<Coord>();
+        List<Coord> cs = new ArrayList<>();
         for(CoordDTO cdto: dto.getReturnCoords()){
             cs.add(coordDTOToCoord(cdto));
         }
