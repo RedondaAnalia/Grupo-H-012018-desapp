@@ -40,4 +40,20 @@ public class UserService extends GenericService<User> implements Initializable{
     public int countUsers() {
         return this.getRepository().count();
     }
+
+    @Transactional
+    public User addCreditToUser(double credit, String mail) {
+        User user = this.getRepository().filterUser(mail);
+        user.addCredit(credit);
+        this.getRepository().update(user);
+        return user;
+    }
+
+    @Transactional
+    public User debitCreditToUser(double credit, String mail) {
+        User user = this.getRepository().filterUser(mail);
+        user.debitCredit(credit);
+        this.getRepository().update(user);
+        return user;
+    }
 }

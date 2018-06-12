@@ -76,6 +76,28 @@ public class UserRest{
         return toDTO(this.getVehicleService().filterVehicleByUser(dto.getEmail()), user);
     }
 
+    @PUT
+    @Path("/addCredit/{credit}/{mail}")
+    @Produces("application/json")
+    @Consumes("application/json")
+    public UserWithVehiclesDTO addCreditRest(
+                                        @PathParam("credit") double credit,
+                                         @PathParam("mail") String mail){
+        return toDTO(this.getVehicleService().filterVehicleByUser(mail),
+                this.getUserService().addCreditToUser(credit, mail));
+    }
+
+    @PUT
+    @Path("/debitCredit/{credit}/{mail}")
+    @Produces("application/json")
+    @Consumes("application/json")
+    public UserWithVehiclesDTO debitCreditRest(
+            @PathParam("credit") double credit,
+            @PathParam("mail") String mail){
+        return toDTO(this.getVehicleService().filterVehicleByUser(mail),
+                this.getUserService().debitCreditToUser(credit, mail));
+    }
+
     private User fromDTO(UserDTO dto){
         User user = new User();
         user.setCUIL(dto.getCUIL());
