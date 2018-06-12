@@ -31,7 +31,8 @@ public class VehicleService extends GenericService<Vehicle> implements Initializ
                 withNameAndSurname("Tyrion", "Lannister").build();
         User maru = UserBuilder.anUser().withCUIL("29800905").
                 withEmail("gil.maricruz@gmail.com").
-                withNameAndSurname("Maricruz", "Gil").build();
+                withNameAndSurname("Maricruz", "Gil").
+                withAddress("Av. Hipólito Yrigoyen 3671, C1208ABD CABA, Argentina").build();
 
         User ana = UserBuilder.anUser().withCUIL("27298009051").
                 withEmail("a.redonda89@gmail.com").
