@@ -50,6 +50,10 @@ http://localhost:8080/desapp-grouph-backend/rest/servicesPost/PostByType/{catego
 
 [no pedido] http://localhost:8080/desapp-grouph-backend/rest/servicesPost/sizePost
 
+RENT
+
+http://localhost:8080/desapp-grouph-backend/rest/servicesRental/createReservation/{idPost}/{mail}/{siceDate}/{sinceDate}
+
 
 
 PRODUCCIÓN
