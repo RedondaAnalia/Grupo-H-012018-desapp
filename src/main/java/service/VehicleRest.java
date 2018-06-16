@@ -116,6 +116,7 @@ public class VehicleRest {
         dto.setCapacity(vehicle.getCapacity());
         dto.setDescription(vehicle.getDescription());
         dto.setType(vehicle.getType());
+        dto.setOwner(vehicle.getOwner().getEmail());
         if (!vehicle.getPhotos().isEmpty()) {
             for (String p : vehicle.getPhotos())
                 dto.getPhotos().add(p);

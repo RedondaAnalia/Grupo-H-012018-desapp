@@ -10,13 +10,17 @@ DESARROLLO
 
 USER
 
-http://localhost:8080/desapp-grouph-backend/rest/servicesUsers/findUserByEmail/{parametro}
+http://localhost:8080/desapp-grouph-backend/rest/servicesUsers/findUserByEmail/{mail}
 
 http://localhost:8080/desapp-grouph-backend/rest/servicesUsers/createUser
 
 http://localhost:8080/desapp-grouph-backend/rest/servicesUsers/updateUser
 
-http://localhost:8080/desapp-grouph-backend/rest/servicesUsers/sizeUsers
+[no pedido] http://localhost:8080/desapp-grouph-backend/rest/servicesUsers/sizeUsers
+
+http://localhost:8080/desapp-grouph-backend/rest/servicesUsers/addCredit/{cred}/{mail}
+
+http://localhost:8080/desapp-grouph-backend/rest/servicesUsers/debitCredit/{cred}/{mail}
 
 
 VEHICLE
@@ -36,17 +40,15 @@ http://localhost:8080/desapp-grouph-backend/rest/servicesPost/createPost
 
 http://localhost:8080/desapp-grouph-backend/rest/servicesPost/PostByType/
 
-Datos fake para que traiga por AUTO o CAMIONETA
-
-
-MINIPOST
-
 http://localhost:8080/desapp-grouph-backend/rest/servicesPost/allMiniPost
 
-http://localhost:8080/desapp-grouph-backend/rest/servicesPost/createMiniPost
+http://localhost:8080/desapp-grouph-backend/rest/servicesPost/postByLocation/{localidad}
 
+http://localhost:8080/desapp-grouph-backend/rest/servicesPost/PostByType/{categoría}
 
+[no pedido] http://localhost:8080/desapp-grouph-backend/rest/servicesPost/allPost
 
+[no pedido] http://localhost:8080/desapp-grouph-backend/rest/servicesPost/sizePost
 
 
 

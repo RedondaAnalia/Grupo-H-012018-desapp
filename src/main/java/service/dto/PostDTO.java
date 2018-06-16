@@ -10,7 +10,7 @@ import java.util.List;
 @XmlRootElement(name="post")
 public class PostDTO extends Entity{
 
-    private VehicleDTO vehicle;
+    private int vehicle;
     private String ownerUser;
     private CoordDTO pickUpCoord;
     private List<CoordDTO> returnCoords= new ArrayList<CoordDTO>();
@@ -22,11 +22,11 @@ public class PostDTO extends Entity{
 
     public PostDTO(){}
 
-    public VehicleDTO getVehicle() {
+    public int getVehicle() {
         return vehicle;
     }
 
-    public void setVehicle(VehicleDTO vehicle) {
+    public void setVehicle(int vehicle) {
         this.vehicle = vehicle;
     }
 

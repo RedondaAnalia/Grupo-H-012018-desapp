@@ -2,10 +2,13 @@ package service;
 
 import model.Coord;
 import model.Post;
-import model.Vehicle;
 import persistence.services.PostService;
 import persistence.services.UserService;
-import service.dto.*;
+import persistence.services.VehicleService;
+import service.dto.CoordDTO;
+import service.dto.MiniPostDTO;
+import service.dto.MiniVehicleDTO;
+import service.dto.PostDTO;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -39,6 +42,16 @@ public class PostRest {
         return this.userService;
     }
 
+    private VehicleService vehicleService;
+
+    public VehicleService getVehicleService() {
+        return vehicleService;
+    }
+
+    public void setVehicleService(VehicleService vehicleService) {
+        this.vehicleService = vehicleService;
+    }
+
     @GET
     @Path("/allPost")
     @Produces("application/json")
@@ -50,10 +63,10 @@ public class PostRest {
     @Path("/createPost")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Post createPostRest(PostDTO dto) {
+    public PostDTO createPostRest(PostDTO dto) {
         Post post = fromDTO(dto);
         this.getPostService().save(post);
-        return post;
+        return postToPostDTO(post);
     }
 
     @GET
@@ -92,10 +105,16 @@ public class PostRest {
         return postsToPostsDTO(this.getPostService().postByLocation(location));
     }
 
+    /* =======================
+    /     de POST a DTO
+    / =======================*/
+
+    //lista de post a lista de mini dtos
     private List<MiniPostDTO> postToMiniPostDTO(List<Post> posts){
         List<MiniPostDTO> list = new ArrayList<>();
         for(Post p: posts){
             MiniPostDTO mp = new MiniPostDTO();
+            mp.setId(p.getId());
             mp.setLocation(p.getLocation());
             mp.setCostPerDay(p.getCostPerDay());
 
@@ -105,41 +124,49 @@ public class PostRest {
             String formatUntilDate = p.getUntilDate().format(formatter);
             mp.setUntilDate(formatUntilDate);
 
-            mp.setVehicle(new MiniVehicleDTO(p.getVehicle().getType().toString(), p.getVehicle().
-                    getDescription(), p.getVehicle().getPhotos()));
+            mp.setVehicle(new MiniVehicleDTO(
+                    p.getVehicle().getType().toString(),
+                    p.getVehicle().getDescription(),
+                    p.getVehicle().getPhotos(),
+                    p.getVehicle().getId()));
 
             list.add(mp);
         }
         return list;
     }
 
+    //post a dto
     private PostDTO postToPostDTO(Post p) {
         PostDTO dto = new PostDTO();
+        dto.setId(p.getId());
         dto.setCostPerDay(p.getCostPerDay());
         dto.setLocation(p.getLocation());
         String formatSinceDate = p.getSinceDate().format(this.formatter);
         dto.setSinceDate(formatSinceDate);
         String formatUntilDate = p.getUntilDate().format(this.formatter);
         dto.setUntilDate(formatUntilDate);
-        dto.setVehicle(new VehicleDTO(p.getVehicle().getType(),
-                p.getVehicle().getDescription(), p.getVehicle().getPhotos()));
-
-        //dto.setOwnerUser(p.getOwnerUser().getEmail());
-
+        dto.setVehicle(p.getVehicle().getId());
+        dto.setOwnerUser(p.getOwnerUser().getEmail());
         dto.setPhone(p.getPhone());
         dto.setPickUpCoord(coordToCoordDTO(p.getPickUpCoord()));
         List<CoordDTO> returnCoords = new ArrayList<>();
         for(Coord c: p.getReturnCoords()){
-                CoordDTO cdto = new CoordDTO();
-                cdto.setLng(c.getLng());
-                cdto.setLat(c.getLat());
-                returnCoords.add(cdto);
+                returnCoords.add(coordToCoordDTO(c));
         }
         dto.setReturnCoords(returnCoords);
         return dto;
     }
 
+    //coord a dto
+    private CoordDTO coordToCoordDTO(Coord c){
+        CoordDTO dto = new CoordDTO();
+        dto.setLat(c.getLat());
+        dto.setLng(c.getLat());
+        dto.setId(c.getId());
+        return dto;
+    }
 
+    //lista Post a lista dtos
     private List<PostDTO> postsToPostsDTO(List<Post> posts) {
         List<PostDTO> list = new ArrayList<>();
         for(Post p: posts) {
@@ -148,27 +175,28 @@ public class PostRest {
         return list;
     }
 
-    private CoordDTO coordToCoordDTO(Coord c){
-        CoordDTO dto = new CoordDTO();
-        dto.setLat(c.getLat());
-        dto.setLng(c.getLat());
-        return dto;
-    }
+    /* =======================
+    /     de DTO a POST
+    / =======================*/
+
+
 
     private Coord coordDTOToCoord(CoordDTO dto){
         Coord c = new Coord();
         c.setLat(dto.getLat());
         c.setLng(dto.getLng());
+        c.setId(dto.getId());
         return c;
     }
 
+    //de dto a Post
     private Post fromDTO(PostDTO dto){
         Post post = new Post();
-        post.setVehicle(fromDTO(dto.getVehicle()));
-        post.setCostPerDay(dto.getCostPerDay());
-        //post.setOwnerUser(dto.getOwnerUser());
-        post.setPhone(dto.getPhone());
         post.setId(dto.getId());
+        post.setVehicle(this.getVehicleService().findVehicleById(dto.getVehicle()));
+        post.setCostPerDay(dto.getCostPerDay());
+        post.setOwnerUser(this.getUserService().filterUser(dto.getOwnerUser()));
+        post.setPhone(dto.getPhone());
         post.setPickUpCoord(coordDTOToCoord(dto.getPickUpCoord()));
 
         List<Coord> cs = new ArrayList<>();
@@ -197,18 +225,6 @@ public class PostRest {
         );
         post.setLocation(dto.getLocation());
         return post;
-    }
-
-    private Vehicle fromDTO(VehicleDTO dto){
-        Vehicle vehicle = new Vehicle();
-//        vehicle.setOwner(this.getUserService().findById(dto.getOwner().getEmail()));
-        vehicle.setType(dto.getType());
-        vehicle.setCapacity(dto.getCapacity());
-        vehicle.setDescription(dto.getDescription());
-        for(String p:dto.getPhotos())
-            vehicle.getPhotos().add(p);
-        vehicle.setId(dto.getId());
-        return vehicle;
     }
 
 }

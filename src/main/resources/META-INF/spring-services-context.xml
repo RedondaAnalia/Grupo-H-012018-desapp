@@ -13,6 +13,7 @@
 				<ref bean="services.post"/>
 				<ref bean="services.user"/>
 				<ref bean="services.vehicle"/>
+				<ref bean="services.rental"/>
 			</list>
 		</constructor-arg>
 	</bean>
@@ -31,6 +32,12 @@
 
 	<bean id="services.post" class="persistence.services.PostService">
 		<property name="repository" ref="persistence.postrepository" />
+	</bean>
+
+	<bean id="services.rental" class="persistence.services.RentalService">
+		<property name="rentalRepository" ref="persistence.rentalrepository" />
+		<property name="userRepository" ref="persistence.userrepository" />
+		<property name="postRepository" ref="persistence.postrepository" />
 	</bean>
 
 </beans>
