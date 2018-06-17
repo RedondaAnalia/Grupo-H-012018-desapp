@@ -1,9 +1,9 @@
 {
-  "root": "desapp-grupoe-frontend/dist",
+  "root": "/rest/*",
   "clean_urls": true,
   "proxies": {
     "/api/": {
-      "origin": "https://adondevamos.herokuapp.com/api"
+      "origin": "https://carpnd-grupoh-012018-desapp.herokuapp.com/"
     }
   },
     "headers": {
