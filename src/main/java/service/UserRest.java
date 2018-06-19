@@ -61,7 +61,7 @@ public class UserRest{
     @Produces("application/json")
     @Consumes("application/json")
     public UserWithVehiclesDTO createUserRest(UserDTO dto){
-        User user = fromDTO(dto);
+        User user = fromDTOToCreate(dto);
         this.getUserService().save(user);
         return toDTO(this.getVehicleService().filterVehicleByUser(dto.getEmail()), user);
     }
@@ -74,6 +74,35 @@ public class UserRest{
         User user = fromDTO(dto);
         this.getUserService().update(user);
         return toDTO(this.getVehicleService().filterVehicleByUser(dto.getEmail()), user);
+    }
+
+    @PUT
+    @Path("/addCredit/{credit}/{mail}")
+    @Produces("application/json")
+    @Consumes("application/json")
+    public UserWithVehiclesDTO addCreditRest(
+                                        @PathParam("credit") double credit,
+                                         @PathParam("mail") String mail){
+        return toDTO(this.getVehicleService().filterVehicleByUser(mail),
+                this.getUserService().addCreditToUser(credit, mail));
+    }
+
+    @PUT
+    @Path("/debitCredit/{credit}/{mail}")
+    @Produces("application/json")
+    @Consumes("application/json")
+    public UserWithVehiclesDTO debitCreditRest(
+            @PathParam("credit") double credit,
+            @PathParam("mail") String mail){
+        return toDTO(this.getVehicleService().filterVehicleByUser(mail),
+                this.getUserService().debitCreditToUser(credit, mail));
+    }
+
+    private User fromDTOToCreate(UserDTO dto){
+        User user = new User(dto.getCUIL(), dto.getName(),
+                dto.getSurname(), dto.getAddress(), dto.getEmail());
+        user.setUserName(dto.getUserName());
+        return user;
     }
 
     private User fromDTO(UserDTO dto){
@@ -103,10 +132,9 @@ public class UserRest{
             dtoV.setCapacity(vehicle.getCapacity());
             dtoV.setDescription(vehicle.getDescription());
             dtoV.setType(vehicle.getType());
-            //dtoV.setOwner(vehicle.getOwner());
+            dtoV.setOwner(vehicle.getOwner().getEmail());
             for(String p:vehicle.getPhotos())
                 dtoV.getPhotos().add(p);
-            //dtoV.setId(vehicle.getId());
             vehicleDTOS.add(dtoV);
         }
         dto.setVehicles(vehicleDTOS);
@@ -122,24 +150,6 @@ public class UserRest{
             dto.setStatus(true);
         else
             dto.setStatus(false);
-        for(Integer s: user.getScores())
-            dto.getScores().add(s);
-        dto.setAccount(user.getAccount().getCredit());
-        return dto;
-    }
-
-    private UserDTO toDTO(User user){
-        UserDTO dto = new UserDTO();
-        dto.setAddress(user.getAddress());
-        dto.setCUIL(user.getCUIL());
-        dto.setEmail(user.getEmail());
-        dto.setName(user.getName());
-        dto.setSurname(user.getSurname());
-        dto.setUserName(user.getUserName());
-        if(user.getStatus().isEnabled())
-            dto.setStatus(true);
-            else
-                dto.setStatus(false);
         for(Integer s: user.getScores())
             dto.getScores().add(s);
         dto.setAccount(user.getAccount().getCredit());

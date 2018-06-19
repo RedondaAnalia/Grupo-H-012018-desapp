@@ -1,16 +1,17 @@
 package model;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-
 import model.exceptions.InvalidEmailException;
 import model.exceptions.NameTooLongException;
 import model.exceptions.NameTooShortException;
 import model.exceptions.NoAddressException;
 import model.interfaces.IUserState;
+import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 /***
 	 **This class sets an User in the system. At the moment this can:
@@ -29,6 +30,8 @@ public class User extends Entity{
 	private String name;
 	private String surname;
 	private String address;
+
+	@Id
 	private String email;
 	private Account account;
 	private IUserState status;
@@ -41,7 +44,7 @@ public class User extends Entity{
 	 */
 	
 	public User(){
-		super();
+		//super();
 		this.account= new Account();
 		this.status= new UserEnabled();
 		this.scores= new ArrayList<Integer>();
