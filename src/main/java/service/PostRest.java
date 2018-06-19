@@ -2,13 +2,11 @@ package service;
 
 import model.Coord;
 import model.Post;
+import model.Vehicle;
 import persistence.services.PostService;
 import persistence.services.UserService;
 import persistence.services.VehicleService;
-import service.dto.CoordDTO;
-import service.dto.MiniPostDTO;
-import service.dto.MiniVehicleDTO;
-import service.dto.PostDTO;
+import service.dto.*;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -63,7 +61,7 @@ public class PostRest {
     @Path("/createPost")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public PostDTO createPostRest(PostDTO dto) {
+    public PostDTO createPostRest(PostWithoutVehicleDTO dto) {
         Post post = fromDTO(dto);
         this.getPostService().save(post);
         return postToPostDTO(post);
@@ -145,7 +143,7 @@ public class PostRest {
         dto.setSinceDate(formatSinceDate);
         String formatUntilDate = p.getUntilDate().format(this.formatter);
         dto.setUntilDate(formatUntilDate);
-        dto.setVehicle(p.getVehicle().getId());
+        dto.setVehicle(toDTO(p.getVehicle()));
         dto.setOwnerUser(p.getOwnerUser().getEmail());
         dto.setPhone(p.getPhone());
         dto.setPickUpCoord(coordToCoordDTO(p.getPickUpCoord()));
@@ -190,7 +188,7 @@ public class PostRest {
     }
 
     //de dto a Post
-    private Post fromDTO(PostDTO dto){
+    private Post fromDTO(PostWithoutVehicleDTO dto){
         Post post = new Post();
         post.setId(dto.getId());
         post.setVehicle(this.getVehicleService().findVehicleById(dto.getVehicle()));
@@ -225,6 +223,20 @@ public class PostRest {
         );
         post.setLocation(dto.getLocation());
         return post;
+    }
+
+    private VehicleDTO toDTO(Vehicle vehicle){
+        VehicleDTO dto = new VehicleDTO();
+        dto.setCapacity(vehicle.getCapacity());
+        dto.setDescription(vehicle.getDescription());
+        dto.setType(vehicle.getType());
+        dto.setOwner(vehicle.getOwner().getEmail());
+        if (!vehicle.getPhotos().isEmpty()) {
+            for (String p : vehicle.getPhotos())
+                dto.getPhotos().add(p);
+        }
+        dto.setId(vehicle.getId());
+        return dto;
     }
 
 }

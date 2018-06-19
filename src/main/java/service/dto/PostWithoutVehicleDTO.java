@@ -2,15 +2,13 @@ package service.dto;
 
 import model.Entity;
 
-import javax.xml.bind.annotation.XmlRootElement;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@XmlRootElement(name="post")
-public class PostDTO extends Entity{
+public class PostWithoutVehicleDTO extends Entity {
 
-    private VehicleDTO vehicle;
+
+    private int vehicle;
     private String ownerUser;
     private CoordDTO pickUpCoord;
     private List<CoordDTO> returnCoords= new ArrayList<CoordDTO>();
@@ -20,13 +18,13 @@ public class PostDTO extends Entity{
     private int phone;
     private String location;
 
-    public PostDTO(){}
+    public PostWithoutVehicleDTO(){}
 
-    public VehicleDTO getVehicle() {
+    public int getVehicle() {
         return vehicle;
     }
 
-    public void setVehicle(VehicleDTO vehicle) {
+    public void setVehicle(int vehicle) {
         this.vehicle = vehicle;
     }
 
@@ -93,4 +91,5 @@ public class PostDTO extends Entity{
     public void setLocation(String location) {
         this.location = location;
     }
+
 }
