@@ -23,7 +23,7 @@ import java.util.List;
 	 *  - Calculate his own reputation.
 	 */
 
-public class User{
+public class User extends Entity{
 
 	private String CUIL;
 
@@ -32,8 +32,6 @@ public class User{
 	private String address;
 
 	@Id
-	@GeneratedValue(generator="UUID")
-	@GenericGenerator(name="UUID",strategy="UUID2")
 	private String email;
 	private Account account;
 	private IUserState status;

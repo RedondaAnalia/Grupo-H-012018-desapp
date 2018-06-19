@@ -1,5 +1,5 @@
 {
-  "root": "/rest/*",
+  "root": "desapp-grupoe-frontend/dist",
   "clean_urls": true,
   "proxies": {
     "/api/": {

@@ -53,7 +53,7 @@ public abstract class HibernateGenericDAO<T>
     protected abstract Class<T> getDomainClass();
 
     public void save(final T entity) {
-        this.getHibernateTemplate().merge(entity);
+        this.getHibernateTemplate().saveOrUpdate(entity);
         this.getHibernateTemplate().flush();
     }
 
