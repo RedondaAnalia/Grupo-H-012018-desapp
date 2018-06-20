@@ -13,6 +13,7 @@ public class MiniPostDTO extends Entity {
     private String UntilDate;
     private double costPerDay;
     private String location;
+    private CoordDTO pickUpCoord;
 
     public MiniPostDTO(){}
 
@@ -54,5 +55,13 @@ public class MiniPostDTO extends Entity {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public CoordDTO getPickUpCoord() {
+        return pickUpCoord;
+    }
+
+    public void setPickUpCoord(CoordDTO pickUpCoord) {
+        this.pickUpCoord = pickUpCoord;
     }
 }
