@@ -37,7 +37,8 @@ public class VehicleService extends GenericService<Vehicle> implements Initializ
 */
         User ana = UserBuilder.anUser().withCUIL("27298009051").
                 withEmail("a.redonda89@gmail.com").
-                withNameAndSurname("Analia", "Redonda").build();
+                withNameAndSurname("Analia", "Redonda").
+            withAddress("Av. Corrientes 1241, C1043AAM CABA, Argentina").build();
 /*
         this.getRepository().save(VehicleBuilder.aVehicle().withCapacity(3).
                 withPhoto("https://cdn.wallpaperjam.com/content/images/9e/fd/9efd172a5aea57e895acf503100b148d67c709a6.jpg").
