@@ -63,7 +63,7 @@ public class PostRest {
     @Produces(MediaType.APPLICATION_JSON)
     public PostDTO createPostRest(PostWithoutVehicleDTO dto) {
         Post post = fromDTO(dto);
-        this.getPostService().save(post);
+        this.getPostService().merge(post);
         return postToPostDTO(post);
     }
 
@@ -190,7 +190,6 @@ public class PostRest {
     //de dto a Post
     private Post fromDTO(PostWithoutVehicleDTO dto){
         Post post = new Post();
-        post.setId(dto.getId());
         post.setVehicle(this.getVehicleService().findVehicleById(dto.getVehicle()));
         post.setCostPerDay(dto.getCostPerDay());
         post.setOwnerUser(this.getUserService().filterUser(dto.getOwnerUser()));

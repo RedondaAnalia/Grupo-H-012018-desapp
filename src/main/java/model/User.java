@@ -5,9 +5,7 @@ import model.exceptions.NameTooLongException;
 import model.exceptions.NameTooShortException;
 import model.exceptions.NoAddressException;
 import model.interfaces.IUserState;
-import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -23,7 +21,7 @@ import java.util.List;
 	 *  - Calculate his own reputation.
 	 */
 
-public class User extends Entity{
+public class User{
 
 	private String CUIL;
 

@@ -4,6 +4,7 @@ import model.Post;
 import model.Rental;
 import model.Reservation;
 import model.User;
+import org.springframework.transaction.annotation.Transactional;
 import persistence.repositories.Initializable;
 import persistence.repositories.PostRepository;
 import persistence.repositories.RentalRepository;
@@ -76,6 +77,7 @@ public class RentalService  extends GenericService<Rental> implements Initializa
         Reservation reservation = user.rent(post,sinceDate, untilDate);
     }
 
+    @Transactional
     public Rental reservationById(int id) {
         return this.getRentalRepository().findById(id);
     }

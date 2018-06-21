@@ -47,8 +47,7 @@ public class VehicleRest {
     public UserWithVehiclesDTO createVehicleRest(VehicleDTO dto){
         Vehicle vehicle = fromDTO(dto);
         this.getVehicleService().save(vehicle);
-        return toDTO(this.getVehicleService().filterVehicleByUser(dto.getOwner()),
-                vehicle.getOwner());
+        return toDTO(this.getVehicleService().filterVehicleByUser(dto.getOwner()), vehicle.getOwner());
     }
 
     @PUT

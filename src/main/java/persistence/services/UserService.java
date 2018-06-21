@@ -6,6 +6,8 @@ import org.springframework.transaction.annotation.Transactional;
 import persistence.repositories.Initializable;
 import persistence.repositories.UserRepository;
 
+import java.util.List;
+
 public class UserService extends GenericService<User> implements Initializable{
 
     private UserRepository repository;
@@ -25,6 +27,7 @@ public class UserService extends GenericService<User> implements Initializable{
 
     @Transactional
     public void initialize() {
+        /*
         this.getRepository().save(UserBuilder.anUser().withCUIL("1").withEmail("a.redonda89@gmail.com").withNameAndSurname("Analia", "Redonda").
                 withCUIL("27298009051").withAddress("Av. Corrientes 1241, C1043AAM CABA, Argentina").build());
         this.getRepository().save(UserBuilder.anUser().withCUIL("2").withEmail("niñita.violenta@gmail.com").withNameAndSurname("Ines", "Sosa").build());
@@ -33,7 +36,7 @@ public class UserService extends GenericService<User> implements Initializable{
         this.getRepository().save(UserBuilder.anUser().withCUIL("5").withEmail("genio_total@gmail.com").withNameAndSurname("Tyrion", "Lannister").build());
         this.getRepository().save(UserBuilder.anUser().withCUIL("6").withEmail("mother_of_dragons@gmail.com").withNameAndSurname("Daenerys", "Targaryen").build());
         this.getRepository().save(UserBuilder.anUser().withCUIL("7").withEmail("espinarys@gmail.com").withNameAndSurname("Espi", "Noso").build());
-
+*/
     }
 
     @Transactional
@@ -55,5 +58,9 @@ public class UserService extends GenericService<User> implements Initializable{
         user.debitCredit(credit);
         this.getRepository().update(user);
         return user;
+    }
+
+    public List<User> findAll() {
+        return this.getRepository().findAll();
     }
 }

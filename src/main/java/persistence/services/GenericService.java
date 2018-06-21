@@ -47,4 +47,9 @@ public class GenericService<T> implements Serializable {
         this.getRepository().deleteAll();
     }
 
+    @Transactional
+    public void merge(final T object){
+        this.getRepository().merge(object);
+    }
+
 }

@@ -50,6 +50,36 @@ public class UserRest{
     }
 
     @GET
+    @Path("/allUsers")
+    @Produces("application/json")
+    public List<UserDTO> findUserByEmailRest(){
+        return deListaUserDTOaListaUser(this.userService.findAll());
+    }
+
+    private List<UserDTO> deListaUserDTOaListaUser(List<User> users){
+        List<UserDTO> dtos = new ArrayList<>();
+        for(User user: users){
+            UserDTO dto = new UserDTO();
+            dto.setAddress(user.getAddress());
+            dto.setCUIL(user.getCUIL());
+            dto.setEmail(user.getEmail());
+            dto.setName(user.getName());
+            dto.setSurname(user.getSurname());
+            dto.setUserName(user.getUserName());
+            //dto.setReputation(user.getReputation());
+            if(user.getStatus().isEnabled())
+                dto.setStatus(true);
+            else
+                dto.setStatus(false);
+            for(Integer s: user.getScores())
+                dto.getScores().add(s);
+            dto.setAccount(user.getAccount().getCredit());
+            dtos.add(dto);
+        }
+        return dtos;
+    }
+
+    @GET
     @Path("/sizeUsers")
     @Produces("application/json")
     public int sizeUsersRest(){
@@ -72,7 +102,7 @@ public class UserRest{
     @Consumes("application/json")
     public UserWithVehiclesDTO updateUserRest(UserDTO dto){
         User user = fromDTO(dto);
-        this.getUserService().update(user);
+        this.getUserService().merge(user);
         return toDTO(this.getVehicleService().filterVehicleByUser(dto.getEmail()), user);
     }
 
@@ -129,6 +159,7 @@ public class UserRest{
         List<VehicleDTO> vehicleDTOS = new ArrayList<>();
         for(Vehicle vehicle : vehicles){
             VehicleDTO dtoV = new VehicleDTO();
+            dtoV.setId(vehicle.getId());
             dtoV.setCapacity(vehicle.getCapacity());
             dtoV.setDescription(vehicle.getDescription());
             dtoV.setType(vehicle.getType());

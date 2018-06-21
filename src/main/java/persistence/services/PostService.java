@@ -28,8 +28,6 @@ public class PostService extends GenericService<Post> implements Initializable{
         return this.getRepository().allPost();
     }
 
-
-
     @Transactional
     public int sizePost() {
         return this.getRepository().count();
@@ -42,7 +40,7 @@ public class PostService extends GenericService<Post> implements Initializable{
 
     @Transactional
     public void initialize() {
-
+/*
         //==== Creacion de usuario ====//
 
 
@@ -108,7 +106,7 @@ public class PostService extends GenericService<Post> implements Initializable{
                         withCostPerDay(150).
                         withLocation("Don Bosco").
                         build());
-
+*/
     }
 
     @Transactional
@@ -120,4 +118,5 @@ public class PostService extends GenericService<Post> implements Initializable{
     public List<Post> postByLocation(String location) {
         return this.getRepository().postByLocation(location);
     }
+
 }
