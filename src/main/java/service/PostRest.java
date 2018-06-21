@@ -115,7 +115,7 @@ public class PostRest {
             mp.setId(p.getId());
             mp.setLocation(p.getLocation());
             mp.setCostPerDay(p.getCostPerDay());
-
+            mp.setPickUpCoord(coordToCoordDTO(p.getPickUpCoord()));
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             String formatSinceDate = p.getSinceDate().format(formatter);
             mp.setSinceDate(formatSinceDate);
