@@ -183,7 +183,6 @@ public class PostRest {
         Coord c = new Coord();
         c.setLat(dto.getLat());
         c.setLng(dto.getLng());
-        c.setId(dto.getId());
         return c;
     }
 

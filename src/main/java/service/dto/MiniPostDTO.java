@@ -5,7 +5,6 @@ import model.Entity;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.time.LocalDateTime;
 
-@XmlRootElement(name="minipost")
 public class MiniPostDTO extends Entity {
 
     private MiniVehicleDTO vehicle;

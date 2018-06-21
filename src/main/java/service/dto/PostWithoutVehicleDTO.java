@@ -5,7 +5,7 @@ import model.Entity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PostWithoutVehicleDTO extends Entity {
+public class PostWithoutVehicleDTO{
 
 
     private int vehicle;
