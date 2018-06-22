@@ -155,7 +155,7 @@ public class PostRest {
     private CoordDTO coordToCoordDTO(Coord c){
         CoordDTO dto = new CoordDTO();
         dto.setLat(c.getLat());
-        dto.setLng(c.getLat());
+        dto.setLng(c.getLng());
         dto.setId(c.getId());
         return dto;
     }
