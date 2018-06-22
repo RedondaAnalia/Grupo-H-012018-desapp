@@ -49,26 +49,24 @@ public class PostTestCase {
     				.withPickUpCoord(null)
     				.build();
     }
-    
+/*
     @Test(expected=NoCoordsEnoughException.class)
     public void shouldThrowAnExceptionWhenNoSetReturnCoords(){
-    	List<Coord> returnCoords= new ArrayList<Coord>();
+    	Coord returnCoords= new Coord();
     	PostBuilder
     				.aPost()
     				.withReturnCoords(returnCoords)
     				.build();
     }
-
+*/
     @Test
     public void shouldBeCreateAPost(){
         Vehicle vehicle= VehicleBuilder.aVehicle().build();
         User ownerUser = UserBuilder.anUser().withCredit(100).build();
 
         Coord coord = new Coord(1,177);
-        ArrayList<Coord> listCoord = new ArrayList<Coord>();
-        listCoord.add(coord);
         assertNotNull(ownerUser.post(vehicle, coord,
-                listCoord, LocalDateTime.now(),
+                coord, LocalDateTime.now(),
                 LocalDateTime.now().plusDays(3L), 100));
 
     }

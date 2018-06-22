@@ -28,7 +28,7 @@ public class UserDisabled extends IUserState{
 
 	}
 
-	public Post post(Vehicle vehicle, User user, Coord pickUpCoord, ArrayList<Coord> returnCoords,
+	public Post post(Vehicle vehicle, User user, Coord pickUpCoord, Coord returnCoords,
 					 LocalDateTime sinceDate, LocalDateTime untilDate, double costPerHour) {
 		throw new UserBlockedException();
 	}

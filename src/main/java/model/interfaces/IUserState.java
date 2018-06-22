@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public abstract class IUserState extends Entity{
 	
 	
-	public Post post(Vehicle vehicle, User user, Coord pickUpCoord,ArrayList<Coord>returnCoords,
+	public Post post(Vehicle vehicle, User user, Coord pickUpCoord,Coord returnCoords,
 			  LocalDateTime sinceDate, LocalDateTime untilDate, double costPerHour){
 		return null;
 	};

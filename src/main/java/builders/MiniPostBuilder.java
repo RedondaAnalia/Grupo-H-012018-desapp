@@ -23,8 +23,7 @@ public class MiniPostBuilder {
     }
 
     public Post build(){
-        List<Coord> lc = new ArrayList<Coord>();
-        lc.add(new Coord(1,1));
+        Coord lc = new Coord(1,1);
         User u = new UserBuilder().withEmail(this.userName).build();
         return new Post(this.vehicle, u, new Coord(1,1),lc,
                 this.sinceDate, this.untilDate, this.costPerDay, null);

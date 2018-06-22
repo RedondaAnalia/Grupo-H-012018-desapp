@@ -18,7 +18,7 @@ public class PostBuilder {
      */
     private User ownerUser = UserBuilder.anUser().build();
     private Coord pickUpCoord = CoordBuilder.anCoord().build();
-    private List<Coord> returnCoords = new ArrayList<Coord>();    
+    private Coord returnCoords = new Coord();
     private LocalDateTime sinceDate= LocalDateTime.now();
     private LocalDateTime untilDate=(LocalDateTime.now().plusDays(3L));
     private double costPerDay;
@@ -26,7 +26,7 @@ public class PostBuilder {
 
     public static PostBuilder aPost(){
         PostBuilder builder= new PostBuilder();
-        builder.returnCoords.add(builder.pickUpCoord);
+        builder.returnCoords=builder.pickUpCoord;
         return builder;
     }
 
@@ -60,7 +60,7 @@ public class PostBuilder {
     	return this;
     }
     
-    public PostBuilder withReturnCoords(List<Coord> returnCoords){
+    public PostBuilder withReturnCoords(Coord returnCoords){
     	this.returnCoords=returnCoords;
     	return this;
     }

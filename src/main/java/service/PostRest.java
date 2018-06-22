@@ -63,7 +63,7 @@ public class PostRest {
     @Produces(MediaType.APPLICATION_JSON)
     public PostDTO createPostRest(PostWithoutVehicleDTO dto) {
         Post post = fromDTO(dto);
-        this.getPostService().merge(post);
+        post = this.getPostService().merge(post);
         return postToPostDTO(post);
     }
 
@@ -147,11 +147,7 @@ public class PostRest {
         dto.setOwnerUser(p.getOwnerUser().getEmail());
         dto.setPhone(p.getPhone());
         dto.setPickUpCoord(coordToCoordDTO(p.getPickUpCoord()));
-        List<CoordDTO> returnCoords = new ArrayList<>();
-        for(Coord c: p.getReturnCoords()){
-                returnCoords.add(coordToCoordDTO(c));
-        }
-        dto.setReturnCoords(returnCoords);
+        dto.setReturnCoords(coordToCoordDTO(p.getReturnCoords()));
         return dto;
     }
 
@@ -159,7 +155,7 @@ public class PostRest {
     private CoordDTO coordToCoordDTO(Coord c){
         CoordDTO dto = new CoordDTO();
         dto.setLat(c.getLat());
-        dto.setLng(c.getLat());
+        dto.setLng(c.getLng());
         dto.setId(c.getId());
         return dto;
     }
@@ -194,12 +190,7 @@ public class PostRest {
         post.setOwnerUser(this.getUserService().filterUser(dto.getOwnerUser()));
         post.setPhone(dto.getPhone());
         post.setPickUpCoord(coordDTOToCoord(dto.getPickUpCoord()));
-
-        List<Coord> cs = new ArrayList<>();
-        for(CoordDTO cdto: dto.getReturnCoords()){
-            cs.add(coordDTOToCoord(cdto));
-        }
-        post.setReturnCoords(cs);
+        post.setReturnCoords(coordDTOToCoord(dto.getReturnCoords()));
         post.setSinceDate(
                 LocalDateTime.of(
                         Integer.valueOf(dto.getSinceDate().substring(0,4)),

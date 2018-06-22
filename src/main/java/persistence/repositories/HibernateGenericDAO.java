@@ -57,9 +57,10 @@ public abstract class HibernateGenericDAO<T>
         this.getHibernateTemplate().flush();
     }
 
-    public void merge(final T entity) {
-        this.getHibernateTemplate().merge(entity);
+    public T merge(final T entity) {
+        T s = this.getHibernateTemplate().merge(entity);
         this.getHibernateTemplate().flush();
+        return s;
     }
 
     public void update(final T entity) {
