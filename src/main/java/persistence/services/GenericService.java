@@ -48,8 +48,8 @@ public class GenericService<T> implements Serializable {
     }
 
     @Transactional
-    public void merge(final T object){
-        this.getRepository().merge(object);
+    public T merge(final T object){
+        return this.getRepository().merge(object);
     }
 
 }
