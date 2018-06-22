@@ -14,7 +14,7 @@ public class Post extends Entity{
 	private Vehicle vehicle;
 	private User ownerUser;
 	private Coord pickUpCoord;
-	private List<Coord> returnCoords= new ArrayList<Coord>();
+	private Coord returnCoords;
 	private LocalDateTime sinceDate;
 	private LocalDateTime UntilDate;
 	private double costPerDay;
@@ -24,7 +24,7 @@ public class Post extends Entity{
 	
 	public Post(){}
 
-	public Post(Vehicle vehicle, User user, Coord pickUpCoord, List<Coord> returnCoords2,
+	public Post(Vehicle vehicle, User user, Coord pickUpCoord, Coord returnCoords2,
                 LocalDateTime sinceDate, LocalDateTime UntilDate, double costPerDay, String location){
 
 		long days= sinceDate.until(UntilDate, ChronoUnit.DAYS);
@@ -35,7 +35,7 @@ public class Post extends Entity{
 		if(!user.isEnabled()){
 		    throw new UserBlockedException();
         }
-		if(pickUpCoord==null || returnCoords2.isEmpty()){
+		if((pickUpCoord == null) || (returnCoords2 == null)){
 			throw new NoCoordsEnoughException();
 		}
 		
@@ -78,11 +78,11 @@ public class Post extends Entity{
 		this.pickUpCoord = pickUpCoord;
 	}
 
-	public List<Coord> getReturnCoords() {
+	public Coord getReturnCoords() {
 		return returnCoords;
 	}
 
-	public void setReturnCoords(List<Coord> returnCoords) {
+	public void setReturnCoords(Coord returnCoords) {
 		this.returnCoords = returnCoords;
 	}
 

@@ -94,7 +94,7 @@ public class User{
 	 */
 
 	//Try to make a post
-	public Post post(Vehicle vehicle, Coord pickUpCoord, ArrayList<Coord> returnCoords,
+	public Post post(Vehicle vehicle, Coord pickUpCoord, Coord returnCoords,
 					 LocalDateTime sinceDate, LocalDateTime UntilDate, double costPerHour){
 		return this.status.post(vehicle,this, pickUpCoord,returnCoords,
 				sinceDate, UntilDate, costPerHour);

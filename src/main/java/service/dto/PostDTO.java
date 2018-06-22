@@ -13,7 +13,7 @@ public class PostDTO extends Entity{
     private VehicleDTO vehicle;
     private String ownerUser;
     private CoordDTO pickUpCoord;
-    private List<CoordDTO> returnCoords= new ArrayList<CoordDTO>();
+    private CoordDTO returnCoords;
     private String sinceDate;
     private String UntilDate;
     private double costPerDay;
@@ -46,11 +46,11 @@ public class PostDTO extends Entity{
         this.pickUpCoord = pickUpCoord;
     }
 
-    public List<CoordDTO> getReturnCoords() {
+    public CoordDTO getReturnCoords() {
         return returnCoords;
     }
 
-    public void setReturnCoords(List<CoordDTO> returnCoords) {
+    public void setReturnCoords(CoordDTO returnCoords) {
         this.returnCoords = returnCoords;
     }
 
