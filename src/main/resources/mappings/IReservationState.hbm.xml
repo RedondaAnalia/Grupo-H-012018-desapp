@@ -7,11 +7,11 @@
 
     <class name="model.interfaces.IReservationState">
         <id name="id" column="id">
-            <generator class="assigned" />
+            <generator class="native" />
         </id>
-        <discriminator insert="false" column="id" />
-        <subclass name="model.states.reservation.ConfirmReservationST" discriminator-value="0"/>
-        <subclass name="model.states.reservation.PendingReservationST" discriminator-value="1"/>
-        <subclass name="model.states.reservation.RejectedReservationST" discriminator-value="2"/>
+        <discriminator column="status" type="string"/>
+        <subclass name="model.states.reservation.PendingReservationST" discriminator-value="Pending"/>
+        <subclass name="model.states.reservation.ConfirmReservationST" discriminator-value="Confirmed"/>
+        <subclass name="model.states.reservation.RejectedReservationST" discriminator-value="Rejected"/>
     </class>
 </hibernate-mapping>

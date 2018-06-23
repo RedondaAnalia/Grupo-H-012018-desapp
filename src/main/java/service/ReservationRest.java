@@ -44,7 +44,8 @@ public class ReservationRest {
                 r.getPost().getId(),
                 r.getReservationSinceDate().format(formatter),
                 r.getReservationUntilDate().format(formatter),
-                r.getStatus().toString(), r.getId());
+                r.getStatus().toString(),
+                r.getId());
     }
 
     @PUT

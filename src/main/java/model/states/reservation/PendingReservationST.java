@@ -17,4 +17,8 @@ public class PendingReservationST extends IReservationState {
         return new Rental(reservation);
     }
 
+    @Override
+    public String toString(){
+        return "Pending";
+    }
 }

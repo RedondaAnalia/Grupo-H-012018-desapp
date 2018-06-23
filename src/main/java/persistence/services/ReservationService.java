@@ -10,6 +10,7 @@ import persistence.repositories.PostRepository;
 import persistence.repositories.ReservationRepository;
 import persistence.repositories.UserRepository;
 
+import javax.ws.rs.core.Response;
 import java.time.LocalDateTime;
 
 public class ReservationService extends GenericService<Reservation> implements Initializable {
@@ -91,8 +92,9 @@ public class ReservationService extends GenericService<Reservation> implements I
     }
 
     @Transactional
-    public void rejectReservation(int idReserv) {
+    public Response rejectReservation(int idReserv) {
         Reservation r = this.getReservationRepository().findById(idReserv);
         r.beReject();
+        return Response.ok().build();
     }
 }

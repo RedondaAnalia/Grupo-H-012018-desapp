@@ -18,4 +18,9 @@ public class ConfirmReservationST extends IReservationState {
         throw new InvalidStatusChangeException
                 ("No podes cambiar el estado de la reserva, de Confirmada a Confirmada");
     }
+
+    @Override
+    public String toString(){
+        return "Confirmed";
+    }
 }

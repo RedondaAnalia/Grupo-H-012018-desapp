@@ -19,4 +19,9 @@ public class RejectedReservationST extends IReservationState {
         throw new InvalidStatusChangeException
                 ("No podes cambiar el estado de la reserva, de Rechazada a Confirmada");
     }
+
+    @Override
+    public String toString(){
+        return "Rejected";
+    }
 }

@@ -61,4 +61,8 @@ public class ReservationDTO extends Entity{
     public void setStatusReservation(String statusReservation) {
         this.statusReservation = statusReservation;
     }
+
+    public String getStatusReservation() {
+        return statusReservation;
+    }
 }
