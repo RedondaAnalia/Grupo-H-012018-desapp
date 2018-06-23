@@ -40,7 +40,7 @@ public class PostService extends GenericService<Post> implements Initializable{
 
     @Transactional
     public void initialize() {
-/*
+
         //==== Creacion de usuario ====//
 
 
@@ -106,7 +106,7 @@ public class PostService extends GenericService<Post> implements Initializable{
                         withCostPerDay(150).
                         withLocation("Don Bosco").
                         build());
-*/
+
     }
 
     @Transactional

@@ -7,25 +7,25 @@ import model.User;
 import org.springframework.transaction.annotation.Transactional;
 import persistence.repositories.Initializable;
 import persistence.repositories.PostRepository;
-import persistence.repositories.RentalRepository;
+import persistence.repositories.ReservationRepository;
 import persistence.repositories.UserRepository;
 
 import java.time.LocalDateTime;
 
-public class RentalService  extends GenericService<Rental> implements Initializable {
+public class ReservationService extends GenericService<Reservation> implements Initializable {
 
-    private RentalRepository rentalRepository;
+    private ReservationRepository reservationRepository;
 
     private UserRepository userRepository;
 
     private PostRepository postRepository;
 
-    public RentalRepository getRentalRepository() {
-        return rentalRepository;
+    public ReservationRepository getReservationRepository() {
+        return reservationRepository;
     }
 
-    public void setRentalRepository(RentalRepository rentalRepository) {
-        this.rentalRepository = rentalRepository;
+    public void setReservationRepository(ReservationRepository reservationRepository) {
+        this.reservationRepository = reservationRepository;
     }
 
     public UserRepository getUserRepository() {
@@ -49,7 +49,8 @@ public class RentalService  extends GenericService<Rental> implements Initializa
 
     }
 
-    public void reservation(int postId,
+    @Transactional
+    public Reservation reservation(int postId,
                             String mail,
                             String reservationSinceDate,
                             String reservationUntilDate) {
@@ -75,10 +76,23 @@ public class RentalService  extends GenericService<Rental> implements Initializa
                 );
 
         Reservation reservation = user.rent(post,sinceDate, untilDate);
+        return this.getReservationRepository().merge(reservation);
     }
 
     @Transactional
-    public Rental reservationById(int id) {
-        return this.getRentalRepository().findById(id);
+    public Reservation reservationById(int id) {
+        return this.getReservationRepository().findById(id);
+    }
+
+    @Transactional
+    public Rental confirmedReservation(Integer id){
+        Reservation r = this.getReservationRepository().findById(id);
+        return r.beConfirm();
+    }
+
+    @Transactional
+    public void rejectReservation(int idReserv) {
+        Reservation r = this.getReservationRepository().findById(idReserv);
+        r.beReject();
     }
 }

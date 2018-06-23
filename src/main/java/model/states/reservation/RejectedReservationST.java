@@ -6,7 +6,7 @@ import model.exceptions.InvalidStatusChangeException;
 import model.interfaces.IReservationState;
 
 
-public class RejectedReservationST implements IReservationState {
+public class RejectedReservationST extends IReservationState {
 
     @Override
     public void beReject(Reservation reservation) {

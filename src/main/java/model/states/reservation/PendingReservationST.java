@@ -5,7 +5,7 @@ import model.Rental;
 import model.Reservation;
 import model.interfaces.IReservationState;
 
-public class PendingReservationST implements IReservationState {
+public class PendingReservationST extends IReservationState {
 
     public void beReject(Reservation reservation) {
         reservation.setStatus(new RejectedReservationST());

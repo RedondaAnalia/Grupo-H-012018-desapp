@@ -1,9 +1,10 @@
 package model.interfaces;
 
+import model.Entity;
 import model.Rental;
 import model.Reservation;
 
-public interface IReservationState {
-    void beReject(Reservation reservation);
-    Rental beConfirm(Reservation reservation);
+public abstract class IReservationState extends Entity{
+    public void beReject(Reservation reservation){}
+    public Rental beConfirm(Reservation reservation){return null;}
 }

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-access="field"
+                   default-cascade="save-update">
+
+    <class name="model.Reservation">
+        <id name="id">
+            <generator class="native"/>
+        </id>
+        <many-to-one name="tenantUser" class="model.User" lazy="false" cascade="all"/>
+        <many-to-one name="post" class="model.Post" lazy="false"  cascade="all"/>
+        <property name="reservationSinceDate" type="java.time.LocalDateTime"/>
+        <property name="reservationUntilDate" type="java.time.LocalDateTime"/>
+        <many-to-one name="statusReservation" class="model.interfaces.IReservationState" lazy="false" cascade="all"/>
+    </class>
+
+</hibernate-mapping>
