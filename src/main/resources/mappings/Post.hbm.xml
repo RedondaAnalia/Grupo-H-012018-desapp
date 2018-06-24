@@ -20,6 +20,8 @@
         <property name="phone"/>
         <property name="costPerDay"/>
         <property name="location"/>
+        <many-to-one name="postState" outer-join="false" not-found="ignore"
+                     class="model.interfaces.IPostState" lazy="false" cascade="all"/>
 
     </class>
 

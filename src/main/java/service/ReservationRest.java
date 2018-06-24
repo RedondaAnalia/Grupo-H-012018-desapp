@@ -114,6 +114,5 @@ public class ReservationRest {
     }
 
     // todas las reservas y rentals por usuario tenant
-    //meterle estado al post (reservado o disponible)
 
 }

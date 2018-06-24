@@ -19,6 +19,7 @@ public class PostDTO extends Entity{
     private double costPerDay;
     private int phone;
     private String location;
+    private String postState;
 
     public PostDTO(){}
 
@@ -92,5 +93,13 @@ public class PostDTO extends Entity{
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getPostState() {
+        return postState;
+    }
+
+    public void setPostState(String postState) {
+        this.postState = postState;
     }
 }

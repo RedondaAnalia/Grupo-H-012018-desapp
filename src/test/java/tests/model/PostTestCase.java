@@ -3,9 +3,7 @@ package tests.model;
 import builders.PostBuilder;
 import builders.UserBuilder;
 import builders.VehicleBuilder;
-import model.Coord;
-import model.User;
-import model.Vehicle;
+import model.*;
 import model.exceptions.NoCoordsEnoughException;
 import model.exceptions.TimeOutOfRangeException;
 import model.exceptions.UserBlockedException;
@@ -68,6 +66,36 @@ public class PostTestCase {
         assertNotNull(ownerUser.post(vehicle, coord,
                 coord, LocalDateTime.now(),
                 LocalDateTime.now().plusDays(3L), 100));
+
+    }
+
+    @Test
+    public void shouldBeCreateAPostInStateAvailable(){
+        Vehicle vehicle= VehicleBuilder.aVehicle().build();
+        User ownerUser = UserBuilder.anUser().withCredit(100).build();
+
+        Coord coord = new Coord(1,177);
+        Post p = ownerUser.post(vehicle, coord,
+                coord, LocalDateTime.now(),
+                LocalDateTime.now().plusDays(3L), 100);
+
+        assertEquals(p.getPostState().toString(),"available");
+
+    }
+
+    @Test
+    public void shouldBeChangeStateToReservedAfterReservationThePost(){
+        Vehicle vehicle= VehicleBuilder.aVehicle().build();
+        User ownerUser = UserBuilder.anUser().withCredit(100).build();
+        User tenantUser = UserBuilder.anUser().withCredit(100).build();
+        Coord coord = new Coord(1,177);
+        Post p = ownerUser.post(vehicle, coord,
+                coord, LocalDateTime.now(),
+                LocalDateTime.now().plusDays(3L), 100);
+
+        tenantUser.rent(p, LocalDateTime.now(), LocalDateTime.now().plusDays(3L));
+
+        assertEquals(p.getPostState().toString(),"reserved");
 
     }
 }
