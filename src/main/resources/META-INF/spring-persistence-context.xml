@@ -115,4 +115,8 @@
 		<property name="sessionFactory" ref="persistence.sessionFactory" />
 	</bean>
 
+	<bean id="persistence.rentalrepository" class="persistence.repositories.RentalRepository" >
+		<property name="sessionFactory" ref="persistence.sessionFactory" />
+	</bean>
+
 </beans>

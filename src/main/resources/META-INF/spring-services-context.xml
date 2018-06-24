@@ -38,6 +38,7 @@
 		<property name="reservationRepository" ref="persistence.reservationrepository" />
 		<property name="userRepository" ref="persistence.userrepository" />
 		<property name="postRepository" ref="persistence.postrepository" />
+		<property name="rentalRepository" ref="persistence.rentalrepository" />
 	</bean>
 
 </beans>

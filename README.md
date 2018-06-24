@@ -56,6 +56,7 @@ http://localhost:8080/desapp-grouph-backend/rest/servicesReservation/createReser
 
 http://localhost:8080/desapp-grouph-backend/rest/servicesReservation/rejectReservation/{idReservation}
 
+http://localhost:8080/desapp-grouph-backend/rest/servicesReservation/confirmedReservation/{}
 
 ------------------------------------------------------------------
     

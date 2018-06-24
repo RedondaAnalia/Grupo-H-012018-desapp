@@ -5,10 +5,7 @@ import model.Rental;
 import model.Reservation;
 import model.User;
 import org.springframework.transaction.annotation.Transactional;
-import persistence.repositories.Initializable;
-import persistence.repositories.PostRepository;
-import persistence.repositories.ReservationRepository;
-import persistence.repositories.UserRepository;
+import persistence.repositories.*;
 
 import javax.ws.rs.core.Response;
 import java.time.LocalDateTime;
@@ -20,6 +17,8 @@ public class ReservationService extends GenericService<Reservation> implements I
     private UserRepository userRepository;
 
     private PostRepository postRepository;
+
+    private RentalRepository rentalRepository;
 
     public ReservationRepository getReservationRepository() {
         return reservationRepository;
@@ -43,6 +42,14 @@ public class ReservationService extends GenericService<Reservation> implements I
 
     public void setPostRepository(PostRepository postRepository) {
         this.postRepository = postRepository;
+    }
+
+    public RentalRepository getRentalRepository() {
+        return rentalRepository;
+    }
+
+    public void setRentalRepository(RentalRepository rentalRepository) {
+        this.rentalRepository = rentalRepository;
     }
 
     @Override
@@ -88,7 +95,7 @@ public class ReservationService extends GenericService<Reservation> implements I
     @Transactional
     public Rental confirmedReservation(Integer id){
         Reservation r = this.getReservationRepository().findById(id);
-        return r.beConfirm();
+        return this.getRentalRepository().merge(r.beConfirm());
     }
 
     @Transactional

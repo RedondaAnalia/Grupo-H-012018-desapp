@@ -5,7 +5,7 @@ import model.Rental;
 import model.exceptions.InvalidStatusChangeException;
 import model.interfaces.IRentalState;
 
-public class PendingRentalST implements IRentalState {
+public class PendingRentalST extends IRentalState {
 
     public void ownerUserConfirmated(Rental rental) {
         rental.setState(new ConfirmedByTheOwnerST());

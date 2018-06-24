@@ -18,8 +18,10 @@ public class Rental extends Entity {
 
     private Reservation reservation;
     private IRentalState state;
-    private LocalDateTime beginRentalTime = null;
+    private LocalDateTime beginRentalTime;
     public static int JOBCOUNT = 0;
+
+    public Rental(){}
 
     public Rental(Reservation reservation){
 

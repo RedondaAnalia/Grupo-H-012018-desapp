@@ -1,11 +1,10 @@
 package service;
 
-import model.Rental;
 import model.Reservation;
 import persistence.services.ReservationService;
-import service.dto.RentalDTO;
 import service.dto.ReservationDTO;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Response;
 import java.time.format.DateTimeFormatter;
 
 @Path("/servicesReservation")
@@ -52,8 +51,14 @@ public class ReservationRest {
     @Path("/confirmedReservation/{idReserv}")
     @Consumes("application/json")
     @Produces("application/json")
-    public RentalDTO confirmedRest(@PathParam("idReserv") final int idReserv){
-        return rentalToRentalDTO(this.getReservationService().confirmedReservation(idReserv));
+    public Response confirmedRest(@PathParam("idReserv") final int idReserv){
+        Response.Status r = Response.Status.OK;
+        try{
+            this.getReservationService().confirmedReservation(idReserv);
+        }catch (RuntimeException e){
+            r = Response.Status.INTERNAL_SERVER_ERROR;
+        }
+        return Response.status(r).build();
     }
 
     @PUT
@@ -66,15 +71,6 @@ public class ReservationRest {
 
     //todas las reservas  y rentals por id usuario owner sin filtrar
     // todas las reservas y rentals por usuario tenant
-
-
-    private RentalDTO rentalToRentalDTO(Rental rental){
-        RentalDTO dto = new RentalDTO();
-        dto.setId(rental.getId());
-        dto.setBeginRentalTime(rental.getBeginRentalTime().format(formatter));
-        dto.setIdReservation(rental.getReservation().getId());
-        //dto.setRentalState(rental.getState());
-        return dto;
-    }
+    //meterle estado al post (reservado o disponible)
 
 }

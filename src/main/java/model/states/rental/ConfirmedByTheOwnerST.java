@@ -5,7 +5,7 @@ import model.Rental;
 import model.exceptions.InvalidStatusChangeException;
 import model.interfaces.IRentalState;
 
-public class ConfirmedByTheOwnerST implements IRentalState {
+public class ConfirmedByTheOwnerST extends IRentalState {
 
     public void ownerUserConfirmated(Rental rental) {
         throw new InvalidStatusChangeException("Ya contamos con la confirmación del dueño");

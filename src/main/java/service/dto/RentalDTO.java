@@ -5,7 +5,7 @@ import model.Entity;
 public class RentalDTO  extends Entity {
 
     private String rentalState;
-    private String beginRentalTime;
+    private long beginRentalTime;
     private int idReservation;
 
     public String getRentalState() {
@@ -16,11 +16,11 @@ public class RentalDTO  extends Entity {
         this.rentalState = rentalState;
     }
 
-    public String getBeginRentalTime() {
+    public long getBeginRentalTime() {
         return beginRentalTime;
     }
 
-    public void setBeginRentalTime(String beginRentalTime) {
+    public void setBeginRentalTime(long beginRentalTime) {
         this.beginRentalTime = beginRentalTime;
     }
 
