@@ -30,4 +30,9 @@ public class ReturnConfirmedByTheOwner extends IRentalState {
                 rental.getTenantUser(), rental.getOwnerUser());
         rental.setState(new FinalizedRentalST());
     }
+
+    @Override
+    public String toString(){
+        return "ReturnConfirmedByTheOwner";
+    }
 }

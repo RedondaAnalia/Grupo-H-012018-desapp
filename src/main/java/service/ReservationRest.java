@@ -1,11 +1,15 @@
 package service;
 
+import model.Rental;
 import model.Reservation;
 import persistence.services.ReservationService;
+import service.dto.RentalDTO;
 import service.dto.ReservationDTO;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 @Path("/servicesReservation")
 public class ReservationRest {
@@ -34,6 +38,14 @@ public class ReservationRest {
     {
         return reservationDTOToReservation(this.getReservationService().
                 reservation(postId,mail,reservationSinceDate, reservationUntilDate));
+    }
+
+    private List<ReservationDTO>listReservationDTOToReservation(List<Reservation> lr){
+        List<ReservationDTO> ldto = new ArrayList<>();
+        for(Reservation r: lr){
+            ldto.add(reservationDTOToReservation(r));
+        }
+        return ldto;
     }
 
     private ReservationDTO reservationDTOToReservation(Reservation r){
@@ -69,7 +81,37 @@ public class ReservationRest {
         this.getReservationService().rejectReservation(idReserv);
     }
 
-    //todas las reservas  y rentals por id usuario owner sin filtrar
+    @GET
+    @Path("/allReservations/{mail}")
+    @Produces("application/json")
+    public List<ReservationDTO> allReservationsRest(@PathParam("mail") final String mail) {
+        return listReservationDTOToReservation(this.getReservationService().findAllReservations(mail));
+    }
+
+    @GET
+    @Path("/allRentals/{mail}")
+    @Produces("application/json")
+    public List<RentalDTO> allRentalsRest(@PathParam("mail") final String mail) {
+        return listRentalToRentalDTO(this.getReservationService().findAllRentals(mail));
+    }
+
+    private List<RentalDTO> listRentalToRentalDTO(List<Rental> lr){
+        List<RentalDTO> ldto = new ArrayList<>();
+        for(Rental r: lr){
+           ldto.add(rentalToRentalDTO(r));
+        }
+        return ldto;
+    }
+
+    private RentalDTO rentalToRentalDTO(Rental r){
+        RentalDTO dto = new RentalDTO();
+        dto.setRentalState(r.getState().toString());
+        dto.setId(r.getId());
+        dto.setIdReservation(r.getReservation().getId());
+        //dto.setBeginRentalTime(r.getRentalTime());
+        return dto;
+    }
+        //todas las reservas  y rentals por id usuario owner sin filtrar
     // todas las reservas y rentals por usuario tenant
     //meterle estado al post (reservado o disponible)
 

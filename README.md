@@ -56,7 +56,11 @@ http://localhost:8080/desapp-grouph-backend/rest/servicesReservation/createReser
 
 http://localhost:8080/desapp-grouph-backend/rest/servicesReservation/rejectReservation/{idReservation}
 
-http://localhost:8080/desapp-grouph-backend/rest/servicesReservation/confirmedReservation/{}
+http://localhost:8080/desapp-grouph-backend/rest/servicesReservation/confirmedReservation/{idReservation}
+
+http://localhost:8080/desapp-grouph-backend/rest/servicesReservation/allReservations/{email}
+
+http://localhost:8080/desapp-grouph-backend/rest/servicesReservation/allRentals/{mail}
 
 ------------------------------------------------------------------
     

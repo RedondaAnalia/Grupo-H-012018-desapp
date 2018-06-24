@@ -9,6 +9,7 @@ import persistence.repositories.*;
 
 import javax.ws.rs.core.Response;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class ReservationService extends GenericService<Reservation> implements Initializable {
 
@@ -104,4 +105,15 @@ public class ReservationService extends GenericService<Reservation> implements I
         r.beReject();
         return Response.ok().build();
     }
+
+    @Transactional
+    public List<Reservation> findAllReservations(String mail) {
+        return this.getReservationRepository().findByUser(mail);
+    }
+
+    @Transactional
+    public List<Rental> findAllRentals(String mail) {
+        return this.getRentalRepository().findByUser(mail);
+    }
+
 }

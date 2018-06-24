@@ -31,4 +31,9 @@ public class ReturnConfirmedByTheTenant extends IRentalState {
     public void tenantUserConfirmated(Rental rental, Integer score, String comment) {
         throw new InvalidStatusChangeException("Ya contamos con la confirmación del inquilino");
     }
+
+    @Override
+    public String toString(){
+        return "ReturnConfirmedByTheTenant";
+    }
 }
