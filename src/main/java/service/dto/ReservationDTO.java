@@ -9,17 +9,19 @@ public class ReservationDTO extends Entity{
     private String reservationSinceDate;
     private String reservationUntilDate;
     private String statusReservation;
+    private String owner;
 
     public ReservationDTO(){}
 
     public ReservationDTO(String tenant, int post,
-                          String sinceDate, String untilDate, String status, int id){
+                          String sinceDate, String untilDate, String status, int id, String owner){
         this.tenantUser=tenant;
         this.post=post;
         this.reservationSinceDate=sinceDate;
         this.reservationUntilDate=untilDate;
         this.statusReservation=status;
         this.setId(id);
+        this.owner=owner;
     }
 
     public String getTenantUser() {
@@ -64,5 +66,13 @@ public class ReservationDTO extends Entity{
 
     public String getStatusReservation() {
         return statusReservation;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 }

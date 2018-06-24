@@ -48,6 +48,9 @@ public class PostService extends GenericService<Post> implements Initializable{
                 withEmail("felipe.gil@gmail.com").
                 withNameAndSurname("Felipe", "Gil").build();
 
+        User bruno = UserBuilder.anUser().withCUIL("1").
+                withEmail("bruno.gil@gmail.com").
+                withNameAndSurname("Bruno", "Gil").build();
 
         //==== Creacion de vehiculos ====//
 
@@ -63,7 +66,7 @@ public class PostService extends GenericService<Post> implements Initializable{
         withPhoto("https://www.actualidadmotor.com/wp-content/uploads/2014/07/historia-camaro-bumblebee-transformers-4-5-e1406538012544.jpg").
         withPhoto("https://patiodeautos.com/img/noticias/bumblebee-proxima.jpg").
         withPhoto("http://img.europapress.es/fotoweb/fotonoticia_20160606130445_1280.jpg").
-        withCapacity(2).withOwner(feli).build();
+        withCapacity(2).withOwner(bruno).build();
 
         //==== Creacion de post ====//
 
@@ -93,7 +96,7 @@ public class PostService extends GenericService<Post> implements Initializable{
 
         this.getRepository().save(
                 PostBuilder.aPost().
-                        withownerUser(feli).
+                        withownerUser(bruno).
                         withVehicle(v3).
                         withCostPerDay(200).
                         withLocation("Wilde").
@@ -101,7 +104,7 @@ public class PostService extends GenericService<Post> implements Initializable{
 
         this.getRepository().save(
                 PostBuilder.aPost().
-                        withownerUser(feli).
+                        withownerUser(bruno).
                         withVehicle(v2).
                         withCostPerDay(150).
                         withLocation("Don Bosco").

@@ -2,6 +2,7 @@ package persistence.repositories;
 
 import model.Reservation;
 import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate4.HibernateCallback;
 import org.springframework.stereotype.Repository;
@@ -23,9 +24,10 @@ public class ReservationRepository
 
         return (List<Reservation>) this.getHibernateTemplate().execute((HibernateCallback) session -> {
             Criteria criteria = session.createCriteria(Reservation.class, "reservation").
-                    createAlias("reservation.post", "post").
+                    setFetchMode("post", FetchMode.JOIN)
+                    .setFetchMode("user", FetchMode.JOIN).
                     createAlias("post.ownerUser", "ownerUser");
-            criteria.add(Restrictions.eq("ownerUser.email", pattern));
+            criteria.add(Restrictions.like("ownerUser.email", pattern));
             return criteria.list();
         });
     }

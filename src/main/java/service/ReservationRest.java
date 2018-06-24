@@ -56,7 +56,8 @@ public class ReservationRest {
                 r.getReservationSinceDate().format(formatter),
                 r.getReservationUntilDate().format(formatter),
                 r.getStatus().toString(),
-                r.getId());
+                r.getId(),
+                r.getPost().getOwnerUser().getEmail());
     }
 
     @PUT
@@ -111,7 +112,7 @@ public class ReservationRest {
         //dto.setBeginRentalTime(r.getRentalTime());
         return dto;
     }
-        //todas las reservas  y rentals por id usuario owner sin filtrar
+
     // todas las reservas y rentals por usuario tenant
     //meterle estado al post (reservado o disponible)
 
