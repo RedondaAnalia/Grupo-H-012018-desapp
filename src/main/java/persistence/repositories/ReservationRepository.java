@@ -40,8 +40,9 @@ public class ReservationRepository
         return (List<Reservation>) this.getHibernateTemplate().execute((HibernateCallback) session -> {
             Criteria criteria = session.createCriteria(Reservation.class, "reservation")
                     .createAlias("reservation.statusReservation", "status").
-            add(Restrictions.like("tenantUser.email", pattern)).
-                    add(Restrictions.eq("status.status","Pending"));
+            add(Restrictions.like("tenantUser.email", pattern));
+            String myArray[] = {"Pending", "Rejected"};
+            criteria.add(Restrictions.in("status.status", myArray));
             return criteria.list();
         });
     }

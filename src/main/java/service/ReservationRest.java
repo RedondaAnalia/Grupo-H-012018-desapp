@@ -90,7 +90,7 @@ public class ReservationRest {
     }
 
     @GET
-    @Path("/allTenantPendingReservations/{mail}")
+    @Path("/allTenantReservations/{mail}")
     @Produces("application/json")
     public List<ReservationDTO> allTenantPendingReservationsRest(@PathParam("mail") final String mail) {
         return listReservationDTOToReservation(this.getReservationService().findAllTenantPendingReservations(mail));
