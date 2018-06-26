@@ -62,7 +62,13 @@ http://localhost:8080/desapp-grouph-backend/rest/servicesReservation/allOwnerPen
 
 http://localhost:8080/desapp-grouph-backend/rest/servicesReservation/allTenantPendingReservations/{email}
 
-http://localhost:8080/desapp-grouph-backend/rest/servicesReservation/allRentals/{mail}
+http://localhost:8080/desapp-grouph-backend/rest/servicesReservation/confirmedRentalByOwner/{idRental}
+
+http://localhost:8080/desapp-grouph-backend/rest/servicesReservation/confirmedRentalByTenant/{idRental}
+
+http://localhost:8080/desapp-grouph-backend/rest/servicesReservation/confirmedReturnByTenant/{idRental}/{score}/{comment}
+
+http://localhost:8080/desapp-grouph-backend/rest/servicesReservation/confirmedReturnByOwner/{idRental}/{score}/{comment}
 
 ------------------------------------------------------------------
     

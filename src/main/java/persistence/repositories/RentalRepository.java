@@ -40,4 +40,22 @@ public class RentalRepository
         r.getState().ownerUserConfirmated(r);
         this.merge(r);
     }
+
+    public void confirmedRentalByTenant(int idRental) {
+        Rental r = this.findById(idRental);
+        r.getState().tenantUserConfirmated(r);
+        this.merge(r);
+    }
+
+    public void confirmedReturnByTenant(int idRental, Integer score, String comment) {
+        Rental r = this.findById(idRental);
+        r.getState().tenantUserConfirmated(r, score, comment);
+        this.merge(r);
+    }
+
+    public void confirmedReturnByOwner(int idRental, Integer score, String comment) {
+        Rental r = this.findById(idRental);
+        r.getState().ownerUserConfirmated(r, score, comment);
+        this.merge(r);
+    }
 }

@@ -121,9 +121,23 @@ public class ReservationService extends GenericService<Reservation> implements I
         return this.getReservationRepository().findByTenantUser(mail);
     }
 
-
     @Transactional
     public void confirmedRentalByOwner(int idRental) {
         this.getRentalRepository().confirmedRentalByOwner(idRental);
+    }
+
+    @Transactional
+    public void confirmedRentalByTenant(int idRental) {
+        this.getRentalRepository().confirmedRentalByTenant(idRental);
+    }
+
+    @Transactional
+    public void confirmedReturnByTenant(int idRental, Integer score, String comment) {
+        this.getRentalRepository().confirmedReturnByTenant(idRental, score, comment);
+    }
+
+    @Transactional
+    public void confirmedReturnByOwner(int idRental, Integer score, String comment) {
+        this.getRentalRepository().confirmedReturnByOwner(idRental, score, comment);
     }
 }

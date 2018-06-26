@@ -96,6 +96,7 @@ public class ReservationRest {
         return listReservationDTOToReservation(this.getReservationService().findAllTenantPendingReservations(mail));
     }
 
+    //FIX ME: falta este pero para el tenant
     @GET
     @Path("/allOwnerRentals/{mail}")
     @Produces("application/json")
@@ -104,6 +105,7 @@ public class ReservationRest {
     }
 
 
+    //el dueño confirma que se llevaron el auto
     @PUT
     @Path("/confirmedRentalByOwner/{idRental}")
     @Consumes("application/json")
@@ -117,6 +119,61 @@ public class ReservationRest {
         }
         return Response.status(r).build();
     }
+
+    // el inquilino confirma que se llevó el auto
+    @PUT
+    @Path("/confirmedRentalByTenant/{idRental}")
+    @Consumes("application/json")
+    @Produces("application/json")
+    public Response confirmedRentalByTenantRest(@PathParam("idRental") final int idRental){
+        Response.Status r = Response.Status.OK;
+        try{
+            this.getReservationService().confirmedRentalByTenant(idRental);
+        }catch (RuntimeException e){
+            r = Response.Status.INTERNAL_SERVER_ERROR;
+        }
+        return Response.status(r).build();
+    }
+
+    // el inquilino confirma que devolvió el vehiculo
+    @PUT
+    @Path("/confirmedReturnByTenant/{idRental}/{score}/{comment}")
+    @Consumes("application/json")
+    @Produces("application/json")
+    public Response confirmedReturnByTenantRest(
+            @PathParam("idRental") int idRental,
+            @PathParam("score") Integer score,
+            @PathParam("comment") String comment
+            ){
+        Response.Status r = Response.Status.OK;
+        try{
+            this.getReservationService().confirmedReturnByTenant(idRental, score, comment);
+        }catch (RuntimeException e){
+            r = Response.Status.INTERNAL_SERVER_ERROR;
+        }
+        return Response.status(r).build();
+    }
+
+    // el dueño confirma que le devolvieron el vehiculo
+    @PUT
+    @Path("/confirmedReturnByOwner/{idRental}/{score}/{comment}")
+    @Consumes("application/json")
+    @Produces("application/json")
+    public Response confirmedReturnByOwnerRest(
+            @PathParam("idRental") int idRental,
+            @PathParam("score") Integer score,
+            @PathParam("comment") String comment
+    ){
+       Response.Status r = Response.Status.OK;
+        try{
+            this.getReservationService().confirmedReturnByOwner(idRental, score, comment);
+        }catch (RuntimeException e){
+            r = Response.Status.INTERNAL_SERVER_ERROR;
+        }
+        return Response.status(r).build();
+    }
+
+
 
     private List<RentalDTO> listRentalToRentalDTO(List<Rental> lr){
         List<RentalDTO> ldto = new ArrayList<>();
