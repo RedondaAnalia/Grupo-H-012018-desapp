@@ -50,41 +50,25 @@ http://localhost:8080/desapp-grouph-backend/rest/servicesPost/PostByType/{catego
 
 [no pedido] http://localhost:8080/desapp-grouph-backend/rest/servicesPost/sizePost
 
-RENT
+RESERVATION
 
-http://localhost:8080/desapp-grouph-backend/rest/servicesRental/createReservation/{idPost}/{mail}/{siceDate}/{sinceDate}
+http://localhost:8080/desapp-grouph-backend/rest/servicesReservation/createReservation/{idPost}/{mail}/{siceDate}/{sinceDate}
 
+http://localhost:8080/desapp-grouph-backend/rest/servicesReservation/rejectReservation/{idReservation}
 
+http://localhost:8080/desapp-grouph-backend/rest/servicesReservation/confirmedReservation/{idReservation}
 
-PRODUCCIÓN
+http://localhost:8080/desapp-grouph-backend/rest/servicesReservation/allOwnerPendingReservations/{email}
 
-USER 
+http://localhost:8080/desapp-grouph-backend/rest/servicesReservation/allTenantPendingReservations/{email}
 
-(GET) https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/servicesUsers/findUserByEmail/{parametro}
+http://localhost:8080/desapp-grouph-backend/rest/servicesReservation/confirmedRentalByOwner/{idRental}
 
-(POST) https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/servicesUsers/createUser
+http://localhost:8080/desapp-grouph-backend/rest/servicesReservation/confirmedRentalByTenant/{idRental}
 
-(PUT) https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/servicesUsers/updateUser
+http://localhost:8080/desapp-grouph-backend/rest/servicesReservation/confirmedReturnByTenant/{idRental}/{score}/{comment}
 
-(GET) https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/servicesUsers/sizeUsers
-
-POST
-
-(GET) https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/servicesPost/allMiniPost
-
-https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/servicesPost/createPost
-
-
-VEHICLE
-
-(GET) https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/servicesVehicle/findVehicleById/{id}
-
-(POST) https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/servicesVehicle/createVehicle/
-
-(PUT) https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/servicesVehicle/updateVehicle/
-
-(DELETE) https://carpnd-grupoh-012018-desapp.herokuapp.com/rest/servicesVehicle/deleteVehicle/{id}
-
+http://localhost:8080/desapp-grouph-backend/rest/servicesReservation/confirmedReturnByOwner/{idRental}/{score}/{comment}
 
 ------------------------------------------------------------------
     

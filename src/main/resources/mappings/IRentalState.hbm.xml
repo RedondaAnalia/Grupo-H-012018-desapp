@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-access="field" default-cascade="save-update">
+
+    <class name="model.interfaces.IRentalState">
+        <id name="id" column="id">
+            <generator class="native" />
+        </id>
+        <discriminator column="status" type="string"/>
+        <property name="status" insert="false" update="false"/>
+        <subclass name="model.states.rental.ConfirmedByTheOwnerST" discriminator-value="ConfirmedByTheOwner"/>
+        <subclass name="model.states.rental.ConfirmedByTheTenantST" discriminator-value="ConfirmedByTheTenant"/>
+        <subclass name="model.states.rental.FinalizedRentalST" discriminator-value="FinalizedRental"/>
+        <subclass name="model.states.rental.PendingRentalST" discriminator-value="PendingRental"/>
+        <subclass name="model.states.rental.PendingReturnRentalST" discriminator-value="PendingReturnRental"/>
+        <subclass name="model.states.rental.ReturnConfirmedByTheOwner" discriminator-value="ReturnConfirmedByTheOwner"/>
+        <subclass name="model.states.rental.ReturnConfirmedByTheTenant" discriminator-value="ReturnConfirmedByTheTenant"/>
+    </class>
+</hibernate-mapping>

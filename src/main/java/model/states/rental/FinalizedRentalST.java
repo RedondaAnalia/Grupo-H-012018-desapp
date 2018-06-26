@@ -5,7 +5,7 @@ import model.Rental;
 import model.exceptions.InvalidStatusChangeException;
 import model.interfaces.IRentalState;
 
-public class FinalizedRentalST implements IRentalState {
+public class FinalizedRentalST extends IRentalState {
     public void ownerUserConfirmated(Rental rental) {
         throw new InvalidStatusChangeException("El alquiler ya se encuentra finalizado");
     }
@@ -20,5 +20,10 @@ public class FinalizedRentalST implements IRentalState {
 
     public void tenantUserConfirmated(Rental rental, Integer score, String comment) {
         throw new InvalidStatusChangeException("El alquiler ya se encuentra finalizado");
+    }
+
+    @Override
+    public String toString(){
+        return "FinalizedRental";
     }
 }

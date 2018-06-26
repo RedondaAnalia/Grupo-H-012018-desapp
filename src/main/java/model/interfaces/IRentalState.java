@@ -1,14 +1,20 @@
 package model.interfaces;
 
 
+import model.Entity;
 import model.Rental;
 
-public interface IRentalState {
+import javax.xml.bind.annotation.XmlRootElement;
 
-    void ownerUserConfirmated(Rental rental);
-    void tenantUserConfirmated(Rental rental);
+@XmlRootElement(name="statusRentalT")
+public abstract class IRentalState extends Entity{
 
-    void ownerUserConfirmated(Rental rental, Integer score, String comment);
-    void tenantUserConfirmated(Rental rental, Integer score, String comment);
+    private String status;
+
+    public void ownerUserConfirmated(Rental rental){};
+    public void tenantUserConfirmated(Rental rental){};
+
+    public void ownerUserConfirmated(Rental rental, Integer score, String comment){};
+    public void tenantUserConfirmated(Rental rental, Integer score, String comment){};
 
 }

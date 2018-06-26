@@ -148,6 +148,7 @@ public class PostRest {
         dto.setPhone(p.getPhone());
         dto.setPickUpCoord(coordToCoordDTO(p.getPickUpCoord()));
         dto.setReturnCoords(coordToCoordDTO(p.getReturnCoords()));
+        dto.setPostState(p.getPostState().toString());
         return dto;
     }
 

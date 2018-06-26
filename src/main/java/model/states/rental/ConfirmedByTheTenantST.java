@@ -4,7 +4,7 @@ import model.Rental;
 import model.exceptions.InvalidStatusChangeException;
 import model.interfaces.IRentalState;
 
-public class ConfirmedByTheTenantST implements IRentalState {
+public class ConfirmedByTheTenantST extends IRentalState {
 
     public void ownerUserConfirmated(Rental rental) {
         rental.startRentalTime();
@@ -21,5 +21,10 @@ public class ConfirmedByTheTenantST implements IRentalState {
 
     public void tenantUserConfirmated(Rental rental, Integer score, String comment) {
         throw new InvalidStatusChangeException("Estado inválido");
+    }
+
+    @Override
+    public String toString(){
+        return "ConfirmedByTheTenant";
     }
 }

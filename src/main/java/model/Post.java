@@ -3,11 +3,10 @@ package model;
 import model.exceptions.NoCoordsEnoughException;
 import model.exceptions.TimeOutOfRangeException;
 import model.exceptions.UserBlockedException;
-
+import model.interfaces.IPostState;
+import model.states.post.AvailablePostST;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Post extends Entity{
 
@@ -20,6 +19,7 @@ public class Post extends Entity{
 	private double costPerDay;
 	private int phone;
 	private String location;
+	private IPostState postState;
 
 	
 	public Post(){}
@@ -48,6 +48,7 @@ public class Post extends Entity{
 		//this.phone = phone;
         this.costPerDay = costPerDay;
         this.location= location;
+        this.postState= new AvailablePostST();
 	}
 	
 	public double getCostPerDay(){
@@ -120,5 +121,13 @@ public class Post extends Entity{
 
 	public void setLocation(String location) {
 		this.location = location;
+	}
+
+	public IPostState getPostState() {
+		return postState;
+	}
+
+	public void setPostState(IPostState postState) {
+		this.postState = postState;
 	}
 }

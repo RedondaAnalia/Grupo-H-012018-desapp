@@ -4,8 +4,8 @@ import model.Coord;
 
 public class CoordBuilder {
 	
-	private double lat= 0.0;
-	private double lng= 0.0;
+	private double lat= -34.60103330781445;
+	private double lng= -58.38310718536377;
 	
 	public static CoordBuilder anCoord(){
 		return new CoordBuilder();

@@ -4,8 +4,6 @@ CREATE DATABASE unqdb;
 
 USE unqdb;
 
-select * from Post;
-
 select * from User;
 
 select * from User_scores;
@@ -16,4 +14,12 @@ select * from Vehicle;
 
 select * from Vehicle_photos;
 
+select * from Post;
+
 select * from Coord;
+
+desc User;
+
+select * from IReservationState;
+
+select * from Reservation;

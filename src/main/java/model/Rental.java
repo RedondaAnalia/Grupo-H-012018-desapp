@@ -14,12 +14,14 @@ import static org.quartz.JobBuilder.newJob;
 import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
 import static org.quartz.TriggerBuilder.newTrigger;
 
-public class Rental {
+public class Rental extends Entity {
 
     private Reservation reservation;
     private IRentalState state;
-    private LocalDateTime beginRentalTime = null;
+    private LocalDateTime beginRentalTime;
     public static int JOBCOUNT = 0;
+
+    public Rental(){}
 
     public Rental(Reservation reservation){
 
@@ -113,5 +115,13 @@ public class Rental {
 
     public LocalDateTime getBeginRentalTime(){
         return this.beginRentalTime;
+    }
+
+    public Reservation getReservation() {
+        return reservation;
+    }
+
+    public void setReservation(Reservation reservation) {
+        this.reservation = reservation;
     }
 }

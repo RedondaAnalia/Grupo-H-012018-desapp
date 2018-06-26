@@ -9,7 +9,7 @@ import model.interfaces.IRentalState;
 
 import java.time.LocalDateTime;
 
-public class ReturnConfirmedByTheOwner implements IRentalState {
+public class ReturnConfirmedByTheOwner extends IRentalState {
 
     public void ownerUserConfirmated(Rental rental) {
         throw new InvalidStatusChangeException("Estado inválido");
@@ -29,5 +29,10 @@ public class ReturnConfirmedByTheOwner implements IRentalState {
         AccountManager.processPayment(rental.rentCost(endRentalTime),
                 rental.getTenantUser(), rental.getOwnerUser());
         rental.setState(new FinalizedRentalST());
+    }
+
+    @Override
+    public String toString(){
+        return "ReturnConfirmedByTheOwner";
     }
 }

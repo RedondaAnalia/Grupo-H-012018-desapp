@@ -5,21 +5,26 @@ import model.Rental;
 import model.exceptions.InvalidStatusChangeException;
 import model.interfaces.IRentalState;
 
-public class PendingReturnRentalST implements IRentalState {
+public class PendingReturnRentalST extends IRentalState {
 
     public void ownerUserConfirmated(Rental rental) {
-        rental.setState(new ReturnConfirmedByTheOwner());
+        throw new InvalidStatusChangeException("Estado inválido");
     }
 
     public void tenantUserConfirmated(Rental rental) {
-        rental.setState(new ReturnConfirmedByTheTenant());
+        throw new InvalidStatusChangeException("Estado inválido");
     }
 
     public void ownerUserConfirmated(Rental rental, Integer score, String comment) {
-        throw new InvalidStatusChangeException("Estado inválido");
+        rental.setState(new ReturnConfirmedByTheOwner());
     }
 
     public void tenantUserConfirmated(Rental rental, Integer score, String comment) {
-        throw new InvalidStatusChangeException("Estado inválido");
+        rental.setState(new ReturnConfirmedByTheTenant());
+    }
+
+    @Override
+    public String toString(){
+        return "PendingReturnRental";
     }
 }
