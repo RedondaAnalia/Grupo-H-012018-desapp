@@ -58,7 +58,7 @@ http://localhost:8080/desapp-grouph-backend/rest/servicesReservation/rejectReser
 
 http://localhost:8080/desapp-grouph-backend/rest/servicesReservation/confirmedReservation/{idReservation}
 
-http://localhost:8080/desapp-grouph-backend/rest/servicesReservation/allReservations/{email}
+http://localhost:8080/desapp-grouph-backend/rest/servicesReservation/allOwnerPendingReservations/{email}
 
 http://localhost:8080/desapp-grouph-backend/rest/servicesReservation/allRentals/{mail}
 

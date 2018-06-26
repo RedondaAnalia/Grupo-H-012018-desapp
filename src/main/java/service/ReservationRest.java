@@ -83,14 +83,14 @@ public class ReservationRest {
     }
 
     @GET
-    @Path("/allReservations/{mail}")
+    @Path("/allOwnerPendingReservations/{mail}")
     @Produces("application/json")
     public List<ReservationDTO> allReservationsRest(@PathParam("mail") final String mail) {
-        return listReservationDTOToReservation(this.getReservationService().findAllReservations(mail));
+        return listReservationDTOToReservation(this.getReservationService().findAllOwnerPendingReservations(mail));
     }
 
     @GET
-    @Path("/allRentals/{mail}")
+    @Path("/allOwnerRentals/{mail}")
     @Produces("application/json")
     public List<RentalDTO> allRentalsRest(@PathParam("mail") final String mail) {
         return listRentalToRentalDTO(this.getReservationService().findAllRentals(mail));

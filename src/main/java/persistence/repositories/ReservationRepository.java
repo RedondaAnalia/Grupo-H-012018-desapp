@@ -20,14 +20,16 @@ public class ReservationRepository
     }
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    public List<Reservation> findByUser(final String pattern){
+    public List<Reservation> findByOwnerUser(final String pattern){
 
         return (List<Reservation>) this.getHibernateTemplate().execute((HibernateCallback) session -> {
             Criteria criteria = session.createCriteria(Reservation.class, "reservation").
                     setFetchMode("post", FetchMode.JOIN)
                     .setFetchMode("user", FetchMode.JOIN).
-                    createAlias("post.ownerUser", "ownerUser");
+                    createAlias("post.ownerUser", "ownerUser")
+                    .createAlias("reservation.statusReservation", "status");
             criteria.add(Restrictions.like("ownerUser.email", pattern));
+                    criteria.add(Restrictions.eq("status.status","Pending"));
             return criteria.list();
         });
     }

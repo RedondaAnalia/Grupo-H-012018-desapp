@@ -6,10 +6,11 @@
 <hibernate-mapping default-access="field" default-cascade="save-update">
 
     <class name="model.interfaces.IReservationState">
-        <id name="id" column="id">
+        <id name="id" column="idReservationState">
             <generator class="native" />
         </id>
         <discriminator column="status" type="string"/>
+        <property name="status" insert="false" update="false"/>
         <subclass name="model.states.reservation.PendingReservationST" discriminator-value="Pending"/>
         <subclass name="model.states.reservation.ConfirmReservationST" discriminator-value="Confirmed"/>
         <subclass name="model.states.reservation.RejectedReservationST" discriminator-value="Rejected"/>

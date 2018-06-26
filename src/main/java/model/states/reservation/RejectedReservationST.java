@@ -8,6 +8,8 @@ import model.interfaces.IReservationState;
 
 public class RejectedReservationST extends IReservationState {
 
+    private String status = "Rejected";
+
     @Override
     public void beReject(Reservation reservation) {
         throw new InvalidStatusChangeException
@@ -22,6 +24,6 @@ public class RejectedReservationST extends IReservationState {
 
     @Override
     public String toString(){
-        return "Rejected";
+        return this.status;
     }
 }

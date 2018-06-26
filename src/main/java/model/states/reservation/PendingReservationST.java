@@ -7,6 +7,8 @@ import model.interfaces.IReservationState;
 
 public class PendingReservationST extends IReservationState {
 
+    private String status="Pending";
+
     public void beReject(Reservation reservation) {
         reservation.setStatus(new RejectedReservationST());
     }
@@ -19,6 +21,6 @@ public class PendingReservationST extends IReservationState {
 
     @Override
     public String toString(){
-        return "Pending";
+        return this.status;
     }
 }

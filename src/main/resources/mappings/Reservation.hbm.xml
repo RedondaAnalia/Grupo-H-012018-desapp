@@ -15,7 +15,7 @@
         <many-to-one name="post" class="model.Post" lazy="false"  cascade="all"/>
         <property name="reservationSinceDate" type="java.time.LocalDateTime"/>
         <property name="reservationUntilDate" type="java.time.LocalDateTime"/>
-        <many-to-one name="statusReservation" outer-join="false" not-found="ignore"
+        <many-to-one name="statusReservation" column="idReservationState"
                      class="model.interfaces.IReservationState" lazy="false" cascade="all"/>
     </class>
 
