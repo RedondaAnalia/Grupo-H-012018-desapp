@@ -60,6 +60,8 @@ http://localhost:8080/desapp-grouph-backend/rest/servicesReservation/confirmedRe
 
 http://localhost:8080/desapp-grouph-backend/rest/servicesReservation/allOwnerPendingReservations/{email}
 
+http://localhost:8080/desapp-grouph-backend/rest/servicesReservation/allTenantPendingReservations/{email}
+
 http://localhost:8080/desapp-grouph-backend/rest/servicesReservation/allRentals/{mail}
 
 ------------------------------------------------------------------

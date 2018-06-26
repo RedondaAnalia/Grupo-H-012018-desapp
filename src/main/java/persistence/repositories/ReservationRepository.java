@@ -33,4 +33,16 @@ public class ReservationRepository
             return criteria.list();
         });
     }
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    public List<Reservation> findByTenantUser(final String pattern){
+
+        return (List<Reservation>) this.getHibernateTemplate().execute((HibernateCallback) session -> {
+            Criteria criteria = session.createCriteria(Reservation.class, "reservation")
+                    .createAlias("reservation.statusReservation", "status").
+            add(Restrictions.like("tenantUser.email", pattern)).
+                    add(Restrictions.eq("status.status","Pending"));
+            return criteria.list();
+        });
+    }
 }

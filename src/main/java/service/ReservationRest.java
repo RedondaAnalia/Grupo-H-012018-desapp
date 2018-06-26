@@ -85,8 +85,15 @@ public class ReservationRest {
     @GET
     @Path("/allOwnerPendingReservations/{mail}")
     @Produces("application/json")
-    public List<ReservationDTO> allReservationsRest(@PathParam("mail") final String mail) {
+    public List<ReservationDTO> allOwnerPendingReservationsRest(@PathParam("mail") final String mail) {
         return listReservationDTOToReservation(this.getReservationService().findAllOwnerPendingReservations(mail));
+    }
+
+    @GET
+    @Path("/allTenantPendingReservations/{mail}")
+    @Produces("application/json")
+    public List<ReservationDTO> allTenantPendingReservationsRest(@PathParam("mail") final String mail) {
+        return listReservationDTOToReservation(this.getReservationService().findAllTenantPendingReservations(mail));
     }
 
     @GET
@@ -112,7 +119,5 @@ public class ReservationRest {
         //dto.setBeginRentalTime(r.getRentalTime());
         return dto;
     }
-
-    // todas las reservas y rentals por usuario tenant
 
 }
