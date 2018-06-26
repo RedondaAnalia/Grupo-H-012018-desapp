@@ -96,12 +96,18 @@ public class ReservationRest {
         return listReservationDTOToReservation(this.getReservationService().findAllTenantPendingReservations(mail));
     }
 
-    //FIX ME: falta este pero para el tenant
     @GET
     @Path("/allOwnerRentals/{mail}")
     @Produces("application/json")
     public List<RentalDTO> allRentalsRest(@PathParam("mail") final String mail) {
         return listRentalToRentalDTO(this.getReservationService().findAllOwnerRentals(mail));
+    }
+
+    @GET
+    @Path("/allTenantRentals/{mail}")
+    @Produces("application/json")
+    public List<RentalDTO> allRentalsTenantRest(@PathParam("mail") final String mail) {
+        return listRentalToRentalDTO(this.getReservationService().findAllTenantRentals(mail));
     }
 
 

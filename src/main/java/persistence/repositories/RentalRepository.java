@@ -25,12 +25,24 @@ public class RentalRepository
             Criteria criteria = session.createCriteria(Rental.class, "rental").
                     createAlias("rental.reservation", "reservation").
                     createAlias("reservation.post", "post").
-                    createAlias("post.ownerUser", "ownerUser")
-                    .createAlias("rental.state", "state");
+                    createAlias("post.ownerUser", "ownerUser");
+              //      .createAlias("rental.state", "state");
             criteria.add(Restrictions.eq("ownerUser.email", pattern));
 
-            String myArray[] = {"PendingRental", "PendingReturnRental"};
-            criteria.add(Restrictions.in("state.status", myArray));
+            //String myArray[] = {"PendingRental", "PendingReturnRental"};
+            //criteria.add(Restrictions.in("state.status", myArray));
+            return criteria.list();
+        });
+    }
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    public List<Rental> findByTenantUser(final String pattern){
+
+        return (List<Rental>) this.getHibernateTemplate().execute((HibernateCallback) session -> {
+            Criteria criteria = session.createCriteria(Rental.class, "rental").
+                    createAlias("rental.reservation", "reservation").
+                    createAlias("reservation.tenantUser", "tenantUser");
+            criteria.add(Restrictions.eq("tenantUser.email", pattern));
             return criteria.list();
         });
     }
