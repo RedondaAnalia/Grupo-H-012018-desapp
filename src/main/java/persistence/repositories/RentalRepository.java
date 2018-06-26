@@ -26,11 +26,18 @@ public class RentalRepository
                     createAlias("rental.reservation", "reservation").
                     createAlias("reservation.post", "post").
                     createAlias("post.ownerUser", "ownerUser")
-                    .createAlias("rental.state", "status");
+                    .createAlias("rental.state", "state");
             criteria.add(Restrictions.eq("ownerUser.email", pattern));
-            criteria.add(Restrictions.or(Restrictions.eq("status.status","PendingRental")));
-            criteria.add(Restrictions.or(Restrictions.eq("status.status","PendingReturnRental")));
+
+            String myArray[] = {"PendingRental", "PendingReturnRental"};
+            criteria.add(Restrictions.in("state.status", myArray));
             return criteria.list();
         });
+    }
+
+    public void confirmedRentalByOwner(int idRental) {
+        Rental r = this.findById(idRental);
+        r.getState().ownerUserConfirmated(r);
+        this.merge(r);
     }
 }

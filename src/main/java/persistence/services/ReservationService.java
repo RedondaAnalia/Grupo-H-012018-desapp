@@ -121,4 +121,9 @@ public class ReservationService extends GenericService<Reservation> implements I
         return this.getReservationRepository().findByTenantUser(mail);
     }
 
+
+    @Transactional
+    public void confirmedRentalByOwner(int idRental) {
+        this.getRentalRepository().confirmedRentalByOwner(idRental);
+    }
 }

@@ -103,6 +103,21 @@ public class ReservationRest {
         return listRentalToRentalDTO(this.getReservationService().findAllOwnerRentals(mail));
     }
 
+
+    @PUT
+    @Path("/confirmedRentalByOwner/{idRental}")
+    @Consumes("application/json")
+    @Produces("application/json")
+    public Response confirmedRentalByOwnerRest(@PathParam("idRental") final int idRental){
+        Response.Status r = Response.Status.OK;
+        try{
+            this.getReservationService().confirmedRentalByOwner(idRental);
+        }catch (RuntimeException e){
+            r = Response.Status.INTERNAL_SERVER_ERROR;
+        }
+        return Response.status(r).build();
+    }
+
     private List<RentalDTO> listRentalToRentalDTO(List<Rental> lr){
         List<RentalDTO> ldto = new ArrayList<>();
         for(Rental r: lr){
