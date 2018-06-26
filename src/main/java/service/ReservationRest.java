@@ -100,7 +100,7 @@ public class ReservationRest {
     @Path("/allOwnerRentals/{mail}")
     @Produces("application/json")
     public List<RentalDTO> allRentalsRest(@PathParam("mail") final String mail) {
-        return listRentalToRentalDTO(this.getReservationService().findAllRentals(mail));
+        return listRentalToRentalDTO(this.getReservationService().findAllOwnerRentals(mail));
     }
 
     private List<RentalDTO> listRentalToRentalDTO(List<Rental> lr){

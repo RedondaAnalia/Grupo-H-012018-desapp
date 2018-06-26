@@ -19,14 +19,17 @@ public class RentalRepository
     }
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    public List<Rental> findByUser(final String pattern){
+    public List<Rental> findByOwnerUser(final String pattern){
 
         return (List<Rental>) this.getHibernateTemplate().execute((HibernateCallback) session -> {
             Criteria criteria = session.createCriteria(Rental.class, "rental").
                     createAlias("rental.reservation", "reservation").
                     createAlias("reservation.post", "post").
-                    createAlias("post.ownerUser", "ownerUser");
+                    createAlias("post.ownerUser", "ownerUser")
+                    .createAlias("rental.state", "status");
             criteria.add(Restrictions.eq("ownerUser.email", pattern));
+            criteria.add(Restrictions.or(Restrictions.eq("status.status","PendingRental")));
+            criteria.add(Restrictions.or(Restrictions.eq("status.status","PendingReturnRental")));
             return criteria.list();
         });
     }

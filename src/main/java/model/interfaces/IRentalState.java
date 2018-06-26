@@ -4,7 +4,12 @@ package model.interfaces;
 import model.Entity;
 import model.Rental;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name="statusRentalT")
 public abstract class IRentalState extends Entity{
+
+    private String status;
 
     public void ownerUserConfirmated(Rental rental){};
     public void tenantUserConfirmated(Rental rental){};

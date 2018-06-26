@@ -112,8 +112,8 @@ public class ReservationService extends GenericService<Reservation> implements I
     }
 
     @Transactional
-    public List<Rental> findAllRentals(String mail) {
-        return this.getRentalRepository().findByUser(mail);
+    public List<Rental> findAllOwnerRentals(String mail) {
+        return this.getRentalRepository().findByOwnerUser(mail);
     }
 
     @Transactional

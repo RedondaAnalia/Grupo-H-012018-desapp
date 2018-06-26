@@ -12,7 +12,7 @@
             <generator class="native"/>
         </id>
         <many-to-one name="reservation" class="model.Reservation" lazy="false" cascade="all"/>
-        <many-to-one name="state" outer-join="false" not-found="ignore"
+        <many-to-one name="state" column="idRentalState"
                      class="model.interfaces.IRentalState" lazy="false" cascade="all"/>
         <property name="beginRentalTime"/>
     </class>

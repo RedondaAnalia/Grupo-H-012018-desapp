@@ -10,6 +10,7 @@
             <generator class="native" />
         </id>
         <discriminator column="status" type="string"/>
+        <property name="status" insert="false" update="false"/>
         <subclass name="model.states.rental.ConfirmedByTheOwnerST" discriminator-value="ConfirmedByTheOwner"/>
         <subclass name="model.states.rental.ConfirmedByTheTenantST" discriminator-value="ConfirmedByTheTenant"/>
         <subclass name="model.states.rental.FinalizedRentalST" discriminator-value="FinalizedRental"/>
