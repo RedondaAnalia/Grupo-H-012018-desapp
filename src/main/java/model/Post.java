@@ -22,7 +22,9 @@ public class Post extends Entity{
 	private IPostState postState;
 
 	
-	public Post(){}
+	public Post(){
+		this.postState= new AvailablePostST();
+	}
 
 	public Post(Vehicle vehicle, User user, Coord pickUpCoord, Coord returnCoords2,
                 LocalDateTime sinceDate, LocalDateTime UntilDate, double costPerDay, String location){
