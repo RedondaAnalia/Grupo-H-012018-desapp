@@ -20,6 +20,8 @@ public class Rental extends Entity {
     private IRentalState state;
     private LocalDateTime beginRentalTime;
     public static int JOBCOUNT = 0;
+    private String ownerComment;
+    private String tenantComment;
 
     public Rental(){}
 
@@ -123,5 +125,21 @@ public class Rental extends Entity {
 
     public void setReservation(Reservation reservation) {
         this.reservation = reservation;
+    }
+
+    public String getOwnerComment() {
+        return ownerComment;
+    }
+
+    public void setOwnerComment(String ownerComment) {
+        this.ownerComment = ownerComment;
+    }
+
+    public String getTenantComment() {
+        return tenantComment;
+    }
+
+    public void setTenantComment(String tenantComment) {
+        this.tenantComment = tenantComment;
     }
 }
