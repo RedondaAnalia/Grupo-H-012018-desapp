@@ -11,6 +11,7 @@ import service.dto.UserWithVehiclesDTO;
 import service.dto.VehicleDTO;
 
 import javax.ws.rs.*;
+import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -90,10 +91,16 @@ public class UserRest{
     @Path("/createUser/")
     @Produces("application/json")
     @Consumes("application/json")
-    public UserWithVehiclesDTO createUserRest(UserDTO dto){
+    public Response createUserRest(UserDTO dto){
         User user = fromDTOToCreate(dto);
         this.getUserService().save(user);
-        return toDTO(this.getVehicleService().filterVehicleByUser(dto.getEmail()), user);
+        UserWithVehiclesDTO r;
+        try {
+            r = toDTO(this.getVehicleService().filterVehicleByUser(dto.getEmail()), user);
+        }catch (RuntimeException e){
+            throw e;
+        }
+        return Response.ok(r).build();
     }
 
     @PUT
