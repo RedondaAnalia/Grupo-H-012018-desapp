@@ -3,7 +3,6 @@ package model.states.rental;
 
 import model.AccountManager;
 import model.Rental;
-import model.Review;
 import model.exceptions.InvalidStatusChangeException;
 import model.interfaces.IRentalState;
 
@@ -29,6 +28,7 @@ public class ReturnConfirmedByTheOwner extends IRentalState {
         AccountManager.processPayment(rental.rentCost(endRentalTime),
                 rental.getTenantUser(), rental.getOwnerUser());
         rental.setState(new FinalizedRentalST());
+        rental.setTenantComment(comment);
     }
 
     @Override

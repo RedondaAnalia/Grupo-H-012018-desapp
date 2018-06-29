@@ -223,6 +223,8 @@ public class ReservationRest {
         dto.setRentalState(r.getState().toString());
         dto.setId(r.getId());
         dto.setReservation(reservationDTOToReservation(r.getReservation()));
+        dto.setOwnerComment(r.getOwnerComment());
+        dto.setTenantComment(r.getTenantComment());
         //dto.setBeginRentalTime(r.getRentalTime());
         return dto;
     }
