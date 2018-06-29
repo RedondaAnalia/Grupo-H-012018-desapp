@@ -2,9 +2,13 @@ package service;
 
 import model.Rental;
 import model.Reservation;
+import model.User;
 import persistence.services.ReservationService;
+import persistence.services.UserService;
 import service.dto.RentalDTO;
 import service.dto.ReservationDTO;
+import service.dto.UserDTO;
+
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.time.format.DateTimeFormatter;
@@ -22,6 +26,16 @@ public class ReservationRest {
 
     public void setReservationService(ReservationService reservationService) {
         this.reservationService = reservationService;
+    }
+
+    private UserService userService;
+
+    public UserService getUserService() {
+        return userService;
+    }
+
+    public void setUserService(UserService userService) {
+        this.userService = userService;
     }
 
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -48,10 +62,29 @@ public class ReservationRest {
         return ldto;
     }
 
+    private UserDTO userToUserDTO(User user){
+        UserDTO dto = new UserDTO();
+        dto.setAddress(user.getAddress());
+        dto.setCUIL(user.getCUIL());
+        dto.setEmail(user.getEmail());
+        dto.setName(user.getName());
+        dto.setSurname(user.getSurname());
+        dto.setUserName(user.getUserName());
+        //dto.setReputation(user.getReputation());
+        if(user.getStatus().isEnabled())
+            dto.setStatus(true);
+        else
+            dto.setStatus(false);
+        for(Integer s: user.getScores())
+            dto.getScores().add(s);
+        dto.setAccount(user.getAccount().getCredit());
+        return dto;
+    }
+
     private ReservationDTO reservationDTOToReservation(Reservation r){
 
         return new ReservationDTO(
-                r.getTenantUser().getEmail(),
+                userToUserDTO(this.getUserService().filterUser(r.getTenantUser().getEmail())),
                 r.getPost().getId(),
                 r.getReservationSinceDate().format(formatter),
                 r.getReservationUntilDate().format(formatter),

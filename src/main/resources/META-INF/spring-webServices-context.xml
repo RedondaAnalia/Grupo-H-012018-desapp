@@ -62,6 +62,7 @@ http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd">
 
     <bean id="reservationRest" class="service.ReservationRest">
         <property name="reservationService" ref="services.reservation"/>
+        <property name="userService" ref="services.user"/>
     </bean>
 
 </beans>
