@@ -5,7 +5,7 @@ import model.Entity;
 public class ReservationDTO extends Entity{
 
     private UserDTO tenantUser;
-    private int post;
+    private PostDTO post;
     private String reservationSinceDate;
     private String reservationUntilDate;
     private String statusReservation;
@@ -13,7 +13,7 @@ public class ReservationDTO extends Entity{
 
     public ReservationDTO(){}
 
-    public ReservationDTO(UserDTO tenant, int post,
+    public ReservationDTO(UserDTO tenant, PostDTO post,
                           String sinceDate, String untilDate, String status, int id, String owner){
         this.tenantUser=tenant;
         this.post=post;
@@ -32,11 +32,11 @@ public class ReservationDTO extends Entity{
         this.tenantUser = tenantUser;
     }
 
-    public int getPost() {
+    public PostDTO getPost() {
         return post;
     }
 
-    public void setPost(int post) {
+    public void setPost(PostDTO post) {
         this.post = post;
     }
 

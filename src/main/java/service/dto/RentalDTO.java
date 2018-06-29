@@ -6,7 +6,7 @@ public class RentalDTO  extends Entity {
 
     private String rentalState;
     private long beginRentalTime;
-    private int idReservation;
+    private ReservationDTO reservation;
 
     public String getRentalState() {
         return rentalState;
@@ -24,11 +24,11 @@ public class RentalDTO  extends Entity {
         this.beginRentalTime = beginRentalTime;
     }
 
-    public int getIdReservation() {
-        return idReservation;
+    public ReservationDTO getReservation() {
+        return reservation;
     }
 
-    public void setIdReservation(int idReservation) {
-        this.idReservation = idReservation;
+    public void setReservation(ReservationDTO reservation) {
+        this.reservation = reservation;
     }
 }

@@ -1,13 +1,9 @@
 package service;
 
-import model.Rental;
-import model.Reservation;
-import model.User;
+import model.*;
 import persistence.services.ReservationService;
 import persistence.services.UserService;
-import service.dto.RentalDTO;
-import service.dto.ReservationDTO;
-import service.dto.UserDTO;
+import service.dto.*;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
@@ -85,7 +81,7 @@ public class ReservationRest {
 
         return new ReservationDTO(
                 userToUserDTO(this.getUserService().filterUser(r.getTenantUser().getEmail())),
-                r.getPost().getId(),
+                postToPostDTO(r.getPost()),
                 r.getReservationSinceDate().format(formatter),
                 r.getReservationUntilDate().format(formatter),
                 r.getStatus().toString(),
@@ -226,9 +222,50 @@ public class ReservationRest {
         RentalDTO dto = new RentalDTO();
         dto.setRentalState(r.getState().toString());
         dto.setId(r.getId());
-        dto.setIdReservation(r.getReservation().getId());
+        dto.setReservation(reservationDTOToReservation(r.getReservation()));
         //dto.setBeginRentalTime(r.getRentalTime());
         return dto;
     }
 
+    //post a dto
+    private PostDTO postToPostDTO(Post p) {
+        PostDTO dto = new PostDTO();
+        dto.setId(p.getId());
+        dto.setCostPerDay(p.getCostPerDay());
+        dto.setLocation(p.getLocation());
+        String formatSinceDate = p.getSinceDate().format(this.formatter);
+        dto.setSinceDate(formatSinceDate);
+        String formatUntilDate = p.getUntilDate().format(this.formatter);
+        dto.setUntilDate(formatUntilDate);
+        dto.setVehicle(toDTO(p.getVehicle()));
+        dto.setOwnerUser(p.getOwnerUser().getEmail());
+        dto.setPhone(p.getPhone());
+        dto.setPickUpCoord(coordToCoordDTO(p.getPickUpCoord()));
+        dto.setReturnCoords(coordToCoordDTO(p.getReturnCoords()));
+        dto.setPostState(p.getPostState().toString());
+        return dto;
+    }
+
+    //coord a dto
+    private CoordDTO coordToCoordDTO(Coord c){
+        CoordDTO dto = new CoordDTO();
+        dto.setLat(c.getLat());
+        dto.setLng(c.getLng());
+        dto.setId(c.getId());
+        return dto;
+    }
+
+    private VehicleDTO toDTO(Vehicle vehicle){
+        VehicleDTO dto = new VehicleDTO();
+        dto.setCapacity(vehicle.getCapacity());
+        dto.setDescription(vehicle.getDescription());
+        dto.setType(vehicle.getType());
+        dto.setOwner(vehicle.getOwner().getEmail());
+        if (!vehicle.getPhotos().isEmpty()) {
+            for (String p : vehicle.getPhotos())
+                dto.getPhotos().add(p);
+        }
+        dto.setId(vehicle.getId());
+        return dto;
+    }
 }
