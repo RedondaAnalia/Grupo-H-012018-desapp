@@ -27,8 +27,8 @@ public class ReturnConfirmedByTheOwner extends IRentalState {
         LocalDateTime endRentalTime = LocalDateTime.now();
         AccountManager.processPayment(rental.rentCost(endRentalTime),
                 rental.getTenantUser(), rental.getOwnerUser());
-        rental.setState(new FinalizedRentalST());
         rental.setTenantComment(comment);
+        rental.setState(new FinalizedRentalST());
     }
 
     @Override

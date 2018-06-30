@@ -23,8 +23,8 @@ public class ReturnConfirmedByTheTenant extends IRentalState {
         LocalDateTime endRentalTime = LocalDateTime.now();
         AccountManager.processPayment(rental.rentCost(endRentalTime),
                 rental.getTenantUser(), rental.getOwnerUser());
-        rental.setState(new FinalizedRentalST());
         rental.setOwnerComment(comment);
+        rental.setState(new FinalizedRentalST());
     }
 
     public void tenantUserConfirmated(Rental rental, Integer score, String comment) {
