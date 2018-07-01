@@ -45,8 +45,8 @@ public class PostService extends GenericService<Post> implements Initializable{
 
 
         User feli = UserBuilder.anUser().withCUIL("1").
-                withEmail("felipe.gil@gmail.com").
-                withNameAndSurname("Felipe", "Gil").build();
+                withEmail("mvgil.fotografia@gmail.com").
+                withNameAndSurname("MaruOwner", "Gil").build();
 
         User bruno = UserBuilder.anUser().withCUIL("1").
                 withEmail("bruno.gil@gmail.com").

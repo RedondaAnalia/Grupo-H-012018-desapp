@@ -2,6 +2,7 @@ package model.states.rental;
 
 
 import model.AccountManager;
+import model.Mail;
 import model.Rental;
 import model.exceptions.InvalidStatusChangeException;
 import model.interfaces.IRentalState;
@@ -29,6 +30,15 @@ public class ReturnConfirmedByTheOwner extends IRentalState {
                 rental.getTenantUser(), rental.getOwnerUser());
         rental.setTenantComment(comment);
         rental.setState(new FinalizedRentalST());
+
+        Mail.sendFromGMail(rental.getOwnerUser().getEmail(),
+                "[Carpnd] - Se ha confirmado la devolución del vehículo por parte del cliente",
+                "El cliente nos confirma que ya realizó la devolución del vehículo.\n" +
+                        "Cliente: \n" + rental.getTenantUser().getName()+" "+ rental.getTenantUser().getSurname()+"\n"+
+                        "Email: "+ rental.getTenantUser().getEmail()+"\n"+
+                        "Vehiculo: "+ rental.getReservation().getPost().getVehicle().getDescription()+
+                        "\n\n"+"Comentario del clinte: "+ rental.getTenantComment() +"\n"+
+                        "\n\n"+"GRACIAS POR ELEGIRNOS!!");
     }
 
     @Override
