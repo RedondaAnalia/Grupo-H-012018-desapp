@@ -7,6 +7,8 @@ public class MailTest {
 
     @Test
     public void sendMail(){
-        Mail.sendMail();
+    //    Mail.sendFromGMail("gil.maricruz@gmail.com",
+    //            "Java send mail example",
+    //            "Welcome to JavaMail!");
     }
 }

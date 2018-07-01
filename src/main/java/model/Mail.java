@@ -8,25 +8,14 @@ public class Mail {
 
     private static String USER_NAME = "carpnd89";
     private static String PASSWORD = "Carpnd89";
-    private static String RECIPIENT = "gil.maricruz@gmail.com";
 
-    public static void sendMail() {
-        String from = USER_NAME;
-        String pass = PASSWORD;
-        String[] to = { RECIPIENT };
-        String subject = "Java send mail example";
-        String body = "Welcome to JavaMail!";
-
-        sendFromGMail(from, pass, to, subject, body);
-    }
-
-    private static void sendFromGMail(String from, String pass, String[] to, String subject, String body) {
+    public static void sendFromGMail(String to, String subject, String body) {
         Properties props = System.getProperties();
         String host = "smtp.gmail.com";
         props.put("mail.smtp.starttls.enable", "true");
         props.put("mail.smtp.host", host);
-        props.put("mail.smtp.user", from);
-        props.put("mail.smtp.password", pass);
+        props.put("mail.smtp.user", USER_NAME);
+        props.put("mail.smtp.password", PASSWORD);
         props.put("mail.smtp.port", "587");
         props.put("mail.smtp.auth", "true");
 
@@ -34,29 +23,15 @@ public class Mail {
         MimeMessage message = new MimeMessage(session);
 
         try {
-            message.setFrom(new InternetAddress(from));
-            InternetAddress[] toAddress = new InternetAddress[to.length];
-
-            // To get the array of addresses
-            for( int i = 0; i < to.length; i++ ) {
-                toAddress[i] = new InternetAddress(to[i]);
-            }
-
-            for( int i = 0; i < toAddress.length; i++) {
-                message.addRecipient(Message.RecipientType.TO, toAddress[i]);
-            }
-
+            message.setFrom(new InternetAddress(USER_NAME));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
             message.setSubject(subject);
             message.setText(body);
             Transport transport = session.getTransport("smtp");
-            transport.connect(host, from, pass);
+            transport.connect(host, USER_NAME, PASSWORD);
             transport.sendMessage(message, message.getAllRecipients());
             transport.close();
-        }
-        catch (AddressException ae) {
-            ae.printStackTrace();
-        }
-        catch (MessagingException me) {
+        } catch (MessagingException me) {
             me.printStackTrace();
         }
     }
