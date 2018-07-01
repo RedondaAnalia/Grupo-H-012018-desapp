@@ -6,6 +6,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate4.HibernateCallback;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -69,5 +70,12 @@ public class RentalRepository
         Rental r = this.findById(idRental);
         r.getState().ownerUserConfirmated(r, score, comment);
         this.merge(r);
+    }
+
+    public List<Rental> historicalMovementsByUser(String mail) {
+        List<Rental> rentals = new ArrayList<>();
+        rentals.addAll(this.findByOwnerUser(mail));
+        rentals.addAll(this.findByTenantUser(mail));
+        return rentals;
     }
 }

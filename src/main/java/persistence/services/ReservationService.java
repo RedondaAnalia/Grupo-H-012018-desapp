@@ -1,9 +1,6 @@
 package persistence.services;
 
-import model.Post;
-import model.Rental;
-import model.Reservation;
-import model.User;
+import model.*;
 import org.springframework.transaction.annotation.Transactional;
 import persistence.repositories.*;
 
@@ -144,5 +141,10 @@ public class ReservationService extends GenericService<Reservation> implements I
     @Transactional
     public void confirmedReturnByOwner(int idRental, Integer score, String comment) {
         this.getRentalRepository().confirmedReturnByOwner(idRental, score, comment);
+    }
+
+    @Transactional
+    public List<Rental> historicalMovementsByUser(String mail) {
+        return this.getRentalRepository().historicalMovementsByUser(mail);
     }
 }
