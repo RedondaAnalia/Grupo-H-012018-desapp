@@ -86,8 +86,8 @@ public class PostTestCase {
     @Test
     public void shouldBeChangeStateToReservedAfterReservationThePost(){
         Vehicle vehicle= VehicleBuilder.aVehicle().build();
-        User ownerUser = UserBuilder.anUser().withCredit(100).build();
-        User tenantUser = UserBuilder.anUser().withCredit(100).build();
+        User ownerUser = UserBuilder.anUser().withEmail("juan@gmail.com").withCredit(100).build();
+        User tenantUser = UserBuilder.anUser().withEmail("pedro@gmail.com").withCredit(100).build();
         Coord coord = new Coord(1,177);
         Post p = ownerUser.post(vehicle, coord,
                 coord, LocalDateTime.now(),

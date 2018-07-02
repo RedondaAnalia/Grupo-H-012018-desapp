@@ -1,6 +1,7 @@
 package model;
 
 
+import model.exceptions.InvalidReservationException;
 import model.interfaces.IReservationState;
 import model.states.post.ReservedPostST;
 import model.states.reservation.PendingReservationST;
@@ -19,6 +20,7 @@ public class Reservation extends Entity{
 
     public Reservation(Post post, LocalDateTime reservationSinceDate,
                        LocalDateTime reservationUntilDate, User tenantUser){
+
         this.tenantUser=tenantUser;
         this.post=post;
         this.post.setPostState(new ReservedPostST());
@@ -26,6 +28,10 @@ public class Reservation extends Entity{
         this.reservationUntilDate=reservationUntilDate;
 
         this.statusReservation = new PendingReservationST();
+
+        if(this.tenantUser.getEmail().equals(this.post.getOwnerUser().getEmail())){
+            throw new InvalidReservationException();
+        }
 
     }
 
