@@ -4,13 +4,12 @@ import builders.PostBuilder;
 import builders.UserBuilder;
 import builders.VehicleBuilder;
 import model.*;
+import model.enums.StatesPost;
 import model.exceptions.NoCoordsEnoughException;
 import model.exceptions.TimeOutOfRangeException;
 import model.exceptions.UserBlockedException;
 import org.junit.Test;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 import static org.junit.Assert.*;
 
 public class PostTestCase {
@@ -79,7 +78,7 @@ public class PostTestCase {
                 coord, LocalDateTime.now(),
                 LocalDateTime.now().plusDays(3L), 100);
 
-        assertEquals(p.getPostState().toString(),"available");
+        assertEquals(p.getPostState(), StatesPost.AVAILABLE);
 
     }
 
@@ -95,7 +94,7 @@ public class PostTestCase {
 
         tenantUser.rent(p, LocalDateTime.now(), LocalDateTime.now().plusDays(3L));
 
-        assertEquals(p.getPostState().toString(),"reserved");
+        assertEquals(p.getPostState(),StatesPost.RESERVED);
 
     }
 }
