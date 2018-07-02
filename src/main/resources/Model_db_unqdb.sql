@@ -23,3 +23,9 @@ desc User;
 select * from IReservationState;
 
 select * from Reservation;
+
+select * from Rental;
+
+select * from IRentalState;
+
+select * from IPostState;

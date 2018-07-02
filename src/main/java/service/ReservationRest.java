@@ -208,7 +208,13 @@ public class ReservationRest {
         return Response.status(r).build();
     }
 
-
+    @GET
+    @Path("/historicalMovementsByUser/{mail}")
+    @Produces("application/json")
+    public List<RentalDTO> historicalMovementsByUserRest(@PathParam("mail") String mail){
+        List<Rental> rentals = this.getReservationService().historicalMovementsByUser(mail);
+        return listRentalToRentalDTO(rentals);
+    }
 
     private List<RentalDTO> listRentalToRentalDTO(List<Rental> lr){
         List<RentalDTO> ldto = new ArrayList<>();
