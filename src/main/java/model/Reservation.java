@@ -1,8 +1,9 @@
 package model;
 
 
+import model.enums.StatesPost;
+import model.exceptions.InvalidReservationException;
 import model.interfaces.IReservationState;
-import model.states.post.ReservedPostST;
 import model.states.reservation.PendingReservationST;
 
 import java.time.LocalDateTime;
@@ -19,13 +20,18 @@ public class Reservation extends Entity{
 
     public Reservation(Post post, LocalDateTime reservationSinceDate,
                        LocalDateTime reservationUntilDate, User tenantUser){
+
         this.tenantUser=tenantUser;
         this.post=post;
-        this.post.setPostState(new ReservedPostST());
+        this.post.setPostState(StatesPost.RESERVED);
         this.reservationSinceDate=reservationSinceDate;
         this.reservationUntilDate=reservationUntilDate;
 
         this.statusReservation = new PendingReservationST();
+
+        if(this.tenantUser.getEmail().equals(this.post.getOwnerUser().getEmail())){
+            throw new InvalidReservationException();
+        }
 
     }
 

@@ -1,10 +1,9 @@
 package persistence.repositories;
 
 import model.Post;
+import model.enums.StatesPost;
 import model.enums.VehicleType;
 import org.hibernate.Criteria;
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate4.HibernateCallback;
 import org.springframework.stereotype.Repository;
@@ -21,8 +20,14 @@ public class PostRepository
         return Post.class;
     }
 
-    public List<Post> allPost() {
-        return this.findAll();
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    public List<Post> allPost(){
+
+        return (List<Post>) this.getHibernateTemplate().execute((HibernateCallback) session -> {
+            Criteria criteria = session.createCriteria(Post.class, "post");
+            criteria.add(Restrictions.eq("post.postState", StatesPost.AVAILABLE));
+            return criteria.list();
+        });
     }
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
@@ -31,6 +36,7 @@ public class PostRepository
         return (List<Post>) this.getHibernateTemplate().execute((HibernateCallback) session -> {
             Criteria criteria = session.createCriteria(Post.class, "post").createAlias("post.vehicle", "vehicle");
             criteria.add(Restrictions.eq("vehicle.type", VehicleType.valueOf(type)));
+            criteria.add(Restrictions.eq("post.postState", StatesPost.AVAILABLE));
             return criteria.list();
         });
     }
@@ -40,6 +46,7 @@ public class PostRepository
         return (List<Post>) this.getHibernateTemplate().execute((HibernateCallback) session -> {
             Criteria criteria = session.createCriteria(Post.class, "post");
             criteria.add(Restrictions.eq("location", location));
+            criteria.add(Restrictions.eq("post.postState", StatesPost.AVAILABLE));
             return criteria.list();
         });
     }

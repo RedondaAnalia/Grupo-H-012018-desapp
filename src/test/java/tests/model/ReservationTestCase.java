@@ -24,7 +24,7 @@ public class ReservationTestCase {
                 withSinceDate(LocalDateTime.now()).
                 withUntilDate(LocalDateTime.now().plusDays(3L)).build();
 
-        User tenantUser = UserBuilder.anUser().build();
+        User tenantUser = UserBuilder.anUser().withEmail("juan@gmail.com").build();
 
         assertNotNull(tenantUser.
                 rent(post, LocalDateTime.now(), LocalDateTime.now().plusDays(1L)));
@@ -38,7 +38,7 @@ public class ReservationTestCase {
                 withSinceDate(LocalDateTime.now()).
                 withUntilDate(LocalDateTime.now().plusDays(3L)).build();
 
-        User tenantUser = UserBuilder.anUser().build();
+        User tenantUser = UserBuilder.anUser().withEmail("juan@gmail.com").build();
 
         Reservation reservation = tenantUser.rent(post, LocalDateTime.now(),
                 LocalDateTime.now().plusDays(1L));
@@ -54,7 +54,7 @@ public class ReservationTestCase {
                 withSinceDate(LocalDateTime.now()).
                 withUntilDate(LocalDateTime.now().plusDays(3L)).build();
 
-        User tenantUser = UserBuilder.anUser().build();
+        User tenantUser = UserBuilder.anUser().withEmail("juan@gmail.com").build();
 
         Reservation reservation = tenantUser.rent(post, LocalDateTime.now(),
                 LocalDateTime.now().plusDays(1L));
@@ -73,7 +73,7 @@ public class ReservationTestCase {
                 withSinceDate(LocalDateTime.now()).
                 withUntilDate(LocalDateTime.now().plusDays(3L)).build();
 
-        User tenantUser = UserBuilder.anUser().build();
+        User tenantUser = UserBuilder.anUser().withEmail("juan@gmail.com").build();
 
         Reservation reservation = tenantUser.rent(post, LocalDateTime.now(),
                 LocalDateTime.now().plusDays(1L));
@@ -91,7 +91,7 @@ public class ReservationTestCase {
                 withSinceDate(LocalDateTime.now()).
                 withUntilDate(LocalDateTime.now().plusDays(3L)).build();
 
-        User tenantUser = UserBuilder.anUser().build();
+        User tenantUser = UserBuilder.anUser().withEmail("juan@gmail.com").build();
 
         Reservation reservation = tenantUser.rent(post, LocalDateTime.now(),
                 LocalDateTime.now().plusDays(1L));
@@ -109,7 +109,7 @@ public class ReservationTestCase {
                 withSinceDate(LocalDateTime.now()).
                 withUntilDate(LocalDateTime.now().plusDays(3L)).build();
 
-        User tenantUser = UserBuilder.anUser().build();
+        User tenantUser = UserBuilder.anUser().withEmail("juan@gmail.com").build();
 
         Reservation reservation = tenantUser.rent(post, LocalDateTime.now(),
                 LocalDateTime.now().plusDays(1L));
@@ -127,7 +127,7 @@ public class ReservationTestCase {
                 withSinceDate(LocalDateTime.now()).
                 withUntilDate(LocalDateTime.now().plusDays(3L)).build();
 
-        User tenantUser = UserBuilder.anUser().build();
+        User tenantUser = UserBuilder.anUser().withEmail("juan@gmail.com").build();
 
         Reservation reservation = tenantUser.rent(post, LocalDateTime.now(),
                 LocalDateTime.now().plusDays(1L));
@@ -145,7 +145,7 @@ public class ReservationTestCase {
                 withSinceDate(LocalDateTime.now()).
                 withUntilDate(LocalDateTime.now().plusDays(3L)).build();
 
-        User tenantUser = UserBuilder.anUser().build();
+        User tenantUser = UserBuilder.anUser().withEmail("juan@gmail.com").build();
 
         Reservation reservation = tenantUser.rent(post, LocalDateTime.now(),
                 LocalDateTime.now().plusDays(1L));
