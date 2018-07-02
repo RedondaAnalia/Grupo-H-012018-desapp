@@ -211,9 +211,12 @@ public class ReservationRest {
     @GET
     @Path("/historicalMovementsByUser/{mail}")
     @Produces("application/json")
-    public List<RentalDTO> historicalMovementsByUserRest(@PathParam("mail") String mail){
-        List<Rental> rentals = this.getReservationService().historicalMovementsByUser(mail);
-        return listRentalToRentalDTO(rentals);
+    public Response historicalMovementsByUserRest(@PathParam("mail") String mail){
+        MailSender.sendStateAccountMail(
+                this.getReservationService().findAllOwnerRentals(mail),
+                this.getReservationService().findAllTenantRentals(mail),
+                this.getUserService().filterUser(mail));
+        return Response.ok().build();
     }
 
     private List<RentalDTO> listRentalToRentalDTO(List<Rental> lr){
