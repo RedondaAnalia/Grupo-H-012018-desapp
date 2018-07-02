@@ -175,18 +175,12 @@ public class ReservationRest {
     @Path("/confirmedReturnByTenant/{idRental}/{score}/{comment}")
     @Consumes("application/json")
     @Produces("application/json")
-    public Response confirmedReturnByTenantRest(
+    public void confirmedReturnByTenantRest(
             @PathParam("idRental") int idRental,
             @PathParam("score") Integer score,
             @PathParam("comment") String comment
             ){
-        Response.Status r = Response.Status.OK;
-        try{
-            this.getReservationService().confirmedReturnByTenant(idRental, score, comment);
-        }catch (RuntimeException e){
-            r = Response.Status.INTERNAL_SERVER_ERROR;
-        }
-        return Response.status(r).build();
+        this.getReservationService().confirmedReturnByTenant(idRental, score, comment);
     }
 
     // el dueño confirma que le devolvieron el vehiculo
@@ -194,18 +188,12 @@ public class ReservationRest {
     @Path("/confirmedReturnByOwner/{idRental}/{score}/{comment}")
     @Consumes("application/json")
     @Produces("application/json")
-    public Response confirmedReturnByOwnerRest(
+    public void confirmedReturnByOwnerRest(
             @PathParam("idRental") int idRental,
             @PathParam("score") Integer score,
             @PathParam("comment") String comment
     ){
-       Response.Status r = Response.Status.OK;
-        try{
-            this.getReservationService().confirmedReturnByOwner(idRental, score, comment);
-        }catch (RuntimeException e){
-            r = Response.Status.INTERNAL_SERVER_ERROR;
-        }
-        return Response.status(r).build();
+                this.getReservationService().confirmedReturnByOwner(idRental, score, comment);
     }
 
     @GET
@@ -234,7 +222,7 @@ public class ReservationRest {
         dto.setReservation(reservationDTOToReservation(r.getReservation()));
         dto.setOwnerComment(r.getOwnerComment());
         dto.setTenantComment(r.getTenantComment());
-        //dto.setBeginRentalTime(r.getRentalTime());
+        dto.setBeginRentalTime(r.getRentalTime());
         return dto;
     }
 
