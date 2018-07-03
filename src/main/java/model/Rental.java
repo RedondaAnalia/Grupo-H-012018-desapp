@@ -29,7 +29,7 @@ public class Rental extends Entity {
 
         this.reservation = reservation;
         this.state = new PendingRentalST();
-
+        startRentalTime();
     }
 
     public IRentalState getState(){
