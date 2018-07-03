@@ -37,7 +37,7 @@ public class UserService extends GenericService<User> implements Initializable{
         this.getRepository().save(UserBuilder.anUser().withCUIL("6").withEmail("mother_of_dragons@gmail.com").withNameAndSurname("Daenerys", "Targaryen").build());
         this.getRepository().save(UserBuilder.anUser().withCUIL("7").withEmail("espinarys@gmail.com").withNameAndSurname("Espi", "Noso").build());
 */
-        this.getRepository().save(UserBuilder.anUser().withCUIL("29800905").
+        this.getRepository().save(UserBuilder.anUser().withCUIL("27298009051").
                 withEmail("gil.maricruz@gmail.com").
                 withNameAndSurname("Maricruz", "Gil").
                 withAddress("Av. Hipólito Yrigoyen 3671, C1208ABD CABA, Argentina").build());

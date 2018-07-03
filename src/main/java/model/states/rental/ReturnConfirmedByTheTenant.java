@@ -7,8 +7,6 @@ import model.Rental;
 import model.exceptions.InvalidStatusChangeException;
 import model.interfaces.IRentalState;
 
-import java.time.LocalDateTime;
-
 public class ReturnConfirmedByTheTenant extends IRentalState {
 
     public void ownerUserConfirmated(Rental rental) {
@@ -21,9 +19,6 @@ public class ReturnConfirmedByTheTenant extends IRentalState {
 
     public void ownerUserConfirmated(Rental rental, Integer score, String comment) {
         rental.getTenantUser().processScore(score);
-        LocalDateTime endRentalTime = LocalDateTime.now();
-        AccountManager.processPayment(rental.rentCost(endRentalTime),
-                rental.getTenantUser(), rental.getOwnerUser());
         rental.setOwnerComment(comment);
         rental.setState(new FinalizedRentalST());
 
