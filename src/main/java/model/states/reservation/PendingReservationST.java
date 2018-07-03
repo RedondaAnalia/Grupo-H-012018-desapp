@@ -4,6 +4,7 @@ package model.states.reservation;
 import model.Mail;
 import model.Rental;
 import model.Reservation;
+import model.enums.StatesPost;
 import model.interfaces.IReservationState;
 
 public class PendingReservationST extends IReservationState {
@@ -23,6 +24,7 @@ public class PendingReservationST extends IReservationState {
     @Override
     public Rental beConfirm(Reservation reservation) {
         reservation.setStatus(new ConfirmReservationST());
+        reservation.getPost().setPostState(StatesPost.RESERVED);
         Rental rental = new Rental(reservation);
         Mail.sendFromGMail(reservation.getTenantUser().getEmail(),
                 "[Carpnd] - Confirmación de reserva",
