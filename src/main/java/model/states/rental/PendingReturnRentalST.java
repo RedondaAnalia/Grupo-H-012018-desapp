@@ -21,8 +21,7 @@ public class PendingReturnRentalST extends IRentalState {
 
     public void ownerUserConfirmated(Rental rental, Integer score, String comment) {
         rental.getOwnerUser().processScore(score);
-        LocalDateTime endRentalTime = LocalDateTime.now();
-        AccountManager.processPayment(rental.rentCost(endRentalTime),
+        AccountManager.processPayment(rental.rentCost(),
                 rental.getTenantUser(), rental.getOwnerUser());
         rental.setOwnerComment(comment);
         rental.setState(new ReturnConfirmedByTheOwner());
@@ -39,8 +38,7 @@ public class PendingReturnRentalST extends IRentalState {
 
     public void tenantUserConfirmated(Rental rental, Integer score, String comment) {
         rental.getTenantUser().processScore(score);
-        LocalDateTime endRentalTime = LocalDateTime.now();
-        AccountManager.processPayment(rental.rentCost(endRentalTime),
+        AccountManager.processPayment(rental.rentCost(),
                 rental.getTenantUser(), rental.getOwnerUser());
         rental.setTenantComment(comment);
         rental.setState(new ReturnConfirmedByTheTenant());

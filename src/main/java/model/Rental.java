@@ -29,7 +29,7 @@ public class Rental extends Entity {
 
         this.reservation = reservation;
         this.state = new PendingRentalST();
-
+        startRentalTime();
     }
 
     public IRentalState getState(){
@@ -102,8 +102,8 @@ public class Rental extends Entity {
         return this.reservation.getOwnerUser();
     }
 
-    public double rentCost(LocalDateTime endRentalTime) {
-        long days= this.beginRentalTime.until(endRentalTime, ChronoUnit.DAYS);
+    public double rentCost() {
+    	long days= ChronoUnit.DAYS.between(this.reservation.getReservationSinceDate(), this.reservation.getReservationUntilDate()) + 1;
         return this.reservation.getPost().getCostPerDay()*days;
     }
 
