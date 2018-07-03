@@ -1,10 +1,5 @@
 package service.dto;
 
-import model.Entity;
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class PostWithoutVehicleDTO{
 
 

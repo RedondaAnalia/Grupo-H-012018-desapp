@@ -15,6 +15,8 @@ import java.util.List;
 public class ReservationRest {
 
     private ReservationService reservationService;
+    private UserService userService;
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     private ReservationService getReservationService() {
         return reservationService;
@@ -24,8 +26,6 @@ public class ReservationRest {
         this.reservationService = reservationService;
     }
 
-    private UserService userService;
-
     public UserService getUserService() {
         return userService;
     }
@@ -34,20 +34,24 @@ public class ReservationRest {
         this.userService = userService;
     }
 
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
     @POST
     @Path("/createReservation/{postId}/{mail}/{sinceDate}/{untilDate}")
     @Consumes("application/json")
     @Produces("application/json")
-    public ReservationDTO createPost(
+    public Response createPostRest(
                                 @PathParam("postId") int postId,
                                 @PathParam("mail") String mail,
                                 @PathParam("sinceDate") String reservationSinceDate,
                                 @PathParam("untilDate") String reservationUntilDate)
     {
-        return reservationDTOToReservation(this.getReservationService().
-                reservation(postId,mail,reservationSinceDate, reservationUntilDate));
+        ReservationDTO dto;
+        try {
+            dto = reservationDTOToReservation(this.getReservationService().
+                    reservation(postId,mail,reservationSinceDate, reservationUntilDate));
+        }catch (RuntimeException e){
+            throw e;
+        }
+        return Response.ok(dto).build();
     }
 
     private List<ReservationDTO>listReservationDTOToReservation(List<Reservation> lr){
@@ -94,13 +98,12 @@ public class ReservationRest {
     @Consumes("application/json")
     @Produces("application/json")
     public Response confirmedRest(@PathParam("idReserv") final int idReserv){
-        Response.Status r = Response.Status.OK;
-        try{
+        try {
             this.getReservationService().confirmedReservation(idReserv);
         }catch (RuntimeException e){
-            r = Response.Status.INTERNAL_SERVER_ERROR;
+            throw e;
         }
-        return Response.status(r).build();
+        return Response.ok().build();
     }
 
     @PUT
@@ -180,13 +183,12 @@ public class ReservationRest {
             @PathParam("score") Integer score,
             @PathParam("comment") String comment
             ){
-        Response.Status r = Response.Status.OK;
-        try{
+        try {
             this.getReservationService().confirmedReturnByTenant(idRental, score, comment);
         }catch (RuntimeException e){
-            r = Response.Status.INTERNAL_SERVER_ERROR;
+            throw e;
         }
-        return Response.status(r).build();
+        return Response.ok().build();
     }
 
     // el dueño confirma que le devolvieron el vehiculo
@@ -197,15 +199,13 @@ public class ReservationRest {
     public Response confirmedReturnByOwnerRest(
             @PathParam("idRental") int idRental,
             @PathParam("score") Integer score,
-            @PathParam("comment") String comment
-    ){
-       Response.Status r = Response.Status.OK;
-        try{
+            @PathParam("comment") String comment){
+        try {
             this.getReservationService().confirmedReturnByOwner(idRental, score, comment);
         }catch (RuntimeException e){
-            r = Response.Status.INTERNAL_SERVER_ERROR;
+            throw e;
         }
-        return Response.status(r).build();
+        return Response.ok().build();
     }
 
     @GET
@@ -234,7 +234,7 @@ public class ReservationRest {
         dto.setReservation(reservationDTOToReservation(r.getReservation()));
         dto.setOwnerComment(r.getOwnerComment());
         dto.setTenantComment(r.getTenantComment());
-        //dto.setBeginRentalTime(r.getRentalTime());
+        dto.setBeginRentalTime(r.getRentalTime());
         return dto;
     }
 

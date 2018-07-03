@@ -3,9 +3,6 @@ package service.dto;
 import model.Entity;
 
 import javax.xml.bind.annotation.XmlRootElement;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @XmlRootElement(name="post")
 public class PostDTO extends Entity{

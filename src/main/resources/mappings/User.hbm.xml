@@ -16,7 +16,7 @@
         <property name="address" />
         <property name="userName" />
         <property name="status"/>
-        <property name="account"/>
+        <many-to-one name="account" class="model.Account" lazy="false" cascade="all"/>
         <list name="scores" lazy="false">
             <key column="score_id"/>
             <index column="seq"/>

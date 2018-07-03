@@ -1,10 +1,9 @@
 package model;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-
 import model.exceptions.UserBlockedException;
 import model.interfaces.IUserState;
+
+import java.time.LocalDateTime;
 
 public class UserDisabled extends IUserState{
 

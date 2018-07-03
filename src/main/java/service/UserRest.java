@@ -19,6 +19,7 @@ import java.util.List;
 public class UserRest{
 
     private UserService userService;
+    private VehicleService vehicleService;
 
     public void setUserService(UserService userService){
         this.userService = userService;
@@ -27,8 +28,6 @@ public class UserRest{
     private UserService getUserService(){
         return this.userService;
     }
-
-    private VehicleService vehicleService;
 
     private VehicleService getVehicleService() {
         return vehicleService;

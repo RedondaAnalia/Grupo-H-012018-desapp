@@ -5,7 +5,6 @@ import model.*;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class IUserState extends Entity{

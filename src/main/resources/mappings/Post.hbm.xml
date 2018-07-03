@@ -11,7 +11,7 @@
         <id name="id">
             <generator class="native"/>
         </id>
-        <many-to-one name="ownerUser" class="model.User" lazy="false"/>
+        <many-to-one name="ownerUser" class="model.User" lazy="false" cascade="all"/>
         <many-to-one name="vehicle" class="model.Vehicle" lazy="false"/>
         <many-to-one name="pickUpCoord" class="model.Coord" lazy="false" cascade="all"/>
         <many-to-one name="returnCoords" class="model.Coord" lazy="false" cascade="all"/>
