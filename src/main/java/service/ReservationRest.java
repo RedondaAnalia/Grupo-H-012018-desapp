@@ -40,14 +40,20 @@ public class ReservationRest {
     @Path("/createReservation/{postId}/{mail}/{sinceDate}/{untilDate}")
     @Consumes("application/json")
     @Produces("application/json")
-    public ReservationDTO createPost(
-                                @PathParam("postId") int postId,
-                                @PathParam("mail") String mail,
-                                @PathParam("sinceDate") String reservationSinceDate,
-                                @PathParam("untilDate") String reservationUntilDate)
+    public Response createPostRest(
+            @PathParam("postId") int postId,
+            @PathParam("mail") String mail,
+            @PathParam("sinceDate") String reservationSinceDate,
+            @PathParam("untilDate") String reservationUntilDate)
     {
-        return reservationDTOToReservation(this.getReservationService().
-                reservation(postId,mail,reservationSinceDate, reservationUntilDate));
+        ReservationDTO dto;
+        try {
+            dto = reservationDTOToReservation(this.getReservationService().
+                    reservation(postId,mail,reservationSinceDate, reservationUntilDate));
+        }catch (RuntimeException e){
+            throw e;
+        }
+        return Response.ok(dto).build();
     }
 
     private List<ReservationDTO>listReservationDTOToReservation(List<Reservation> lr){
@@ -94,13 +100,12 @@ public class ReservationRest {
     @Consumes("application/json")
     @Produces("application/json")
     public Response confirmedRest(@PathParam("idReserv") final int idReserv){
-        Response.Status r = Response.Status.OK;
-        try{
+        try {
             this.getReservationService().confirmedReservation(idReserv);
         }catch (RuntimeException e){
-            r = Response.Status.INTERNAL_SERVER_ERROR;
+            throw e;
         }
-        return Response.status(r).build();
+        return Response.ok().build();
     }
 
     @PUT
@@ -175,18 +180,17 @@ public class ReservationRest {
     @Path("/confirmedReturnByTenant/{idRental}/{score}/{comment}")
     @Consumes("application/json")
     @Produces("application/json")
-    public Response confirmedReturnByTenantRest(
+    public Response confirmedReturnByTenantRestt(
             @PathParam("idRental") int idRental,
             @PathParam("score") Integer score,
             @PathParam("comment") String comment
-            ){
-        Response.Status r = Response.Status.OK;
-        try{
+    ){
+        try {
             this.getReservationService().confirmedReturnByTenant(idRental, score, comment);
         }catch (RuntimeException e){
-            r = Response.Status.INTERNAL_SERVER_ERROR;
+            throw e;
         }
-        return Response.status(r).build();
+        return Response.ok().build();
     }
 
     // el dueño confirma que le devolvieron el vehiculo
@@ -194,18 +198,16 @@ public class ReservationRest {
     @Path("/confirmedReturnByOwner/{idRental}/{score}/{comment}")
     @Consumes("application/json")
     @Produces("application/json")
-    public Response confirmedReturnByOwnerRest(
+    public Response confirmedReturnByOwnerRestt(
             @PathParam("idRental") int idRental,
             @PathParam("score") Integer score,
-            @PathParam("comment") String comment
-    ){
-       Response.Status r = Response.Status.OK;
-        try{
+            @PathParam("comment") String comment){
+        try {
             this.getReservationService().confirmedReturnByOwner(idRental, score, comment);
         }catch (RuntimeException e){
-            r = Response.Status.INTERNAL_SERVER_ERROR;
+            throw e;
         }
-        return Response.status(r).build();
+        return Response.ok().build();
     }
 
     @GET
@@ -222,7 +224,7 @@ public class ReservationRest {
     private List<RentalDTO> listRentalToRentalDTO(List<Rental> lr){
         List<RentalDTO> ldto = new ArrayList<>();
         for(Rental r: lr){
-           ldto.add(rentalToRentalDTO(r));
+            ldto.add(rentalToRentalDTO(r));
         }
         return ldto;
     }
@@ -234,7 +236,7 @@ public class ReservationRest {
         dto.setReservation(reservationDTOToReservation(r.getReservation()));
         dto.setOwnerComment(r.getOwnerComment());
         dto.setTenantComment(r.getTenantComment());
-        //dto.setBeginRentalTime(r.getRentalTime());
+        dto.setBeginRentalTime(r.getRentalTime());
         return dto;
     }
 

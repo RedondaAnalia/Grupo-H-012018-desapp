@@ -46,3 +46,33 @@ NOTES:
 
 KNOWN ISSUES:
 *
+
+---------------------------------------------------------------------
+TAG ENTREGA 3.0
+---------------------------------------------------------------------
+
+NEW FEATURES:
+* Creación de Post
+* Creación de la reserva del vehiculo
+* Busqueda de autos por lista
+* Integración ok entre el frontend y el backend
+* Auditoría de servicios mediante un aspecto
+* Se agrega test de arquitectura
+
+NOTES:
+
+
+---------------------------------------------------------------------
+TAG ENTREGA 4.0
+---------------------------------------------------------------------
+
+NEW FEATURES:
+
+* Busqueda de autos por mapa
+* Envío de notificaciones por mail
+* Usabilidad Spinners en procesos asíncronos
+* Cierre de flow de reserva y alquiler
+
+NOTES:
+* Queda pendiente terminar el envío de excepciones desde el backend al frontend
+
