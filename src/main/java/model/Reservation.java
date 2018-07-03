@@ -23,7 +23,7 @@ public class Reservation extends Entity{
 
         this.tenantUser=tenantUser;
         this.post=post;
-        this.post.setPostState(StatesPost.RESERVED);
+        //this.post.setPostState(StatesPost.RESERVED);
         this.reservationSinceDate=reservationSinceDate;
         this.reservationUntilDate=reservationUntilDate;
 

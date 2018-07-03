@@ -46,4 +46,18 @@ public class ReservationRepository
             return criteria.list();
         });
     }
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    public List<Reservation>  cancelOthersReservation(int idPost) {
+
+        return (List<Reservation>) this.getHibernateTemplate().execute((HibernateCallback) session -> {
+            Criteria criteria = session.createCriteria(Reservation.class, "reservation")
+                    .createAlias("reservation.post", "post")
+                            .createAlias("reservation.statusReservation", "status").
+                            add(Restrictions.eq("post.id", idPost));
+            String myArray[] = {"Pending"};
+            criteria.add(Restrictions.in("status.status", myArray));
+            return criteria.list();
+        });
+    }
 }

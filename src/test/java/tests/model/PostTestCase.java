@@ -94,7 +94,7 @@ public class PostTestCase {
 
         tenantUser.rent(p, LocalDateTime.now(), LocalDateTime.now().plusDays(3L));
 
-        assertEquals(p.getPostState(),StatesPost.RESERVED);
+        assertEquals(p.getPostState(),StatesPost.AVAILABLE);
 
     }
 }

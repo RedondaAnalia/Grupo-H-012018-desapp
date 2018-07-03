@@ -1,6 +1,7 @@
 package persistence.services;
 
 import model.*;
+import model.states.reservation.RejectedReservationST;
 import org.springframework.transaction.annotation.Transactional;
 import persistence.repositories.*;
 
@@ -93,7 +94,15 @@ public class ReservationService extends GenericService<Reservation> implements I
     @Transactional
     public Rental confirmedReservation(Integer id){
         Reservation r = this.getReservationRepository().findById(id);
-        return this.getRentalRepository().merge(r.beConfirm());
+
+        Rental rental = this.getRentalRepository().merge(r.beConfirm());
+
+        List<Reservation> lr = this.getReservationRepository().cancelOthersReservation(r.getPost().getId());
+        for(Reservation res: lr){
+            res.setStatus(new RejectedReservationST());
+            this.getReservationRepository().merge(res);
+        }
+        return rental;
     }
 
     @Transactional
