@@ -1,4 +1,4 @@
-package tests.Architecture;
+package tests.architecture;
 
 import aspects.ArchitectureCheck;
 import org.junit.Test;

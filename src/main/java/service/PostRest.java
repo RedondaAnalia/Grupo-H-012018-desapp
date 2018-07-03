@@ -21,6 +21,8 @@ public class PostRest {
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     private PostService postService;
+    private VehicleService vehicleService;
+    private UserService userService;
 
     public void setPostService(PostService postService) {
         this.postService = postService;
@@ -30,8 +32,6 @@ public class PostRest {
         return this.postService;
     }
 
-    private UserService userService;
-
     public void setUserService(UserService userService) {
         this.userService = userService;
     }
@@ -39,8 +39,6 @@ public class PostRest {
     private UserService getUserService() {
         return this.userService;
     }
-
-    private VehicleService vehicleService;
 
     public VehicleService getVehicleService() {
         return vehicleService;
@@ -85,7 +83,7 @@ public class PostRest {
     @GET
     @Path("/PostByType/{type}")
     @Produces("application/json")
-    public List<PostDTO> PostByTypeRest(@PathParam("type") final String type) {
+    public List<PostDTO> postByTypeRest(@PathParam("type") final String type) {
         return postsToPostsDTO(this.getPostService().postByType(type));
     }
 

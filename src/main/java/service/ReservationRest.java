@@ -15,6 +15,8 @@ import java.util.List;
 public class ReservationRest {
 
     private ReservationService reservationService;
+    private UserService userService;
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     private ReservationService getReservationService() {
         return reservationService;
@@ -24,8 +26,6 @@ public class ReservationRest {
         this.reservationService = reservationService;
     }
 
-    private UserService userService;
-
     public UserService getUserService() {
         return userService;
     }
@@ -33,8 +33,6 @@ public class ReservationRest {
     public void setUserService(UserService userService) {
         this.userService = userService;
     }
-
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     @POST
     @Path("/createReservation/{postId}/{mail}/{sinceDate}/{untilDate}")

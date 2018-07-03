@@ -1,8 +1,8 @@
 package model;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import model.interfaces.IUserState;
+
+import java.time.LocalDateTime;
 
 public class UserEnabled extends IUserState{
 
