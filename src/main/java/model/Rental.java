@@ -102,8 +102,8 @@ public class Rental extends Entity {
         return this.reservation.getOwnerUser();
     }
 
-    public double rentCost(LocalDateTime endRentalTime) {
-        long days= this.getReservation().getReservationSinceDate().until(endRentalTime, ChronoUnit.DAYS);
+    public double rentCost() {
+    	long days= ChronoUnit.DAYS.between(this.reservation.getReservationSinceDate(), this.reservation.getReservationUntilDate()) + 1;
         return this.reservation.getPost().getCostPerDay()*days;
     }
 
